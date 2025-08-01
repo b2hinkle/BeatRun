@@ -1,0 +1,26 @@
+{
+    "project_name": "xXGameProjectNameXx",
+    "version": "0.1.0",
+    "project_id": "{7B9E3010-03FF-4AFC-B773-6796E5D83986}",
+    "origin": "The primary repo for xXGameProjectNameXx goes here: i.e. http://www.mydomain.com",
+    "license": "What license xXGameProjectNameXx uses goes here: i.e. https://opensource.org/licenses/Apache-2.0 Or https://opensource.org/licenses/MIT etc.",
+    "display_name": "xXGameProjectNameXx",
+    "summary": "A short description of xXGameProjectNameXx.",
+    "canonical_tags": [
+        "Project"
+    ],
+    "user_tags": [
+        "xXGameProjectNameXx"
+    ],
+    "icon_path": "preview.png",
+    "engine": "o3de",
+    "external_subdirectories": [
+        "Gem"
+    ],
+    "gem_names": [
+        "xXGameProjectNameXx",
+        "Atom",
+        "CameraFramework",
+        "ImGui"
+    ]
+}
