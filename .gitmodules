@@ -1,0 +1,3 @@
+[submodule "Dependencies/Gems/O3DECoreUtils"]
+	path = Dependencies/Gems/O3DECoreUtils
+	url = https://github.com/ChristianHinko/O3DECoreUtils
