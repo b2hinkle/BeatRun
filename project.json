@@ -15,12 +15,14 @@
     "icon_path": "preview.png",
     "engine": "o3de",
     "external_subdirectories": [
+        "Dependencies/Gems/O3DECoreUtils",
         "Gem"
     ],
     "gem_names": [
         "Atom",
         "CameraFramework",
         "ImGui",
+        "O3DECoreUtils",
         "xXGameProjectNameXx"
     ],
     "engine_version": "2.4.1"
