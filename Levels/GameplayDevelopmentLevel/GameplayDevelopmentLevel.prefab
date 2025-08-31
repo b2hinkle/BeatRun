@@ -16,7 +16,8 @@
                 "Id": 1069995033707506449,
                 "Child Entity Order": [
                     "Entity_[295204691580]",
-                    "Entity_[574377565820]"
+                    "Entity_[574377565820]",
+                    "Entity_[949383976148]"
                 ]
             },
             "EditorInspectorComponent": {
@@ -47,6 +48,25 @@
                 "$type": "LocalViewBookmarkComponent",
                 "Id": 7706779388774148851,
                 "LocalBookmarkFileName": "GameplayDevelopmentLevel_17540291519627688.setreg"
+            },
+            "Multiplayer::SimplePlayerSpawnerComponent": {
+                "$type": "GenericComponentWrapper",
+                "Id": 17348586483957033367,
+                "m_template": {
+                    "$type": "Multiplayer::SimplePlayerSpawnerComponent",
+                    "PlayerSpawnable": {
+                        "Spawnable": {
+                            "assetId": {
+                                "guid": "{49351E39-B59B-5CBA-ABC9-B351C69ACDDE}",
+                                "subId": 3968919180
+                            },
+                            "assetHint": "prefabs/examplemover.network.spawnable"
+                        }
+                    },
+                    "SpawnPoints": [
+                        "Entity_[949383976148]"
+                    ]
+                }
             },
             "TransformComponent": {
                 "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
@@ -172,6 +192,56 @@
                             -76.0,
                             0.0,
                             -15.0
+                        ]
+                    }
+                }
+            }
+        },
+        "Entity_[949383976148]": {
+            "Id": "Entity_[949383976148]",
+            "Name": "SpawnPointTransform",
+            "Components": {
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 13365980034643767569
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 14705508302989346114
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 819139081090103680
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 15361337755059717955
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 17749215297849709890
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 15692879771841681894
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 17864479085611409787
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 3070220832420587405
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 2800464491010304387,
+                    "Parent Entity": "ContainerEntity",
+                    "Transform Data": {
+                        "Translate": [
+                            0.0,
+                            -8.0,
+                            0.0
                         ]
                     }
                 }
