@@ -86,6 +86,20 @@
                     "$type": "EditorVisibilityComponent",
                     "Id": 3899597929220889849
                 },
+                "Multiplayer::NetworkTransformComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 16094301339895292768,
+                    "m_template": {
+                        "$type": "Multiplayer::NetworkTransformComponent"
+                    }
+                },
+                "NetBindComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 209811933763380694,
+                    "m_template": {
+                        "$type": "NetBindComponent"
+                    }
+                },
                 "TransformComponent": {
                     "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
                     "Id": 1767894529163268114,
