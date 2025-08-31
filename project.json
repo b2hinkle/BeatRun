@@ -22,6 +22,7 @@
         "Atom",
         "CameraFramework",
         "ImGui",
+        "Multiplayer",
         "O3DECoreUtils",
         "xXGameProjectNameXx"
     ],
