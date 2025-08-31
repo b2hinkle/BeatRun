@@ -5,6 +5,7 @@
 #include "xXGameProjectNameXxSystemComponent.h"
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
+#include <Source/AutoGen/AutoComponentTypes.h>
 
 namespace xXGameProjectNameXx
 {
@@ -22,6 +23,9 @@ namespace xXGameProjectNameXx
             m_descriptors.insert(m_descriptors.end(), {
                 xXGameProjectNameXxSystemComponent::CreateDescriptor(),
             });
+
+            // Create descriptors for our auto-components. Important: These are supposed to be the last descriptors added.
+            CreateComponentDescriptors(m_descriptors);
         }
 
         /**

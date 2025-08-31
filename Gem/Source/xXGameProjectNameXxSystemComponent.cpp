@@ -4,6 +4,7 @@
 #include "xXGameProjectNameXxSystemComponent.h"
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
+#include <Source/AutoGen/AutoComponentTypes.h>
 
 namespace xXGameProjectNameXx
 {
@@ -61,6 +62,9 @@ namespace xXGameProjectNameXx
     void xXGameProjectNameXxSystemComponent::Activate()
     {
         xXGameProjectNameXxRequestBus::Handler::BusConnect();
+
+        // Register our auto-components.
+        RegisterMultiplayerComponents();
     }
 
     void xXGameProjectNameXxSystemComponent::Deactivate()

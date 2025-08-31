@@ -26,13 +26,24 @@ ly_add_target(
     FILES_CMAKE
         xxgameprojectnamexx_files.cmake
         ${pal_dir}/xxgameprojectnamexx_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+        xxgameprojectnamexx_autogen_files.cmake
     INCLUDE_DIRECTORIES
         PUBLIC
             Include
     BUILD_DEPENDENCIES
+        PUBLIC
+            AZ::AzFramework
+            AZ::AzNetworking
+            Gem::Multiplayer
         PRIVATE
             AZ::AzGameFramework
             Gem::Atom_AtomBridge.Static
+            Gem::Multiplayer.Unified.Static
+    AUTOGEN_RULES
+        *.AutoComponent.xml,AutoComponent_Header.jinja,$path/$fileprefix.AutoComponent.h
+        *.AutoComponent.xml,AutoComponent_Source.jinja,$path/$fileprefix.AutoComponent.cpp
+        *.AutoComponent.xml,AutoComponentTypes_Header.jinja,$path/AutoComponentTypes.h
+        *.AutoComponent.xml,AutoComponentTypes_Source.jinja,$path/AutoComponentTypes.cpp
 )
 
 ly_add_target(
