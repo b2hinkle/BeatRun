@@ -69,6 +69,20 @@
                         }
                     }
                 },
+                "EditorCharacterControllerComponent": {
+                    "$type": "EditorCharacterControllerComponent",
+                    "Id": 7999097049920276696,
+                    "Configuration": {
+                        "entityId": "",
+                        "MaterialSlots": {
+                            "Slots": [
+                                {
+                                    "Name": "Entire object"
+                                }
+                            ]
+                        }
+                    }
+                },
                 "EditorDisabledCompositionComponent": {
                     "$type": "EditorDisabledCompositionComponent",
                     "Id": 16727643018068486001
@@ -100,6 +114,13 @@
                 "EditorVisibilityComponent": {
                     "$type": "EditorVisibilityComponent",
                     "Id": 3899597929220889849
+                },
+                "Multiplayer::NetworkCharacterComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 17175439225464434075,
+                    "m_template": {
+                        "$type": "Multiplayer::NetworkCharacterComponent"
+                    }
                 },
                 "Multiplayer::NetworkTransformComponent": {
                     "$type": "GenericComponentWrapper",
