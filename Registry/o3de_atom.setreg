@@ -5,7 +5,7 @@
                 "FactoryManager": {
                     // Set the priority of RHIs to consider.
                     "factoriesPriority": [
-                        // [Temporary] Use vulkan by default to avoid engine's DX12 rhi device
+                        // [temporary] Use vulkan by default to avoid engine's DX12 rhi device
                         // validation crash: https://github.com/o3de/o3de/issues/19042. Another way
                         // to avoid it is to disable "/O3DE/Atom/rhi-device-validation".
                         "vulkan"
