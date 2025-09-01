@@ -17,5 +17,5 @@ endblock()
 
 # Append our files.
 list(APPEND FILES
-    Source/AutoGen/MyPlaceholderAutoComponent.AutoComponent.xml
+    Source/AutoGen/MoverInputComponent.AutoComponent.xml
 )

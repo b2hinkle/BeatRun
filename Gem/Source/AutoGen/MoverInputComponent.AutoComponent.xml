@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<Component
+    Name="MoverInputComponent"
+    Namespace="xXGameProjectNameXx"
+    OverrideComponent="false"
+    OverrideController="false"
+    OverrideInclude=""
+    Description="Handles listening for local move-related inputs, routing them to network input, and requesting moves from them."
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    >
+    <NetworkInput Type="float" Name="MoveForwardAxis" Init="0.f" ExposeToScript="false"></NetworkInput>
+    <NetworkInput Type="float" Name="MoveRightAxis" Init="0.f" ExposeToScript="false"></NetworkInput>
+</Component>
