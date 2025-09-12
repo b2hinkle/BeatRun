@@ -3,6 +3,7 @@
 #include <AzCore/Module/Module.h>
 
 #include "xXGameProjectNameXxSystemComponent.h"
+#include "MyExperimentComponent.h"
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <Source/AutoGen/AutoComponentTypes.h>
@@ -22,6 +23,7 @@ namespace xXGameProjectNameXx
             // Push results of [MyComponent]::CreateDescriptor() into m_descriptors here.
             m_descriptors.insert(m_descriptors.end(), {
                 xXGameProjectNameXxSystemComponent::CreateDescriptor(),
+                MyExperimentComponent::CreateDescriptor(),
             });
 
             // Create descriptors for our auto-components. Important: These are supposed to be the last descriptors added.
