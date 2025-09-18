@@ -57,6 +57,8 @@ ly_add_target(
     INCLUDE_DIRECTORIES
         PUBLIC
             Include
+        PRIVATE
+            .
     BUILD_DEPENDENCIES
         PRIVATE
             Gem::${gem_name}.Private.Object
