@@ -6,11 +6,6 @@
 
 namespace xXGameProjectNameXx
 {
-    /*
-    * TODO: Register this component in your Gem's AZ::Module interface by inserting the following into the list of m_descriptors:
-    *       MyExperimentComponent::CreateDescriptor(),
-    */
-
     class MyExperimentComponent
         : public AZ::Component
         , public MyExperimentRequestBus::Handler
