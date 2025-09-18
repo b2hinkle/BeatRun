@@ -2,8 +2,8 @@
 #include <AzCore/Memory/SystemAllocator.h>
 #include <AzCore/Module/Module.h>
 
-#include "xXGameProjectNameXxSystemComponent.h"
-#include "MyExperimentComponent.h"
+#include <Source/xXGameProjectNameXxSystemComponent.h>
+#include <Source/Components/MyExperimentComponent.h>
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <Source/AutoGen/AutoComponentTypes.h>

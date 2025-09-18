@@ -5,6 +5,6 @@ set(FILES
     Source/xXGameProjectNameXxSystemComponent.cpp
     Source/xXGameProjectNameXxSystemComponent.h
     Include/xXGameProjectNameXx/MyExperimentInterface.h
-    Source/MyExperimentComponent.h
-    Source/MyExperimentComponent.cpp
+    Source/Components/MyExperimentComponent.h
+    Source/Components/MyExperimentComponent.cpp
 )

@@ -30,6 +30,8 @@ ly_add_target(
     INCLUDE_DIRECTORIES
         PUBLIC
             Include
+        PRIVATE
+            .
     BUILD_DEPENDENCIES
         PUBLIC
             AZ::AzFramework

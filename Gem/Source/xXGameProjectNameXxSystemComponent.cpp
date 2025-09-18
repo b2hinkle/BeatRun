@@ -1,7 +1,7 @@
 
 #include <AzCore/Serialization/SerializeContext.h>
 
-#include "xXGameProjectNameXxSystemComponent.h"
+#include <Source/xXGameProjectNameXxSystemComponent.h>
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <Source/AutoGen/AutoComponentTypes.h>
