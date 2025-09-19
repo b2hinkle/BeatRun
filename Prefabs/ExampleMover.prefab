@@ -115,6 +115,13 @@
                     "$type": "EditorVisibilityComponent",
                     "Id": 3899597929220889849
                 },
+                "Multiplayer::LocalPredictionPlayerInputComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 14857430912956857691,
+                    "m_template": {
+                        "$type": "Multiplayer::LocalPredictionPlayerInputComponent"
+                    }
+                },
                 "Multiplayer::NetworkCharacterComponent": {
                     "$type": "GenericComponentWrapper",
                     "Id": 17175439225464434075,
@@ -140,6 +147,13 @@
                     "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
                     "Id": 1767894529163268114,
                     "Parent Entity": "ContainerEntity"
+                },
+                "xXGameProjectNameXx::MoverInputComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 7914478845125900662,
+                    "m_template": {
+                        "$type": "xXGameProjectNameXx::MoverInputComponent"
+                    }
                 }
             }
         }
