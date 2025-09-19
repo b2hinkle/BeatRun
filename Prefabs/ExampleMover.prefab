@@ -86,7 +86,7 @@
                 "EditorCommentComponent": {
                     "$type": "EditorCommentComponent",
                     "Id": 985355575843021222,
-                    "Configuration": "## Input\n\nTODO: [todo][techdebt][local_multiplayer] Actually get the local user id of the player that owns this component. Important for supporting local multiplayer / splitscreen. Have the value injected before activating the component.\n"
+                    "Configuration": "## Input\n\n@Christian: TODO: [todo][techdebt][local_multiplayer] Actually get the local user id of the player that owns this component. Important for supporting local multiplayer / splitscreen. Have the value injected before activating the component.\n"
                 },
                 "EditorDisabledCompositionComponent": {
                     "$type": "EditorDisabledCompositionComponent",

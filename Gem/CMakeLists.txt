@@ -40,7 +40,10 @@ ly_add_target(
         PRIVATE
             AZ::AzGameFramework
             Gem::Atom_AtomBridge.Static
+            # @Christian: TODO: [cmake] Stop using the "common" target, since it doesn't give us the multiplayer compile
+            # definitions. Use the client, server, and unified targets instead.
             Gem::Multiplayer.Common.Static
+            Gem::StartingPointInput
     AUTOGEN_RULES
         *.AutoComponent.xml,AutoComponent_Header.jinja,$path/$fileprefix.AutoComponent.h
         *.AutoComponent.xml,AutoComponent_Source.jinja,$path/$fileprefix.AutoComponent.cpp

@@ -9,4 +9,5 @@ set(FILES
     Source/Components/MyExperimentComponent.cpp
     Source/Components/MoverInputComponent.h
     Source/Components/MoverInputComponent.cpp
+    Include/xXGameProjectNameXx/InputEventNames.h
 )
