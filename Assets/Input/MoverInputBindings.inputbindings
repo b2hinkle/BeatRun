@@ -1,0 +1,8 @@
+<ObjectStream version="3">
+	<Class name="InputEventBindingsAsset" type="{25971C7A-26E2-4D08-A146-2EFCC1C36B0C}">
+		<Class name="InputEventBindings" field="Bindings" version="1" type="{14FFD4A8-AE46-4E23-B45B-6A7C4F787A91}">
+			<Class name="AZStd::vector&lt;InputEventGroup, allocator&gt;" field="Input Event Groups" type="{E7A38039-E414-5322-B384-210475DA7732}"/>
+		</Class>
+	</Class>
+</ObjectStream>
+

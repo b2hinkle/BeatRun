@@ -115,6 +115,19 @@
                     "$type": "EditorVisibilityComponent",
                     "Id": 3899597929220889849
                 },
+                "InputConfigurationComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 12987946607119042366,
+                    "m_template": {
+                        "$type": "InputConfigurationComponent",
+                        "Input Event Bindings": {
+                            "assetId": {
+                                "guid": "{BB1B9222-B62B-548A-81C1-A0B5131BF985}"
+                            },
+                            "assetHint": "assets/input/moverinputbindings.inputbindings"
+                        }
+                    }
+                },
                 "Multiplayer::LocalPredictionPlayerInputComponent": {
                     "$type": "GenericComponentWrapper",
                     "Id": 14857430912956857691,
