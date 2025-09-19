@@ -17,6 +17,19 @@
 							<Class name="float" field="Event Value Multiplier" value="-1.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
 							<Class name="float" field="Dead Zone" value="0.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
 						</Class>
+						<Class name="ThumbstickInputEventMap" field="element" version="1" type="{4881FA7C-0667-476C-8C77-4DBB6C69F646}">
+							<Class name="InputEventMap" field="BaseClass1" version="2" type="{A14EA0A3-F053-469D-840E-A70002F51384}">
+								<Class name="AZStd::string" field="Input Device Type" value="gamepad" type="{03AAAB3F-5C47-5A66-9EBC-D5FA4DB353C9}"/>
+								<Class name="AZStd::string" field="Input Name" value="gamepad_thumbstick_l" type="{03AAAB3F-5C47-5A66-9EBC-D5FA4DB353C9}"/>
+								<Class name="float" field="Event Value Multiplier" value="1.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+								<Class name="float" field="Dead Zone" value="0.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							</Class>
+							<Class name="float" field="Inner Dead Zone Radius" value="0.1000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							<Class name="float" field="Outer Dead Zone Radius" value="0.9000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							<Class name="float" field="Axis Dead Zone Value" value="0.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							<Class name="float" field="Sensitivity Exponent" value="1.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							<Class name="int" field="Output Axis" value="1" type="{72039442-EB38-4D42-A1AD-CB68F7E0EEF6}"/>
+						</Class>
 					</Class>
 					<Class name="bool" field="Exclude From Release" value="false" type="{A0CA880C-AFE4-43CB-926C-59AC48496112}"/>
 				</Class>
@@ -34,6 +47,19 @@
 							<Class name="AZStd::string" field="Input Name" value="keyboard_key_alphanumeric_A" type="{03AAAB3F-5C47-5A66-9EBC-D5FA4DB353C9}"/>
 							<Class name="float" field="Event Value Multiplier" value="-1.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
 							<Class name="float" field="Dead Zone" value="0.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+						</Class>
+						<Class name="ThumbstickInputEventMap" field="element" version="1" type="{4881FA7C-0667-476C-8C77-4DBB6C69F646}">
+							<Class name="InputEventMap" field="BaseClass1" version="2" type="{A14EA0A3-F053-469D-840E-A70002F51384}">
+								<Class name="AZStd::string" field="Input Device Type" value="gamepad" type="{03AAAB3F-5C47-5A66-9EBC-D5FA4DB353C9}"/>
+								<Class name="AZStd::string" field="Input Name" value="gamepad_thumbstick_l" type="{03AAAB3F-5C47-5A66-9EBC-D5FA4DB353C9}"/>
+								<Class name="float" field="Event Value Multiplier" value="1.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+								<Class name="float" field="Dead Zone" value="0.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							</Class>
+							<Class name="float" field="Inner Dead Zone Radius" value="0.1000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							<Class name="float" field="Outer Dead Zone Radius" value="0.9000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							<Class name="float" field="Axis Dead Zone Value" value="0.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							<Class name="float" field="Sensitivity Exponent" value="1.0000000" type="{EA2C3E90-AFBE-44D4-A90D-FAAF79BAF93D}"/>
+							<Class name="int" field="Output Axis" value="0" type="{72039442-EB38-4D42-A1AD-CB68F7E0EEF6}"/>
 						</Class>
 					</Class>
 					<Class name="bool" field="Exclude From Release" value="false" type="{A0CA880C-AFE4-43CB-926C-59AC48496112}"/>
