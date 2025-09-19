@@ -7,4 +7,6 @@ set(FILES
     Include/xXGameProjectNameXx/MyExperimentInterface.h
     Source/Components/MyExperimentComponent.h
     Source/Components/MyExperimentComponent.cpp
+    Source/Components/MoverInputComponent.h
+    Source/Components/MoverInputComponent.cpp
 )
