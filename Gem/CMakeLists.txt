@@ -3,6 +3,7 @@
 # The "pal_dir" variable is also set which refers to the Platform/<platform-name> directory
 # based on the directory of this CMakeLists.txt
 o3de_gem_setup("xXGameProjectNameXx")
+
 # Now that we have the platform abstraction layer (PAL) folder for this folder, thats where we will find the
 # traits for this platform. Traits for a platform are defines for things like whether or not something in this project
 # is supported by this platform.
@@ -14,14 +15,14 @@ if(NOT PAL_TRAIT_XXGAMEPROJECTNAMEXX_SUPPORTED)
     return()
 endif()
 
+# @Christian: TODO: [cmake] We might want to split up our unified target into client, server, and unified targets.
+
 # We are on a supported platform, so add the ${gem_name} target
 # Note: We include the common files and the platform specific files which are set in xxgameprojectnamexx_files.cmake and
 # in ${pal_dir}/xxgameprojectnamexx_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
 
-# The ${gem_name}.Private.Object target is an internal target
-# It should not be used outside of this CMakeLists.txt
 ly_add_target(
-    NAME ${gem_name}.Private.Object STATIC
+    NAME ${gem_name}.Unified.Static STATIC
     NAMESPACE Gem
     FILES_CMAKE
         xxgameprojectnamexx_files.cmake
@@ -40,9 +41,7 @@ ly_add_target(
         PRIVATE
             AZ::AzGameFramework
             Gem::Atom_AtomBridge.Static
-            # @Christian: TODO: [cmake] Stop using the "common" target, since it doesn't give us the multiplayer compile
-            # definitions. Use the client, server, and unified targets instead.
-            Gem::Multiplayer.Common.Static
+            Gem::Multiplayer.Unified.Static
             Gem::StartingPointInput
     AUTOGEN_RULES
         *.AutoComponent.xml,AutoComponent_Header.jinja,$path/$fileprefix.AutoComponent.h
@@ -64,7 +63,8 @@ ly_add_target(
             .
     BUILD_DEPENDENCIES
         PRIVATE
-            Gem::${gem_name}.Private.Object
+            Gem::${gem_name}.Unified.Static
+            Gem::Multiplayer.Unified.Static
             AZ::AzCore
 )
 
