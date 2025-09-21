@@ -15,57 +15,193 @@ if(NOT PAL_TRAIT_XXGAMEPROJECTNAMEXX_SUPPORTED)
     return()
 endif()
 
-# @Christian: TODO: [cmake] We might want to split up our unified target into client, server, and unified targets.
-
 # We are on a supported platform, so add the ${gem_name} target
-# Note: We include the common files and the platform specific files which are set in xxgameprojectnamexx_files.cmake and
-# in ${pal_dir}/xxgameprojectnamexx_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+
+# This variable contains FILES_CMAKE items that are used in all unified, server, and client versions of our static target.
+set(MY_FILES_CMAKE_STATIC_COMMON
+    xxgameprojectnamexx_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+    xxgameprojectnamexx_autogen_files.cmake
+)
+
+# This variable contains FILES_CMAKE items that are only used in the unified version of our static target.
+set(MY_FILES_CMAKE_STATIC_UNIFIED_ONLY
+)
+
+# This variable contains FILES_CMAKE items that are only used in the server version of our static target.
+set(MY_FILES_CMAKE_STATIC_SERVER_ONLY
+)
+
+# This variable contains FILES_CMAKE items that are only used in the client version of our static target.
+set(MY_FILES_CMAKE_STATIC_CLIENT_ONLY
+)
+
+# This variable contains FILES_CMAKE items that are used in all unified, server, and client versions of our module target.
+set(MY_FILES_CMAKE_MODULE_COMMON
+    xxgameprojectnamexx_shared_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_shared_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+)
+
+# This variable contains INCLUDE_DIRECTORIES items that are used in all unified, server, and client versions of our static target.
+set(MY_INCLUDE_DIRECTORIES_STATIC_COMMON
+    PUBLIC
+        Include
+    PRIVATE
+        .
+)
+
+# This variable contains INCLUDE_DIRECTORIES items that are used in all unified, server, and client versions of our module target.
+set(MY_INCLUDE_DIRECTORIES_MODULE_COMMON
+    PUBLIC
+        Include
+    PRIVATE
+        .
+)
+
+# This variable contains BUILD_DEPENDENCIES items that are used in all unified, server, and client versions of our static target.
+set(MY_BUILD_DEPENDENCIES_STATIC_COMMON
+    PUBLIC
+        AZ::AzFramework
+        AZ::AzNetworking
+        Gem::Multiplayer
+    PRIVATE
+        AZ::AzGameFramework
+        Gem::Atom_AtomBridge.Static
+        Gem::StartingPointInput
+)
+
+# This variable contains BUILD_DEPENDENCIES items that are only used in the unified version of our static target.
+set(MY_BUILD_DEPENDENCIES_STATIC_UNIFIED_ONLY
+    PRIVATE
+        Gem::Multiplayer.Unified.Static
+)
+
+# This variable contains BUILD_DEPENDENCIES items that are only used in the server version of our static target.
+set(MY_BUILD_DEPENDENCIES_STATIC_SERVER_ONLY
+    PRIVATE
+        Gem::Multiplayer.Server.Static
+)
+
+# This variable contains BUILD_DEPENDENCIES items that are only used in the client version of our static target.
+set(MY_BUILD_DEPENDENCIES_STATIC_CLIENT_ONLY
+    PRIVATE
+        Gem::Multiplayer.Client.Static
+)
+
+# This variable contains BUILD_DEPENDENCIES items that are used in all unified, server, and client versions of our module target.
+set(MY_BUILD_DEPENDENCIES_MODULE_COMMON
+    PRIVATE
+        AZ::AzCore
+)
+
+# This variable contains BUILD_DEPENDENCIES items that are only used in the unified version of our module target.
+set(MY_BUILD_DEPENDENCIES_MODULE_UNIFIED_ONLY
+    PRIVATE
+        Gem::${gem_name}.Unified.Static
+        Gem::Multiplayer.Unified.Static
+)
+
+# This variable contains BUILD_DEPENDENCIES items that are only used in the server version of our module target.
+set(MY_BUILD_DEPENDENCIES_MODULE_SERVER_ONLY
+    PRIVATE
+        Gem::${gem_name}.Server.Static
+        Gem::Multiplayer.Server.Static
+)
+
+# This variable contains BUILD_DEPENDENCIES items that are only used in the client version of our module target.
+set(MY_BUILD_DEPENDENCIES_MODULE_CLIENT_ONLY
+    PRIVATE
+        Gem::${gem_name}.Client.Static
+        Gem::Multiplayer.Client.Static
+)
+
+# This variable contains AUTOGEN_RULES items that are used in all unified, server, and client versions of our static target.
+set(MY_AUTOGEN_RULES_STATIC_COMMON
+    *.AutoComponent.xml,AutoComponent_Header.jinja,$path/$fileprefix.AutoComponent.h
+    *.AutoComponent.xml,AutoComponent_Source.jinja,$path/$fileprefix.AutoComponent.cpp
+    *.AutoComponent.xml,AutoComponentTypes_Header.jinja,$path/AutoComponentTypes.h
+    *.AutoComponent.xml,AutoComponentTypes_Source.jinja,$path/AutoComponentTypes.cpp
+)
 
 ly_add_target(
     NAME ${gem_name}.Unified.Static STATIC
     NAMESPACE Gem
     FILES_CMAKE
-        xxgameprojectnamexx_files.cmake
-        ${pal_dir}/xxgameprojectnamexx_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
-        xxgameprojectnamexx_autogen_files.cmake
+        ${MY_FILES_CMAKE_STATIC_COMMON}
+        ${MY_FILES_CMAKE_STATIC_UNIFIED_ONLY}
     INCLUDE_DIRECTORIES
-        PUBLIC
-            Include
-        PRIVATE
-            .
+        ${MY_INCLUDE_DIRECTORIES_STATIC_COMMON}
     BUILD_DEPENDENCIES
-        PUBLIC
-            AZ::AzFramework
-            AZ::AzNetworking
-            Gem::Multiplayer
-        PRIVATE
-            AZ::AzGameFramework
-            Gem::Atom_AtomBridge.Static
-            Gem::Multiplayer.Unified.Static
-            Gem::StartingPointInput
+        ${MY_BUILD_DEPENDENCIES_STATIC_COMMON}
+        ${MY_BUILD_DEPENDENCIES_STATIC_UNIFIED_ONLY}
     AUTOGEN_RULES
-        *.AutoComponent.xml,AutoComponent_Header.jinja,$path/$fileprefix.AutoComponent.h
-        *.AutoComponent.xml,AutoComponent_Source.jinja,$path/$fileprefix.AutoComponent.cpp
-        *.AutoComponent.xml,AutoComponentTypes_Header.jinja,$path/AutoComponentTypes.h
-        *.AutoComponent.xml,AutoComponentTypes_Source.jinja,$path/AutoComponentTypes.cpp
+        ${MY_AUTOGEN_RULES_STATIC_COMMON}
+)
+
+ly_add_target(
+    NAME ${gem_name}.Server.Static STATIC
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${MY_FILES_CMAKE_STATIC_COMMON}
+        ${MY_FILES_CMAKE_STATIC_SERVER_ONLY}
+    INCLUDE_DIRECTORIES
+        ${MY_INCLUDE_DIRECTORIES_STATIC_COMMON}
+    BUILD_DEPENDENCIES
+        ${MY_BUILD_DEPENDENCIES_STATIC_COMMON}
+        ${MY_BUILD_DEPENDENCIES_STATIC_SERVER_ONLY}
+    AUTOGEN_RULES
+        ${MY_AUTOGEN_RULES_STATIC_COMMON}
+)
+
+ly_add_target(
+    NAME ${gem_name}.Client.Static STATIC
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${MY_FILES_CMAKE_STATIC_COMMON}
+        ${MY_FILES_CMAKE_STATIC_CLIENT_ONLY}
+    INCLUDE_DIRECTORIES
+        ${MY_INCLUDE_DIRECTORIES_STATIC_COMMON}
+    BUILD_DEPENDENCIES
+        ${MY_BUILD_DEPENDENCIES_STATIC_COMMON}
+        ${MY_BUILD_DEPENDENCIES_STATIC_CLIENT_ONLY}
+    AUTOGEN_RULES
+        ${MY_AUTOGEN_RULES_STATIC_COMMON}
 )
 
 ly_add_target(
     NAME ${gem_name} ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
     NAMESPACE Gem
     FILES_CMAKE
-        xxgameprojectnamexx_shared_files.cmake
-        ${pal_dir}/xxgameprojectnamexx_shared_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+        ${MY_FILES_CMAKE_MODULE_COMMON}
     INCLUDE_DIRECTORIES
-        PUBLIC
-            Include
-        PRIVATE
-            .
+        ${MY_INCLUDE_DIRECTORIES_MODULE_COMMON}
     BUILD_DEPENDENCIES
-        PRIVATE
-            Gem::${gem_name}.Unified.Static
-            Gem::Multiplayer.Unified.Static
-            AZ::AzCore
+        ${MY_BUILD_DEPENDENCIES_MODULE_COMMON}
+        ${MY_BUILD_DEPENDENCIES_MODULE_UNIFIED_ONLY}
+)
+
+ly_add_target(
+    NAME ${gem_name}.Server ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${MY_FILES_CMAKE_MODULE_COMMON}
+    INCLUDE_DIRECTORIES
+        ${MY_INCLUDE_DIRECTORIES_MODULE_COMMON}
+    BUILD_DEPENDENCIES
+        ${MY_BUILD_DEPENDENCIES_MODULE_COMMON}
+        ${MY_BUILD_DEPENDENCIES_MODULE_SERVER_ONLY}
+)
+
+ly_add_target(
+    NAME ${gem_name}.Client ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${MY_FILES_CMAKE_MODULE_COMMON}
+    INCLUDE_DIRECTORIES
+        ${MY_INCLUDE_DIRECTORIES_MODULE_COMMON}
+    BUILD_DEPENDENCIES
+        ${MY_BUILD_DEPENDENCIES_MODULE_COMMON}
+        ${MY_BUILD_DEPENDENCIES_MODULE_CLIENT_ONLY}
 )
 
 # Include the gem name into the Client Module source file
@@ -84,8 +220,8 @@ PROPERTY COMPILE_DEFINITIONS
 # if enabled, ${gem_name} is used by all kinds of applications
 ly_create_alias(NAME ${gem_name}.Builders NAMESPACE Gem TARGETS Gem::${gem_name})
 ly_create_alias(NAME ${gem_name}.Tools    NAMESPACE Gem TARGETS Gem::${gem_name})
-ly_create_alias(NAME ${gem_name}.Clients  NAMESPACE Gem TARGETS Gem::${gem_name})
-ly_create_alias(NAME ${gem_name}.Servers  NAMESPACE Gem TARGETS Gem::${gem_name})
+ly_create_alias(NAME ${gem_name}.Clients  NAMESPACE Gem TARGETS Gem::${gem_name}.Client)
+ly_create_alias(NAME ${gem_name}.Servers  NAMESPACE Gem TARGETS Gem::${gem_name}.Server)
 ly_create_alias(NAME ${gem_name}.Unified  NAMESPACE Gem TARGETS Gem::${gem_name})
 
 # Add in CMake dependencies for each gem dependency listed in this gem's gem.json file
