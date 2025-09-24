@@ -1,6 +1,8 @@
 
 #include <Source/Components/MoverInputComponent.h>
 
+#include <Multiplayer/Components/NetworkCharacterComponent.h>
+
 namespace
 {
     // @Christian: TODO: [todo][techdebt][log] There might be a better way to control logs than this. The `AZLOG` macro does
@@ -116,6 +118,19 @@ namespace xXGameProjectNameXx
 
             AZLOG_INFO(logString.data());
         }
+
+        // Now, actually move the entity.
+
+        Multiplayer::NetworkCharacterComponentController* networkCharacterComponentControllerPtr = GetNetworkCharacterComponentController();
+        AZ_Assert(moverNetworkInputPtr, "This component is required and will always exist.");
+        Multiplayer::NetworkCharacterComponentController& networkCharacterComponentController = *networkCharacterComponentControllerPtr;
+
+        AZ::Vector2 netMoveAxisInputVector = AZ::Vector2(m_netInputs.m_moveRightAxis, m_netInputs.m_moveForwardAxis);
+        constexpr float maxMoveSpeed = 4.f;
+
+        AZ::Vector3 velocity = AZ::Vector3(netMoveAxisInputVector.GetNormalizedSafe(), 0.f) * maxMoveSpeed;
+
+        networkCharacterComponentController.TryMoveWithVelocity(velocity, deltaTime);
     }
 
 #if AZ_TRAIT_CLIENT

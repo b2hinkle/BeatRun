@@ -7,8 +7,12 @@
     OverrideController="true"
     OverrideInclude="Source/Components/MoverInputComponent.h"
     Description="Handles listening for local move-related inputs, routing them to network input, and requesting moves from them."
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    >
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- Require the Multiplayer::NetworkCharacterComponent, as we will use this simple component to move our entity. -->
+    <ComponentRelation Constraint="Required" HasController="true" Name="NetworkCharacterComponent" Namespace="Multiplayer" Include="Multiplayer/Components/NetworkCharacterComponent.h" />
+
     <NetworkInput Type="float" Name="MoveForwardAxis" Init="0.f" ExposeToScript="false"></NetworkInput>
     <NetworkInput Type="float" Name="MoveRightAxis" Init="0.f" ExposeToScript="false"></NetworkInput>
+
 </Component>
