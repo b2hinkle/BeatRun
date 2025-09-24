@@ -89,6 +89,7 @@ namespace xXGameProjectNameXx
         m_netInputs.m_moveRightAxis = moverNetworkInput.m_moveRightAxis;
 
         // Log current net input values.
+        if (cl_xxgpnxx_moverInput_enableProcessInputLogs)
         {
             AZStd::fixed_string<128> logString;
 
@@ -139,7 +140,10 @@ namespace xXGameProjectNameXx
             m_autonomousInputs.m_moveRightAxis = value;
         }
 
-        LogInputEvent(__func__, eventNameString, value);
+        if (cl_xxgpnxx_moverInput_enableInputEventLogs)
+        {
+            LogInputEvent(__func__, eventNameString, value);
+        }
     }
 #endif // #if AZ_TRAIT_CLIENT
 
@@ -165,7 +169,10 @@ namespace xXGameProjectNameXx
             m_autonomousInputs.m_moveRightAxis = value;
         }
 
-        LogInputEvent(__func__, eventNameString, value);
+        if (cl_xxgpnxx_moverInput_enableInputEventLogs)
+        {
+            LogInputEvent(__func__, eventNameString, value);
+        }
     }
 #endif // #if AZ_TRAIT_CLIENT
 
@@ -191,7 +198,10 @@ namespace xXGameProjectNameXx
             m_autonomousInputs.m_moveRightAxis = value;
         }
 
-        LogInputEvent(__func__, eventNameString, value);
+        if (cl_xxgpnxx_moverInput_enableInputEventLogs)
+        {
+            LogInputEvent(__func__, eventNameString, value);
+        }
     }
 #endif // #if AZ_TRAIT_CLIENT
 }
