@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<Component
+    Name="ClientMoverInputInjectorComponent"
+    Namespace="xXGameProjectNameXx"
+    OverrideComponent="true"
+    OverrideController="true"
+    OverrideInclude="Source/Components/ClientMoverInputInjectorComponent.h"
+    Description="Listens for local input events and injects values into the `MoverInputComponent` via the `MoverInputInterface`."
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+</Component>

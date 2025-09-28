@@ -18,4 +18,5 @@ endblock()
 # Append our files.
 list(APPEND FILES
     Source/AutoGen/MoverInputComponent.AutoComponent.xml
+    Source/AutoGen/ClientMoverInputInjectorComponent.AutoComponent.xml
 )

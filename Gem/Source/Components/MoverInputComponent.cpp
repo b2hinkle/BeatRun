@@ -19,7 +19,8 @@ namespace xXGameProjectNameXx
         if (AZ::SerializeContext* serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
         {
             serializeContext->Class<MoverInputComponent, MoverInputComponentBase>()
-                ->Version(1);
+                ->Version(1)
+                ;
         }
 
         MoverInputComponentBase::Reflect(context);

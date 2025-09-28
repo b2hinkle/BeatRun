@@ -56,6 +56,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${MY_COMMON_STATIC_FILES_CMAKE}
+        xxgameprojectnamexx_client_files.cmake
     INCLUDE_DIRECTORIES
         ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
     BUILD_DEPENDENCIES
@@ -88,6 +89,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${MY_COMMON_STATIC_FILES_CMAKE}
+        xxgameprojectnamexx_client_files.cmake
     INCLUDE_DIRECTORIES
         ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
     BUILD_DEPENDENCIES

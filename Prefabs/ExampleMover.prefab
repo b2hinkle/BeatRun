@@ -69,13 +69,6 @@
                         }
                     }
                 },
-                "ClientMoverInputInjectorComponent": {
-                    "$type": "GenericComponentWrapper",
-                    "Id": 13375016092320029497,
-                    "m_template": {
-                        "$type": "ClientMoverInputInjectorComponent"
-                    }
-                },
                 "EditorCharacterControllerComponent": {
                     "$type": "EditorCharacterControllerComponent",
                     "Id": 7999097049920276696,
@@ -172,6 +165,13 @@
                     "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
                     "Id": 1767894529163268114,
                     "Parent Entity": "ContainerEntity"
+                },
+                "xXGameProjectNameXx::ClientMoverInputInjectorComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 17169062706014879025,
+                    "m_template": {
+                        "$type": "xXGameProjectNameXx::ClientMoverInputInjectorComponent"
+                    }
                 },
                 "xXGameProjectNameXx::MoverInputComponent": {
                     "$type": "GenericComponentWrapper",
