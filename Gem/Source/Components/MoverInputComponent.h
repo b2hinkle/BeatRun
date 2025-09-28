@@ -2,11 +2,29 @@
 #pragma once
 
 #include <Source/AutoGen/MoverInputComponent.AutoComponent.h>
+#if AZ_TRAIT_CLIENT
 #include <StartingPointInput/InputEventNotificationBus.h>
-#include <xXGameProjectNameXx/InputEventNames.h>
+#endif // #if AZ_TRAIT_CLIENT
 
 namespace xXGameProjectNameXx
 {
+    //! @class MoverInputComponent
+    class MoverInputComponent
+        : public MoverInputComponentBase
+    {
+    public:
+
+        AZ_MULTIPLAYER_COMPONENT(xXGameProjectNameXx::MoverInputComponent, s_moverInputComponentConcreteUuid, xXGameProjectNameXx::MoverInputComponentBase);
+
+        static void Reflect(AZ::ReflectContext* context);
+
+        //! MoverInputComponentBase public overrides.
+        //! @{
+        void OnActivate(Multiplayer::EntityIsMigrating entityIsMigrating) override;
+        void OnDeactivate(Multiplayer::EntityIsMigrating entityIsMigrating) override;
+        //! @}
+    };
+
     //! @class MoverInputComponentController
     //! @note @Christian: TODO: [todo][techdebt][input][local_multiplayer] Decouple the input handling code out of this component so
     //!       that any input can be injected from anywhere. This would allow us to handle multiple local players too for local multiplayer.

@@ -37,10 +37,10 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
         AZ::AzFramework
         AZ::AzNetworking
         Gem::Multiplayer
+        Gem::StartingPointInput
     PRIVATE
         AZ::AzGameFramework
         Gem::Atom_AtomBridge.Static
-        Gem::StartingPointInput
 )
 
 set(MY_COMMON_STATIC_AUTOGEN_RULES

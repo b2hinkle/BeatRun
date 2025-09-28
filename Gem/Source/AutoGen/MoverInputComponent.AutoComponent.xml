@@ -3,7 +3,7 @@
 <Component
     Name="MoverInputComponent"
     Namespace="xXGameProjectNameXx"
-    OverrideComponent="false"
+    OverrideComponent="true"
     OverrideController="true"
     OverrideInclude="Source/Components/MoverInputComponent.h"
     Description="Handles listening for local move-related inputs, routing them to network input, and requesting moves from them."

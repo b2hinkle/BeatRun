@@ -1,6 +1,9 @@
 
 #include <Source/Components/MoverInputComponent.h>
 
+#if AZ_TRAIT_CLIENT
+#include <xXGameProjectNameXx/InputEventNames.h>
+#endif // #if AZ_TRAIT_CLIENT
 #include <Multiplayer/Components/NetworkCharacterComponent.h>
 
 namespace
@@ -9,8 +12,8 @@ namespace
     // have a tag you can specify, but it's disabled by default and I don't know how to enable them easily. But try to see
     // if we can use log tags rather than console variables like this. Also, one thing that's weird is that the `AZLOG` macro
     // doesn't let you specify the log level (info, warning, error, etc.).
-    AZ_CVAR(bool, cl_xxgpnxx_moverInput_enableInputEventLogs, false, nullptr, AZ::ConsoleFunctorFlags::Null, "Enables logs for client-side input events.");
-    AZ_CVAR(bool, cl_xxgpnxx_moverInput_enableProcessInputLogs, false, nullptr, AZ::ConsoleFunctorFlags::Null, "Enables logs for client-side input events.");
+    AZ_CVAR(bool, cl_xxgpnxx_moverInput_enableClientInputEventLogs, false, nullptr, AZ::ConsoleFunctorFlags::Null, "Enables logs for client-side input events.");
+    AZ_CVAR(bool, cl_xxgpnxx_moverInput_enableProcessInputLogs, false, nullptr, AZ::ConsoleFunctorFlags::Null, "Enables logs for the ProcessInput event.");
 
 #if AZ_TRAIT_CLIENT
     void LogInputEvent(
@@ -22,6 +25,25 @@ namespace
 
 namespace xXGameProjectNameXx
 {
+    void MoverInputComponent::Reflect(AZ::ReflectContext* context)
+    {
+        if (AZ::SerializeContext* serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
+        {
+            serializeContext->Class<MoverInputComponent, MoverInputComponentBase>()
+                ->Version(1);
+        }
+
+        MoverInputComponentBase::Reflect(context);
+    }
+
+    void MoverInputComponent::OnActivate([[maybe_unused]] Multiplayer::EntityIsMigrating entityIsMigrating)
+    {
+    }
+
+    void MoverInputComponent::OnDeactivate([[maybe_unused]] Multiplayer::EntityIsMigrating entityIsMigrating)
+    {
+    }
+
     MoverInputComponentController::MoverInputComponentController(MoverInputComponent& parent)
         : MoverInputComponentControllerBase(parent)
     {
@@ -30,24 +52,24 @@ namespace xXGameProjectNameXx
     void MoverInputComponentController::OnActivate([[maybe_unused]] Multiplayer::EntityIsMigrating entityIsMigrating)
     {
 #if AZ_TRAIT_CLIENT
-        // @Christian: TODO: [todo][techdebt][local_multiplayer] Actually get the local user id of the player that owns
-        // this component. Important for supporting local multiplayer / splitscreen.
-        const AzFramework::LocalUserId& localUserId = AzFramework::LocalUserIdAny;
-
-        MoveForwardAxisNotificationId =
-            StartingPointInput::InputEventNotificationId(
-                localUserId,
-                AZ::Crc32(InputEventNames::MoveForwardAxis)
-            );
-
-        MoveRightAxisNotificationId =
-            StartingPointInput::InputEventNotificationId(
-                localUserId,
-                AZ::Crc32(InputEventNames::MoveRightAxis)
-            );
-
         if (IsNetEntityRoleAutonomous())
         {
+            // @Christian: TODO: [todo][techdebt][local_multiplayer] Actually get the local user id of the player that owns
+            // this component. Important for supporting local multiplayer / splitscreen.
+            const AzFramework::LocalUserId& localUserId = AzFramework::LocalUserIdAny;
+
+            MoveForwardAxisNotificationId =
+                StartingPointInput::InputEventNotificationId(
+                    localUserId,
+                    AZ::Crc32(InputEventNames::MoveForwardAxis)
+                );
+
+            MoveRightAxisNotificationId =
+                StartingPointInput::InputEventNotificationId(
+                    localUserId,
+                    AZ::Crc32(InputEventNames::MoveRightAxis)
+                );
+
             StartingPointInput::InputEventNotificationBus::MultiHandler::BusConnect(MoveForwardAxisNotificationId);
             StartingPointInput::InputEventNotificationBus::MultiHandler::BusConnect(MoveRightAxisNotificationId);
         }
@@ -60,10 +82,10 @@ namespace xXGameProjectNameXx
         if (IsNetEntityRoleAutonomous())
         {
             StartingPointInput::InputEventNotificationBus::MultiHandler::BusDisconnect();
-        }
 
-        MoveForwardAxisNotificationId = {};
-        MoveRightAxisNotificationId = {};
+            MoveForwardAxisNotificationId = {};
+            MoveRightAxisNotificationId = {};
+        }
 #endif // #if AZ_TRAIT_CLIENT
     }
 
@@ -155,7 +177,7 @@ namespace xXGameProjectNameXx
             m_autonomousInputs.m_moveRightAxis = value;
         }
 
-        if (cl_xxgpnxx_moverInput_enableInputEventLogs)
+        if (cl_xxgpnxx_moverInput_enableClientInputEventLogs)
         {
             LogInputEvent(__func__, eventNameString, value);
         }
@@ -184,7 +206,7 @@ namespace xXGameProjectNameXx
             m_autonomousInputs.m_moveRightAxis = value;
         }
 
-        if (cl_xxgpnxx_moverInput_enableInputEventLogs)
+        if (cl_xxgpnxx_moverInput_enableClientInputEventLogs)
         {
             LogInputEvent(__func__, eventNameString, value);
         }
@@ -213,7 +235,7 @@ namespace xXGameProjectNameXx
             m_autonomousInputs.m_moveRightAxis = value;
         }
 
-        if (cl_xxgpnxx_moverInput_enableInputEventLogs)
+        if (cl_xxgpnxx_moverInput_enableClientInputEventLogs)
         {
             LogInputEvent(__func__, eventNameString, value);
         }
