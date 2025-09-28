@@ -9,7 +9,7 @@ namespace xXGameProjectNameXx
 {
     //! @class MoverInputComponentController
     //! @note @Christian: TODO: [todo][techdebt][input][local_multiplayer] Decouple the input handling code out of this component so
-    //! that any input can be injected from anywhere. This would allow us to handle multiple local players too for local multiplayer.
+    //!       that any input can be injected from anywhere. This would allow us to handle multiple local players too for local multiplayer.
     class MoverInputComponentController
         : public MoverInputComponentControllerBase
 #if AZ_TRAIT_CLIENT
@@ -48,9 +48,9 @@ namespace xXGameProjectNameXx
 
         //! @brief Values of input that will properly determine our network input values.
         //! @note @Christian: TODO: [todo][input][techdebt] Expose public setters for these autonomous inputs so that we can
-        //! externalize autonomous input handling from this class.
+        //!       externalize autonomous input handling from this class.
         //! @note @Christian: TODO: [todo][input][techdebt][ai][multiplayer] Make sure these values can be used to drive AI on the
-        //! server (including dedicated server).
+        //!       server (including dedicated server).
         struct
         {
             float m_moveForwardAxis = 0.f;
@@ -59,7 +59,7 @@ namespace xXGameProjectNameXx
 
         //! @brief Network input values that will determine the gameplay of this component.
         //! @note @Christian: TODO: [todo][input][techdebt] Expose public getters to these network input values so that other systems
-        //! can use them if needed.
+        //!       can use them if needed.
         struct
         {
             float m_moveForwardAxis = 0.f;

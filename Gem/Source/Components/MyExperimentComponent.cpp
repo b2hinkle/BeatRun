@@ -9,19 +9,9 @@ namespace xXGameProjectNameXx
 {
     AZ_COMPONENT_IMPL(MyExperimentComponent, "MyExperimentComponent", "{E696F584-5D34-422F-AE9A-51967ADCAA64}");
 
-    void MyExperimentComponent::Activate()
-    {
-        MyExperimentRequestBus::Handler::BusConnect(GetEntityId());
-    }
-
-    void MyExperimentComponent::Deactivate()
-    {
-        MyExperimentRequestBus::Handler::BusDisconnect(GetEntityId());
-    }
-
     void MyExperimentComponent::Reflect(AZ::ReflectContext* context)
     {
-        if (auto serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
+        if (AZ::SerializeContext* serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
         {
             serializeContext->Class<MyExperimentComponent, AZ::Component>()
                 ->Version(1)
@@ -61,5 +51,15 @@ namespace xXGameProjectNameXx
 
     void MyExperimentComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
     {
+    }
+
+    void MyExperimentComponent::Activate()
+    {
+        MyExperimentRequestBus::Handler::BusConnect(GetEntityId());
+    }
+
+    void MyExperimentComponent::Deactivate()
+    {
+        MyExperimentRequestBus::Handler::BusDisconnect(GetEntityId());
     }
 } // namespace xXGameProjectNameXx
