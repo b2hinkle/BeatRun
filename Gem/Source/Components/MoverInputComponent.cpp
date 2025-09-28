@@ -36,6 +36,13 @@ namespace xXGameProjectNameXx
         MoverInputComponentBase::Reflect(context);
     }
 
+    void MoverInputComponent::GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    {
+        dependent.push_back(AZ_CRC_CE("NetBindService"));
+
+        MoverInputComponentBase::GetDependentServices(dependent);
+    }
+
     void MoverInputComponent::OnActivate([[maybe_unused]] Multiplayer::EntityIsMigrating entityIsMigrating)
     {
     }

@@ -37,7 +37,6 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
         AZ::AzFramework
         AZ::AzNetworking
         Gem::Multiplayer
-        Gem::StartingPointInput
     PRIVATE
         AZ::AzGameFramework
         Gem::Atom_AtomBridge.Static
@@ -61,6 +60,8 @@ ly_add_target(
         ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
     BUILD_DEPENDENCIES
         ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
+        PUBLIC
+            Gem::StartingPointInput
         PRIVATE
             Gem::Multiplayer.Unified.Static
     AUTOGEN_RULES
@@ -91,6 +92,8 @@ ly_add_target(
         ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
     BUILD_DEPENDENCIES
         ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
+        PUBLIC
+            Gem::StartingPointInput
         PRIVATE
             Gem::Multiplayer.Client.Static
     AUTOGEN_RULES

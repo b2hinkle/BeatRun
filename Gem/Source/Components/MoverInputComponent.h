@@ -16,7 +16,11 @@ namespace xXGameProjectNameXx
 
         AZ_MULTIPLAYER_COMPONENT(xXGameProjectNameXx::MoverInputComponent, s_moverInputComponentConcreteUuid, xXGameProjectNameXx::MoverInputComponentBase);
 
+        //! Component descriptor interface.
+        //! @{
         static void Reflect(AZ::ReflectContext* context);
+        static void GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent);
+        //! @}
 
         //! MoverInputComponentBase public overrides.
         //! @{
