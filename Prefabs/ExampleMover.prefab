@@ -69,6 +69,13 @@
                         }
                     }
                 },
+                "ClientMoverInputInjectorComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 13375016092320029497,
+                    "m_template": {
+                        "$type": "ClientMoverInputInjectorComponent"
+                    }
+                },
                 "EditorCharacterControllerComponent": {
                     "$type": "EditorCharacterControllerComponent",
                     "Id": 7999097049920276696,
