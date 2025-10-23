@@ -7,6 +7,7 @@
 #include <LyShine/Bus/UiCanvasBus.h>
 #include <Source/Utils/CanvasUtils.h>
 #include <LyShine/Bus/UiButtonBus.h>
+#include <LyShine/Bus/UiCursorBus.h>
 #endif // #if AZ_TRAIT_CLIENT
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Component/ComponentApplicationBus.h>
@@ -64,6 +65,7 @@ namespace xXGameProjectNameXx::GameStates
         GameState::IGameState::OnEnter();
 
 #if AZ_TRAIT_CLIENT
+        UiCursorBus::Broadcast(&UiCursorInterface::IncrementVisibleCounter);
         UiButtonNotificationBus::MultiHandler::BusConnect(m_canvasEntityId);
 #endif // #if AZ_TRAIT_CLIENT
     }
@@ -71,6 +73,7 @@ namespace xXGameProjectNameXx::GameStates
     void StageSelect::OnExit()
     {
 #if AZ_TRAIT_CLIENT
+        UiCursorBus::Broadcast(&UiCursorInterface::DecrementVisibleCounter);
         UiButtonNotificationBus::MultiHandler::BusDisconnect(m_canvasEntityId);
 #endif // #if AZ_TRAIT_CLIENT
 
