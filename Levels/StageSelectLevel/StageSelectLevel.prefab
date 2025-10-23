@@ -1,0 +1,109 @@
+{
+    "ContainerEntity": {
+        "Id": "ContainerEntity",
+        "Name": "Empty",
+        "Components": {
+            "EditorDisabledCompositionComponent": {
+                "$type": "EditorDisabledCompositionComponent",
+                "Id": 16616931740997949210
+            },
+            "EditorEntityIconComponent": {
+                "$type": "EditorEntityIconComponent",
+                "Id": 2778716686621881360
+            },
+            "EditorEntitySortComponent": {
+                "$type": "EditorEntitySortComponent",
+                "Id": 1069995033707506449,
+                "Child Entity Order": [
+                    "Entity_[337055850935]"
+                ]
+            },
+            "EditorInspectorComponent": {
+                "$type": "EditorInspectorComponent",
+                "Id": 4185413252280323606
+            },
+            "EditorLockComponent": {
+                "$type": "EditorLockComponent",
+                "Id": 4068240492793213930
+            },
+            "EditorOnlyEntityComponent": {
+                "$type": "EditorOnlyEntityComponent",
+                "Id": 1499221618774487829
+            },
+            "EditorPendingCompositionComponent": {
+                "$type": "EditorPendingCompositionComponent",
+                "Id": 10852705643903064770
+            },
+            "EditorPrefabComponent": {
+                "$type": "EditorPrefabComponent",
+                "Id": 12239744644494076517
+            },
+            "EditorVisibilityComponent": {
+                "$type": "EditorVisibilityComponent",
+                "Id": 17437522806552955660
+            },
+            "LocalViewBookmarkComponent": {
+                "$type": "LocalViewBookmarkComponent",
+                "Id": 1743806037587177517,
+                "LocalBookmarkFileName": "StageSelectLevel_17590624980781075.setreg"
+            },
+            "StageSelectComponent": {
+                "$type": "GenericComponentWrapper",
+                "Id": 9346848950581387220,
+                "m_template": {
+                    "$type": "StageSelectComponent"
+                }
+            },
+            "TransformComponent": {
+                "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                "Id": 4584354821622104079,
+                "Parent Entity": ""
+            }
+        }
+    },
+    "Entities": {
+        "Entity_[337055850935]": {
+            "Id": "Entity_[337055850935]",
+            "Name": "DummyEntity",
+            "Components": {
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 4436896346065653591
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 4315462438278087746
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 13058026818583607207
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 16437013075418594011
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 1679928991034747095
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 16285497465993056774
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 6210404489161981154
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 10296082149017052907
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 13533411371083263032,
+                    "Parent Entity": "ContainerEntity"
+                }
+            }
+        }
+    }
+}

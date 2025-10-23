@@ -21,7 +21,9 @@
     "gem_names": [
         "Atom",
         "CameraFramework",
+        "GameState",
         "ImGui",
+        "LyShine",
         "Multiplayer",
         "O3DECoreUtils",
         "PhysX",

@@ -1,15 +1,15 @@
 
 #if !AZ_TRAIT_CLIENT
-#error "This file assumes it's being built for client code."
+#error "This file assumes it's being used for client code."
 #endif // #if !AZ_TRAIT_CLIENT
 
 #include <Source/Input/ClientMoverInputInjector.h>
 
 #include <xXGameProjectNameXx/InputEventNames.h>
 #include <xXGameProjectNameXx/MoverInputInterface.h>
-#include <Multiplayer/IMultiplayer.h>
 #include <Multiplayer/Components/NetBindComponent.h>
 #include <AzCore/Console/ILogger.h>
+#include <Source/Utils/MultiplayerUtils.h>
 
 namespace
 {
@@ -23,8 +23,6 @@ namespace
         const AZStd::string_view& funcName,
         const AZStd::string_view& inputEventName,
         const float value);
-
-    Multiplayer::NetBindComponent& GetNetBindComponentAsserted(const AZ::Component& component);
 }
 
 namespace xXGameProjectNameXx
@@ -67,7 +65,7 @@ namespace xXGameProjectNameXx
 
     void ClientMoverInputInjector::OnActivate()
     {
-        if (GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
+        if (MultiplayerUtils::GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
         {
             // @Christian: TODO: [todo][techdebt][local_multiplayer] Actually get the local user id of the player that owns
             // this component. Important for supporting local multiplayer / splitscreen.
@@ -92,7 +90,7 @@ namespace xXGameProjectNameXx
 
     void ClientMoverInputInjector::OnDeactivate()
     {
-        if (GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
+        if (MultiplayerUtils::GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
         {
             StartingPointInput::InputEventNotificationBus::MultiHandler::BusDisconnect();
 
@@ -207,21 +205,5 @@ namespace
         logString += "'.";
 
         AZLOG_INFO(logString.data());
-    }
-
-    Multiplayer::NetBindComponent& GetNetBindComponentAsserted(const AZ::Component& component)
-    {
-        const Multiplayer::INetworkEntityManager* networkEntityManagerPtr = Multiplayer::GetNetworkEntityManager();
-        AZ_Assert(networkEntityManagerPtr, "This should always exist at this time.");
-        const Multiplayer::INetworkEntityManager& networkEntityManager = *networkEntityManagerPtr;
-
-        const Multiplayer::NetEntityId& netEntityId = networkEntityManager.GetNetEntityIdById(component.GetEntityId());
-        const Multiplayer::ConstNetworkEntityHandle& netEntityHandle = networkEntityManager.GetEntity(netEntityId);
-
-        Multiplayer::NetBindComponent* netBindComponentPtr = netEntityHandle.GetNetBindComponent();
-        AZ_Assert(netBindComponentPtr, "This component is required and will always exist.");
-        Multiplayer::NetBindComponent& netBindComponent = *netBindComponentPtr;
-
-        return netBindComponent;
     }
 }

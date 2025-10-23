@@ -5,6 +5,7 @@
 #include <Source/xXGameProjectNameXxSystemComponent.h>
 #include <Source/Components/MyExperimentComponent.h>
 #include <Source/Components/ClientMoverInputInjectorComponent.h>
+#include <Source/Components/StageSelectComponent.h>
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <Source/AutoGen/AutoComponentTypes.h>
@@ -26,6 +27,7 @@ namespace xXGameProjectNameXx
                 xXGameProjectNameXxSystemComponent::CreateDescriptor(),
                 MyExperimentComponent::CreateDescriptor(),
                 ClientMoverInputInjectorComponent::CreateDescriptor(),
+                StageSelectComponent::CreateDescriptor(),
             });
 
             // Create descriptors for our auto-components. Important: These are supposed to be the last descriptors added.

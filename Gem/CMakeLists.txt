@@ -37,6 +37,7 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
         AZ::AzFramework
         AZ::AzNetworking
         Gem::Multiplayer
+        Gem::GameState
     PRIVATE
         AZ::AzGameFramework
         Gem::Atom_AtomBridge.Static
@@ -49,6 +50,20 @@ set(MY_COMMON_STATIC_AUTOGEN_RULES
     *.AutoComponent.xml,AutoComponentTypes_Source.jinja,$path/AutoComponentTypes.cpp
 )
 
+# These variables contain common items that are only used in unified versions of our static target.
+
+set(MY_UNIFIED_STATIC_FILES_CMAKE
+    xxgameprojectnamexx_client_files.cmake
+)
+
+set(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES
+    PUBLIC
+        Gem::StartingPointInput.Unified
+        Gem::LyShine.Unified
+    PRIVATE
+        Gem::Multiplayer.Unified.Static
+)
+
 # Add our static targets.
 
 ly_add_target(
@@ -56,15 +71,12 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${MY_COMMON_STATIC_FILES_CMAKE}
-        xxgameprojectnamexx_client_files.cmake
+        ${MY_UNIFIED_STATIC_FILES_CMAKE}
     INCLUDE_DIRECTORIES
         ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
     BUILD_DEPENDENCIES
         ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
-        PUBLIC
-            Gem::StartingPointInput.Unified
-        PRIVATE
-            Gem::Multiplayer.Unified.Static
+        ${MY_UNIFIED_STATIC_BUILD_DEPENDENCIES}
     AUTOGEN_RULES
         ${MY_COMMON_STATIC_AUTOGEN_RULES}
 )
@@ -96,17 +108,39 @@ ly_add_target(
         ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
         PUBLIC
             Gem::StartingPointInput.Clients
+            Gem::LyShine.Clients
         PRIVATE
             Gem::Multiplayer.Client.Static
     AUTOGEN_RULES
         ${MY_COMMON_STATIC_AUTOGEN_RULES}
 )
 
+if(PAL_TRAIT_BUILD_HOST_TOOLS)
+    ly_add_target(
+        NAME ${gem_name}.Editor.Static STATIC
+        NAMESPACE Gem
+        FILES_CMAKE
+            ${MY_COMMON_STATIC_FILES_CMAKE}
+            ${MY_UNIFIED_STATIC_FILES_CMAKE}
+        INCLUDE_DIRECTORIES
+            ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
+        BUILD_DEPENDENCIES
+            ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
+            ${MY_UNIFIED_STATIC_BUILD_DEPENDENCIES}
+            PRIVATE
+                EditorCore
+        AUTOGEN_RULES
+            ${MY_COMMON_STATIC_AUTOGEN_RULES}
+    )
+endif()
+
 # Unset these variables, as they are no longer needed.
 unset(MY_COMMON_STATIC_FILES_CMAKE)
 unset(MY_COMMON_STATIC_INCLUDE_DIRECTORIES)
 unset(MY_COMMON_STATIC_BUILD_DEPENDENCIES)
 unset(MY_COMMON_STATIC_AUTOGEN_RULES)
+unset(MY_UNIFIED_STATIC_FILES_CMAKE)
+unset(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES)
 
 # These variables contain common items that are used in all unified, server, and client versions of our module target.
 
@@ -127,6 +161,13 @@ set(MY_COMMON_MODULE_BUILD_DEPENDENCIES
         AZ::AzCore
 )
 
+# These variables contain common items that are only used in unified versions of our module target.
+
+set(MY_UNIFIED_MODULE_BUILD_DEPENDENCIES
+    PRIVATE
+        Gem::Multiplayer.Unified.Static
+)
+
 # Add our module targets.
 
 ly_add_target(
@@ -138,9 +179,9 @@ ly_add_target(
         ${MY_COMMON_MODULE_INCLUDE_DIRECTORIES}
     BUILD_DEPENDENCIES
         ${MY_COMMON_MODULE_BUILD_DEPENDENCIES}
+        ${MY_UNIFIED_MODULE_BUILD_DEPENDENCIES}
         PRIVATE
             Gem::${gem_name}.Unified.Static
-            Gem::Multiplayer.Unified.Static
 )
 
 ly_add_target(
@@ -171,10 +212,39 @@ ly_add_target(
             Gem::Multiplayer.Client.Static
 )
 
+if(PAL_TRAIT_BUILD_HOST_TOOLS)
+    ly_add_target(
+        NAME ${gem_name}.Editor ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
+        NAMESPACE Gem
+        FILES_CMAKE
+            ${MY_COMMON_MODULE_FILES_CMAKE}
+        INCLUDE_DIRECTORIES
+            ${MY_COMMON_MODULE_INCLUDE_DIRECTORIES}
+        BUILD_DEPENDENCIES
+            ${MY_COMMON_MODULE_BUILD_DEPENDENCIES}
+            ${MY_UNIFIED_MODULE_BUILD_DEPENDENCIES}
+            PRIVATE
+                Gem::${gem_name}.Editor.Static
+    )
+
+    ly_create_alias(NAME ${gem_name}.Tools NAMESPACE Gem TARGETS Gem::${gem_name}.Editor)
+    ly_create_alias(NAME ${gem_name}.Builders NAMESPACE Gem TARGETS Gem::${gem_name}.Editor)
+endif()
+
 # Unset these variables, as they are no longer needed.
 unset(MY_COMMON_MODULE_FILES_CMAKE)
 unset(MY_COMMON_MODULE_INCLUDE_DIRECTORIES)
 unset(MY_COMMON_MODULE_BUILD_DEPENDENCIES)
+unset(MY_UNIFIED_MODULE_BUILD_DEPENDENCIES)
+
+# Define all the kinds of applications ${gem_name} needs to be used by.
+ly_create_alias(NAME ${gem_name}.Unified NAMESPACE Gem TARGETS Gem::${gem_name})
+ly_create_alias(NAME ${gem_name}.Servers NAMESPACE Gem TARGETS Gem::${gem_name}.Server)
+ly_create_alias(NAME ${gem_name}.Clients NAMESPACE Gem TARGETS Gem::${gem_name}.Client)
+
+# Add in CMake dependencies for each gem dependency listed in this gem's gem.json file
+# for the primary gem variants used in most o3de applications
+o3de_add_variant_dependencies_for_gem_dependencies(GEM_NAME ${gem_name} VARIANTS Builders Tools Clients Servers Unified)
 
 # Include the gem name into the Client Module source file
 # for use with the AZ_DECLARE_MODULE_CLASS macro
@@ -188,17 +258,6 @@ PROPERTY COMPILE_DEFINITIONS
     VALUES
         O3DE_GEM_NAME=${gem_name}
         O3DE_GEM_VERSION=${gem_version})
-
-# if enabled, ${gem_name} is used by all kinds of applications
-ly_create_alias(NAME ${gem_name}.Builders NAMESPACE Gem TARGETS Gem::${gem_name})
-ly_create_alias(NAME ${gem_name}.Tools    NAMESPACE Gem TARGETS Gem::${gem_name})
-ly_create_alias(NAME ${gem_name}.Clients  NAMESPACE Gem TARGETS Gem::${gem_name}.Client)
-ly_create_alias(NAME ${gem_name}.Servers  NAMESPACE Gem TARGETS Gem::${gem_name}.Server)
-ly_create_alias(NAME ${gem_name}.Unified  NAMESPACE Gem TARGETS Gem::${gem_name})
-
-# Add in CMake dependencies for each gem dependency listed in this gem's gem.json file
-# for the primary gem variants used in most o3de applications
-o3de_add_variant_dependencies_for_gem_dependencies(GEM_NAME ${gem_name} VARIANTS Builders Tools Clients Servers Unified)
 
 ################################################################################
 # Gem dependencies

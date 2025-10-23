@@ -13,4 +13,10 @@ set(FILES
     Include/xXGameProjectNameXx/InputEventNames.h
     Source/Components/ClientMoverInputInjectorComponent.h
     Source/Components/ClientMoverInputInjectorComponent.cpp
+    Source/Components/StageSelectComponent.h
+    Source/Components/StageSelectComponent.cpp
+    Source/GameStates/StageSelect.h
+    Source/GameStates/StageSelect.cpp
+    Source/Utils/MultiplayerUtils.h
+    Source/Utils/MultiplayerUtils.cpp
 )
