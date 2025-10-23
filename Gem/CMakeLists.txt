@@ -62,7 +62,7 @@ ly_add_target(
     BUILD_DEPENDENCIES
         ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
         PUBLIC
-            Gem::StartingPointInput
+            Gem::StartingPointInput.Unified
         PRIVATE
             Gem::Multiplayer.Unified.Static
     AUTOGEN_RULES
@@ -95,7 +95,7 @@ ly_add_target(
     BUILD_DEPENDENCIES
         ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
         PUBLIC
-            Gem::StartingPointInput
+            Gem::StartingPointInput.Clients
         PRIVATE
             Gem::Multiplayer.Client.Static
     AUTOGEN_RULES
