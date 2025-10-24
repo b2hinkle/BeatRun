@@ -26,6 +26,7 @@ namespace xXGameProjectNameXx::GameStates
 
 #if AZ_TRAIT_CLIENT
         //! UiButtonNotificationBus::MultiHandler public overrides.
+        //! @{
         void OnButtonClick() override;
         //! @}
 #endif // #if AZ_TRAIT_CLIENT
@@ -33,6 +34,7 @@ namespace xXGameProjectNameXx::GameStates
     protected:
 
         //! GameState::IGameState protected overrides.
+        //! @{
         void OnPushed() override;
         void OnPopped() override;
         void OnEnter() override;

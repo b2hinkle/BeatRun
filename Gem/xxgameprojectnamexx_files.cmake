@@ -17,6 +17,8 @@ set(FILES
     Source/Components/StageSelectComponent.cpp
     Source/GameStates/StageSelect.h
     Source/GameStates/StageSelect.cpp
+    Include/xXGameProjectNameXx/SettingsRegistryAccessors.h
+    Source/SettingsRegistryAccessors.cpp
     Source/Utils/MultiplayerUtils.h
     Source/Utils/MultiplayerUtils.cpp
 )

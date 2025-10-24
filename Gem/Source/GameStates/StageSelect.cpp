@@ -1,8 +1,8 @@
 
 #include <Source/GameStates/StageSelect.h>
 
+#include <Include/xXGameProjectNameXx/SettingsRegistryAccessors.h>
 #if AZ_TRAIT_CLIENT
-#include <Source/UI/Canvases.h>
 #include <LyShine/Bus/UiCanvasManagerBus.h>
 #include <LyShine/Bus/UiCanvasBus.h>
 #include <Source/Utils/CanvasUtils.h>
@@ -34,13 +34,13 @@ namespace xXGameProjectNameXx::GameStates
         UiCanvasManagerBus::BroadcastResult(
             m_canvasEntityId,
             &UiCanvasManagerInterface::LoadCanvas,
-            AZStd::string(Canvases::GetStageSelectCanvasPathname()));
+            AZStd::string(SettingsRegistryAccessors::Canvases::GetStageSelectCanvasPathname()));
 
         if (!m_canvasEntityId.IsValid())
         {
             AZStd::fixed_string<256> message;
             message += "Failed to load canvas '";
-            message += Canvases::GetStageSelectCanvasPathname();
+            message += SettingsRegistryAccessors::Canvases::GetStageSelectCanvasPathname();
             message += "'.";
 
             AZLOG_ERROR(message.data());

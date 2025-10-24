@@ -4,12 +4,14 @@
 #include <AzCore/Component/Component.h>
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxBus.h>
+#include <CryCommon/CrySystemBus.h>
 
 namespace xXGameProjectNameXx
 {
     class xXGameProjectNameXxSystemComponent
         : public AZ::Component
         , protected xXGameProjectNameXxRequestBus::Handler
+        , protected CrySystemEventBus::Handler
     {
     public:
         AZ_COMPONENT_DECL(xXGameProjectNameXxSystemComponent);
@@ -36,5 +38,10 @@ namespace xXGameProjectNameXx
         void Activate() override;
         void Deactivate() override;
         ////////////////////////////////////////////////////////////////////////
+
+        //! CrySystemEventBus::Handler overrides.
+        //! @{
+        void OnCrySystemInitialized(ISystem&, const SSystemInitParams&) override;
+        //! @}
     };
 }

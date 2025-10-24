@@ -41,6 +41,7 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
     PRIVATE
         AZ::AzGameFramework
         Gem::Atom_AtomBridge.Static
+        Legacy::CryCommon
 )
 
 set(MY_COMMON_STATIC_AUTOGEN_RULES
@@ -159,6 +160,7 @@ set(MY_COMMON_MODULE_INCLUDE_DIRECTORIES
 set(MY_COMMON_MODULE_BUILD_DEPENDENCIES
     PRIVATE
         AZ::AzCore
+        Legacy::CryCommon
 )
 
 # These variables contain common items that are only used in unified versions of our module target.

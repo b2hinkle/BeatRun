@@ -7,9 +7,7 @@
 
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Component/ComponentApplicationBus.h>
-#include <Source/UI/Canvases.h>
 #include <LyShine/Bus/UiCanvasManagerBus.h>
-#include <LyShine/Bus/UiCanvasBus.h>
 
 namespace xXGameProjectNameXx::CanvasUtils
 {

@@ -5,6 +5,11 @@
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <Source/AutoGen/AutoComponentTypes.h>
+#if AZ_TRAIT_CLIENT
+#include <LyShine/Bus/UiCursorBus.h>
+#endif // #if AZ_TRAIT_CLIENT
+#include <xXGameProjectNameXx/SettingsRegistryAccessors.h>
+#include <AzCore/Component/TickBus.h>
 
 namespace xXGameProjectNameXx
 {
@@ -65,10 +70,27 @@ namespace xXGameProjectNameXx
 
         // Register our auto-components.
         RegisterMultiplayerComponents();
+
+        CrySystemEventBus::Handler::BusConnect();
     }
 
     void xXGameProjectNameXxSystemComponent::Deactivate()
     {
         xXGameProjectNameXxRequestBus::Handler::BusDisconnect();
+
+        CrySystemEventBus::Handler::BusDisconnect();
+    }
+
+    void xXGameProjectNameXxSystemComponent::OnCrySystemInitialized(ISystem&, const SSystemInitParams&)
+    {
+#if AZ_TRAIT_CLIENT
+        // Schedule UI cursor to be set after this event is finished broadcasting, because we want our code to happen after `LyShineSystemComponent`'s callback.
+        AZ::TickBus::QueueFunction(
+            []()
+            {
+                UiCursorBus::Broadcast(&UiCursorInterface::SetUiCursor, SettingsRegistryAccessors::UI::GetCursorTexturePathname().data());
+            }
+        );
+#endif // #if AZ_TRAIT_CLIENT
     }
 }
