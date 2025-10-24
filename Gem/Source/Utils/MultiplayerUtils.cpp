@@ -14,6 +14,13 @@ namespace xXGameProjectNameXx::MultiplayerUtils
         return *multiplayerInterface;
     }
 
+    Multiplayer::INetworkEntityManager& GetNetworkEntityManagerAsserted(Multiplayer::IMultiplayer& multiplayer)
+    {
+        Multiplayer::INetworkEntityManager* networkEntityManager = multiplayer.GetNetworkEntityManager();
+        AZ_Assert(networkEntityManager, "INetworkEntityManager is required.");
+        return *networkEntityManager;
+    }
+
     bool IsHosting()
     {
         const Multiplayer::MultiplayerAgentType currentMultiplayerAgentType = GetMultiplayerAsserted().GetAgentType();

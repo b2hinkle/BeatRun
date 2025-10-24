@@ -23,4 +23,6 @@ set(FILES
     Include/xXGameProjectNameXx/LevelNames.h
     Source/Utils/LevelSystemUtils.h
     Source/Utils/LevelSystemUtils.cpp
+    Source/Components/MyMultiplayerSpawnerComponent.h
+    Source/Components/MyMultiplayerSpawnerComponent.cpp
 )

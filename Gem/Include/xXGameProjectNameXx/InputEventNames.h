@@ -11,4 +11,6 @@ namespace xXGameProjectNameXx::InputEventNames
 {
     constexpr AZStd::string_view MoveForwardAxis = "MoveForwardAxis";
     constexpr AZStd::string_view MoveRightAxis = "MoveRightAxis";
+
+    constexpr AZStd::string_view InGamePauseMenu = "InGamePauseMenu";
 }

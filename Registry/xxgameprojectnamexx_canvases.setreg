@@ -1,7 +1,7 @@
 {
     "xXGameProjectNameXx": {
         "Canvases": {
-            "StageSelectPathname": "assets/ui/stageselectcanvas.uicanvas"
+            "StageSelectPathname": "assets/ui/canvases/stageselectcanvas.uicanvas"
         }
     }
 }
