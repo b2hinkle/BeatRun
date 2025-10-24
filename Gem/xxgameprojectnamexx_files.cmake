@@ -10,7 +10,6 @@ set(FILES
     Include/xXGameProjectNameXx/MoverInputInterface.h
     Source/Components/MoverInputComponent.h
     Source/Components/MoverInputComponent.cpp
-    Include/xXGameProjectNameXx/InputEventNames.h
     Source/Components/ClientMoverInputInjectorComponent.h
     Source/Components/ClientMoverInputInjectorComponent.cpp
     Source/Components/StageSelectComponent.h
@@ -21,4 +20,7 @@ set(FILES
     Source/SettingsRegistryAccessors.cpp
     Source/Utils/MultiplayerUtils.h
     Source/Utils/MultiplayerUtils.cpp
+    Include/xXGameProjectNameXx/LevelNames.h
+    Source/Utils/LevelSystemUtils.h
+    Source/Utils/LevelSystemUtils.cpp
 )

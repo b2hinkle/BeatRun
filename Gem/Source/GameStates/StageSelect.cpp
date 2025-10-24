@@ -8,21 +8,89 @@
 #include <Source/Utils/CanvasUtils.h>
 #include <LyShine/Bus/UiButtonBus.h>
 #include <LyShine/Bus/UiCursorBus.h>
+#include <Include/xXGameProjectNameXx/UiActionNames.h>
 #endif // #if AZ_TRAIT_CLIENT
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Component/ComponentApplicationBus.h>
+#include <Include/xXGameProjectNameXx/LevelNames.h>
+#include <Source/Utils/LevelSystemUtils.h>
+#include <Source/Utils/MultiplayerUtils.h>
+#include <Multiplayer/IMultiplayer.h>
+#include <AzNetworking/ConnectionLayer/ConnectionEnums.h>
 
 namespace xXGameProjectNameXx::GameStates
 {
 #if AZ_TRAIT_CLIENT
-    void StageSelect::OnButtonClick()
+    void StageSelect::OnAction([[maybe_unused]] AZ::EntityId entityId, const LyShine::ActionName& actionName)
     {
-        const AZ::EntityId* currentBusIdPtr = UiButtonNotificationBus::GetCurrentBusId();
-        AZ_Assert(currentBusIdPtr, "This cannot be null since we are currently in a bus callback.");
-        [[maybe_unused]] const AZ::EntityId& currentBusId = *currentBusIdPtr;
+        {
+            AZStd::fixed_string<128> logString;
 
-        // @Christian: TODO: [todo][ui] Use this to handle cpp button click event callbacks if we ever convert
-        // the UI canvas to cpp where we'd have to create each button individually. See: `LyShineExamplesCppExample` for reference.
+            logString += '`';
+            logString += __func__;
+            logString += "` called.";
+            logString += ' ';
+            logString += "Entity id: ";
+
+            {
+                AZStd::fixed_string<32> entityIdString;
+                AZStd::to_string(entityIdString, entityId.operator AZ::u64());
+
+                logString += entityIdString;
+            }
+
+            logString += "'.";
+            logString += ' ';
+            logString += "Action name: '";
+            logString += actionName;
+            logString += "'.";
+
+            AZLOG_INFO(logString.data());
+        }
+
+        AZStd::string_view levelNameToLoad;
+
+        if (actionName == UiActionNames::StageButton_TheRocks_Released)
+        {
+            levelNameToLoad = LevelNames::TheRocks;
+        }
+        else if (actionName == UiActionNames::StageButton_CaveRave_Released)
+        {
+            levelNameToLoad = LevelNames::CaveRave;
+        }
+        else if (actionName == UiActionNames::StageButton_GreenLand_Released)
+        {
+            levelNameToLoad = LevelNames::GreenLand;
+        }
+        else if (actionName == UiActionNames::StageButton_SandLand_Released)
+        {
+            levelNameToLoad = LevelNames::SandLand;
+        }
+        else if (actionName == UiActionNames::StageButton_MemtoPeak_Released)
+        {
+            levelNameToLoad = LevelNames::MemtoPeak;
+        }
+
+        // Make sure we aren't connected to any server before loading new levels.
+        if (MultiplayerUtils::IsClient())
+        {
+            AZStd::fixed_string<128> logString;
+            logString += "Disconnecting from the server we're currently connected to, before loading to the new level.";
+            AZLOG_INFO(logString.data());
+
+            MultiplayerUtils::GetMultiplayerAsserted().Terminate(AzNetworking::DisconnectReason::TerminatedByUser);
+        }
+
+#if AZ_TRAIT_SERVER
+        // Make sure we are hosting before loading any network levels.
+        if (!MultiplayerUtils::IsHosting())
+        {
+            MultiplayerUtils::PerformHostCommand();
+        }
+#endif // #if AZ_TRAIT_SERVER
+
+        // Actually load the level now.
+        LevelSystemUtils::TryLoadLevel(levelNameToLoad);
     }
 #endif // #if AZ_TRAIT_CLIENT
 
@@ -66,7 +134,11 @@ namespace xXGameProjectNameXx::GameStates
 
 #if AZ_TRAIT_CLIENT
         UiCursorBus::Broadcast(&UiCursorInterface::IncrementVisibleCounter);
-        UiButtonNotificationBus::MultiHandler::BusConnect(m_canvasEntityId);
+
+        if (m_canvasEntityId.IsValid())
+        {
+            UiCanvasNotificationBus::Handler::BusConnect(m_canvasEntityId);
+        }
 #endif // #if AZ_TRAIT_CLIENT
     }
 
@@ -74,7 +146,7 @@ namespace xXGameProjectNameXx::GameStates
     {
 #if AZ_TRAIT_CLIENT
         UiCursorBus::Broadcast(&UiCursorInterface::DecrementVisibleCounter);
-        UiButtonNotificationBus::MultiHandler::BusDisconnect(m_canvasEntityId);
+        UiCanvasNotificationBus::Handler::BusDisconnect(m_canvasEntityId);
 #endif // #if AZ_TRAIT_CLIENT
 
         GameState::IGameState::OnExit();

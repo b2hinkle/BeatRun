@@ -1,6 +1,10 @@
 
 #pragma once
 
+#if !AZ_TRAIT_CLIENT
+#error "This file assumes it's being used for client code."
+#endif // #if !AZ_TRAIT_CLIENT
+
 #include <AzCore/std/string/string_view.h>
 
 namespace xXGameProjectNameXx::InputEventNames

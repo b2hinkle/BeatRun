@@ -4,7 +4,7 @@
 #include <GameState/GameState.h>
 #include <AzCore/Component/EntityId.h>
 #if AZ_TRAIT_CLIENT
-#include <LyShine/Bus/UiButtonBus.h>
+#include <LyShine/Bus/UiCanvasBus.h>
 #endif // #if AZ_TRAIT_CLIENT
 
 namespace xXGameProjectNameXx::GameStates
@@ -13,7 +13,7 @@ namespace xXGameProjectNameXx::GameStates
     class StageSelect
         : public GameState::IGameState
 #if AZ_TRAIT_CLIENT
-        , public UiButtonNotificationBus::MultiHandler
+        , protected UiCanvasNotificationBus::Handler
 #endif // #if AZ_TRAIT_CLIENT
     {
     public:
@@ -25,9 +25,9 @@ namespace xXGameProjectNameXx::GameStates
     public:
 
 #if AZ_TRAIT_CLIENT
-        //! UiButtonNotificationBus::MultiHandler public overrides.
+        //! UiCanvasNotificationBus::Handler public overrides.
         //! @{
-        void OnButtonClick() override;
+        void OnAction(AZ::EntityId entityId, const LyShine::ActionName& actionName) override;
         //! @}
 #endif // #if AZ_TRAIT_CLIENT
 

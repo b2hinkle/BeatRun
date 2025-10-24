@@ -4,7 +4,6 @@
 #include <AzCore/Serialization/SerializeContext.h>
 #include <AzCore/Serialization/EditContext.h>
 #include <AzCore/RTTI/BehaviorContext.h>
-#include <xXGameProjectNameXx/InputEventNames.h>
 #include <xXGameProjectNameXx/MoverInputInterface.h>
 #include <Multiplayer/IMultiplayer.h>
 #include <Multiplayer/Components/NetBindComponent.h>
