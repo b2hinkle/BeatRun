@@ -8,13 +8,13 @@
 namespace xXGameProjectNameXx
 {
     //! @brief Handles spawning the root autonomous entity for new connections that join the server.
-    class MyMultiplayerSpawnerComponent
+    class RootAutonomousEntitySpawnerComponent
         : public AZ::Component
         , public Multiplayer::IMultiplayerSpawner
     {
     public:
 
-        AZ_COMPONENT_DECL(MyMultiplayerSpawnerComponent);
+        AZ_COMPONENT_DECL(RootAutonomousEntitySpawnerComponent);
 
         //! Component descriptor interface.
         //! @{

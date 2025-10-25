@@ -6,7 +6,7 @@
 #include <Source/Components/MyExperimentComponent.h>
 #include <Source/Components/ClientMoverInputInjectorComponent.h>
 #include <Source/Components/StageSelectComponent.h>
-#include <Source/Components/MyMultiplayerSpawnerComponent.h>
+#include <Source/Components/RootAutonomousEntitySpawnerComponent.h>
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <Source/AutoGen/AutoComponentTypes.h>
@@ -29,7 +29,7 @@ namespace xXGameProjectNameXx
                 MyExperimentComponent::CreateDescriptor(),
                 ClientMoverInputInjectorComponent::CreateDescriptor(),
                 StageSelectComponent::CreateDescriptor(),
-                MyMultiplayerSpawnerComponent::CreateDescriptor(),
+                RootAutonomousEntitySpawnerComponent::CreateDescriptor(),
             });
 
             // Create descriptors for our auto-components. Important: These are supposed to be the last descriptors added.

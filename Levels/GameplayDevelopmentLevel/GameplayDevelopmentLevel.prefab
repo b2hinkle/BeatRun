@@ -50,11 +50,11 @@
                 "Id": 7706779388774148851,
                 "LocalBookmarkFileName": "GameplayDevelopmentLevel_17540291519627688.setreg"
             },
-            "MyMultiplayerSpawnerComponent": {
+            "RootAutonomousEntitySpawnerComponent": {
                 "$type": "GenericComponentWrapper",
                 "Id": 9865409291786708939,
                 "m_template": {
-                    "$type": "MyMultiplayerSpawnerComponent",
+                    "$type": "RootAutonomousEntitySpawnerComponent",
                     "RootAutonomousEntitySpawnable": {
                         "Spawnable": {
                             "assetId": {

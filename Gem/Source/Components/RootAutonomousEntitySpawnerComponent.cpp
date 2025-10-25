@@ -1,5 +1,5 @@
 
-#include <Source/Components/MyMultiplayerSpawnerComponent.h>
+#include <Source/Components/RootAutonomousEntitySpawnerComponent.h>
 
 #include <AzCore/Serialization/SerializeContext.h>
 #include <AzCore/Serialization/EditContext.h>
@@ -13,33 +13,33 @@
 
 namespace xXGameProjectNameXx
 {
-    AZ_COMPONENT_IMPL(MyMultiplayerSpawnerComponent, "MyMultiplayerSpawnerComponent", "{5C317DF1-7BD8-4CB2-8A4C-263740B14064}");
+    AZ_COMPONENT_IMPL(RootAutonomousEntitySpawnerComponent, "RootAutonomousEntitySpawnerComponent", "{5C317DF1-7BD8-4CB2-8A4C-263740B14064}");
 
-    void MyMultiplayerSpawnerComponent::Reflect(AZ::ReflectContext* context)
+    void RootAutonomousEntitySpawnerComponent::Reflect(AZ::ReflectContext* context)
     {
         if (AZ::SerializeContext* serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
         {
-            serializeContext->Class<MyMultiplayerSpawnerComponent, AZ::Component>()
+            serializeContext->Class<RootAutonomousEntitySpawnerComponent, AZ::Component>()
                 ->Version(1)
-                ->Field("RootAutonomousEntitySpawnable", &MyMultiplayerSpawnerComponent::m_rootAutonomousEntitySpawnable)
-                ->Field("SpawnTransformEntityReference", &MyMultiplayerSpawnerComponent::m_spawnTransformEntityReference)
+                ->Field("RootAutonomousEntitySpawnable", &RootAutonomousEntitySpawnerComponent::m_rootAutonomousEntitySpawnable)
+                ->Field("SpawnTransformEntityReference", &RootAutonomousEntitySpawnerComponent::m_spawnTransformEntityReference)
                 ;
 
             if (AZ::EditContext* editContext = serializeContext->GetEditContext())
             {
-                editContext->Class<MyMultiplayerSpawnerComponent>("MyMultiplayerSpawnerComponent", "[Description of functionality provided by this component]")
+                editContext->Class<RootAutonomousEntitySpawnerComponent>("RootAutonomousEntitySpawnerComponent", "[Description of functionality provided by this component]")
                     ->ClassElement(AZ::Edit::ClassElements::EditorData, "")
                     ->Attribute(AZ::Edit::Attributes::Category, "ComponentCategory")
                     ->Attribute(AZ::Edit::Attributes::Icon, "Icons/Components/Component_Placeholder.svg")
                     ->Attribute(AZ::Edit::Attributes::AppearsInAddComponentMenu, AZ_CRC_CE("Level"))
                     ->DataElement(
                         AZ::Edit::UIHandlers::Default,
-                        &MyMultiplayerSpawnerComponent::m_rootAutonomousEntitySpawnable,
+                        &RootAutonomousEntitySpawnerComponent::m_rootAutonomousEntitySpawnable,
                         "Root Autonomous Entity Spawnable Asset",
                         "The network spawnable asset which will be created as an autonomous entity for each connection that joins.")
                     ->DataElement(
                         AZ::Edit::UIHandlers::Default,
-                        &MyMultiplayerSpawnerComponent::m_spawnTransformEntityReference,
+                        &RootAutonomousEntitySpawnerComponent::m_spawnTransformEntityReference,
                         "Spawn Transform Entity Reference",
                         "Reference to the entity to use as a spawn transform for the root autonomous entity.")
                     ;
@@ -48,31 +48,31 @@ namespace xXGameProjectNameXx
 
         if (AZ::BehaviorContext* behaviorContext = azrtti_cast<AZ::BehaviorContext*>(context))
         {
-            behaviorContext->Class<MyMultiplayerSpawnerComponent>("MyMultiplayerSpawner Component Group")
+            behaviorContext->Class<RootAutonomousEntitySpawnerComponent>("RootAutonomousEntitySpawner Component Group")
                 ->Attribute(AZ::Script::Attributes::Category, "xXGameProjectNameXx Gem Group")
                 ;
         }
     }
 
-    void MyMultiplayerSpawnerComponent::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
+    void RootAutonomousEntitySpawnerComponent::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
     {
-        provided.push_back(AZ_CRC_CE("MyMultiplayerSpawnerComponentService"));
+        provided.push_back(AZ_CRC_CE("RootAutonomousEntitySpawnerComponentService"));
     }
 
-    void MyMultiplayerSpawnerComponent::GetIncompatibleServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& incompatible)
+    void RootAutonomousEntitySpawnerComponent::GetIncompatibleServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& incompatible)
     {
-        incompatible.push_back(AZ_CRC_CE("MyMultiplayerSpawnerComponentService"));
+        incompatible.push_back(AZ_CRC_CE("RootAutonomousEntitySpawnerComponentService"));
     }
 
-    void MyMultiplayerSpawnerComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
-    {
-    }
-
-    void MyMultiplayerSpawnerComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    void RootAutonomousEntitySpawnerComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
     {
     }
 
-    Multiplayer::NetworkEntityHandle MyMultiplayerSpawnerComponent::OnPlayerJoin(
+    void RootAutonomousEntitySpawnerComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    {
+    }
+
+    Multiplayer::NetworkEntityHandle RootAutonomousEntitySpawnerComponent::OnPlayerJoin(
         [[maybe_unused]] uint64_t userId,
         [[maybe_unused]] const Multiplayer::MultiplayerAgentDatum& agentDatum)
     {
@@ -103,7 +103,7 @@ namespace xXGameProjectNameXx
         return AZStd::move(entityList[0]);
     }
 
-    void MyMultiplayerSpawnerComponent::OnPlayerLeave(
+    void RootAutonomousEntitySpawnerComponent::OnPlayerLeave(
         Multiplayer::ConstNetworkEntityHandle entityHandle,
         [[maybe_unused]] const Multiplayer::ReplicationSet& replicationSet,
         [[maybe_unused]] AzNetworking::DisconnectReason reason)
@@ -122,12 +122,12 @@ namespace xXGameProjectNameXx
         }
     }
 
-    void MyMultiplayerSpawnerComponent::Activate()
+    void RootAutonomousEntitySpawnerComponent::Activate()
     {
         AZ::Interface<IMultiplayerSpawner>::Register(this);
     }
 
-    void MyMultiplayerSpawnerComponent::Deactivate()
+    void RootAutonomousEntitySpawnerComponent::Deactivate()
     {
         AZ::Interface<IMultiplayerSpawner>::Unregister(this);
     }
