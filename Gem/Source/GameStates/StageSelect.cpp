@@ -121,7 +121,7 @@ namespace xXGameProjectNameXx::GameStates
     {
 #if AZ_TRAIT_CLIENT
         CanvasUtils::UnloadCanvasIfStillActive(m_canvasEntityId);
-        m_canvasEntityId = AZ::EntityId{InvalidEntityId};
+        m_canvasEntityId = AZ::EntityId{AZ::EntityId::InvalidEntityId};
 #endif // #if AZ_TRAIT_CLIENT
 
         GameState::IGameState::OnPopped();
