@@ -2,6 +2,7 @@
 #include <Source/Utils/LevelSystemUtils.h>
 
 #include <AzCore/Console/ILogger.h>
+#include <AzCore/Debug/Trace.h>
 #include <platform.h>
 #include <CryCommon/ISystem.h>
 #include <CryCommon/ILevelSystem.h>

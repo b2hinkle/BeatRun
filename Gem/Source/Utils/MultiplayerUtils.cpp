@@ -1,6 +1,7 @@
 
 #include <Source/Utils/MultiplayerUtils.h>
 
+#include <AzCore/Debug/Trace.h>
 #include <AzCore/Console/ILogger.h>
 #include <Multiplayer/IMultiplayer.h>
 #include <Multiplayer/Components/NetBindComponent.h>

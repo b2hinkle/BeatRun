@@ -6,8 +6,10 @@
 #include <Source/Utils/CanvasUtils.h>
 
 #include <AzCore/Console/ILogger.h>
+#include <AzCore/Component/Entity.h>
 #include <AzCore/Component/ComponentApplicationBus.h>
 #include <LyShine/Bus/UiCanvasManagerBus.h>
+#include <Source/Utils/AzCoreUtils.h>
 
 namespace xXGameProjectNameXx::CanvasUtils
 {

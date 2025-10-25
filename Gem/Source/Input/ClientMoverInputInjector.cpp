@@ -9,6 +9,7 @@
 #include <xXGameProjectNameXx/MoverInputInterface.h>
 #include <Multiplayer/Components/NetBindComponent.h>
 #include <AzCore/Console/ILogger.h>
+#include <AzCore/Debug/Trace.h>
 #include <Source/Utils/MultiplayerUtils.h>
 
 namespace

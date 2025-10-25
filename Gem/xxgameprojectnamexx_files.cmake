@@ -25,4 +25,7 @@ set(FILES
     Source/Utils/LevelSystemUtils.cpp
     Source/Components/MyMultiplayerSpawnerComponent.h
     Source/Components/MyMultiplayerSpawnerComponent.cpp
+    Source/Utils/AzCoreUtils.h
+    Source/Utils/AzCoreUtils.inl
+    Source/Utils/AzCoreUtils.cpp
 )

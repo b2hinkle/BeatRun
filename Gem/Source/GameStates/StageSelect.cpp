@@ -6,7 +6,6 @@
 #include <LyShine/Bus/UiCanvasManagerBus.h>
 #include <LyShine/Bus/UiCanvasBus.h>
 #include <Source/Utils/CanvasUtils.h>
-#include <LyShine/Bus/UiButtonBus.h>
 #include <LyShine/Bus/UiCursorBus.h>
 #include <Include/xXGameProjectNameXx/UiActionNames.h>
 #endif // #if AZ_TRAIT_CLIENT
@@ -99,11 +98,10 @@ namespace xXGameProjectNameXx::GameStates
         GameState::IGameState::OnPushed();
 
 #if AZ_TRAIT_CLIENT
-        UiCanvasManagerBus::BroadcastResult(
-            m_canvasEntityId,
-            &UiCanvasManagerInterface::LoadCanvas,
-            AZStd::string(SettingsRegistryAccessors::Canvases::GetStageSelectCanvasPathname()));
+        AZ_Assert(!m_canvasEntityId.IsValid(), "The current canvas entity ID should not have been set to anything yet!");
 
+        UiCanvasManagerBus::BroadcastResult(m_canvasEntityId, &UiCanvasManagerBus::Events::LoadCanvas,
+            AZStd::string(SettingsRegistryAccessors::Canvases::GetStageSelectCanvasPathname()));
         if (!m_canvasEntityId.IsValid())
         {
             AZStd::fixed_string<256> message;
@@ -123,6 +121,7 @@ namespace xXGameProjectNameXx::GameStates
     {
 #if AZ_TRAIT_CLIENT
         CanvasUtils::UnloadCanvasIfStillActive(m_canvasEntityId);
+        m_canvasEntityId = AZ::EntityId{InvalidEntityId};
 #endif // #if AZ_TRAIT_CLIENT
 
         GameState::IGameState::OnPopped();

@@ -2,6 +2,7 @@
 #include <Source/Components/MoverInputComponent.h>
 
 #include <Multiplayer/Components/NetworkCharacterComponent.h>
+#include <AzCore/Debug/Trace.h>
 
 namespace
 {
