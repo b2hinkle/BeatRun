@@ -100,6 +100,8 @@ namespace xXGameProjectNameXx::GameStates
 #if AZ_TRAIT_CLIENT
         AZ_Assert(!m_canvasEntityId.IsValid(), "The current canvas entity ID should not have been set to anything yet!");
 
+        // Note: [local_multiplayer] When it comes to stage selection, we want the UI to fill the entire screen, as this is a state of
+        // the game where both players should see the same thing. They have to decide which stage they want to select together.
         UiCanvasManagerBus::BroadcastResult(m_canvasEntityId, &UiCanvasManagerBus::Events::LoadCanvas,
             AZStd::string(SettingsRegistryAccessors::Canvases::GetStageSelectCanvasPathname()));
         if (!m_canvasEntityId.IsValid())
