@@ -21,8 +21,8 @@ namespace xXGameProjectNameXx
         {
             serializeContext->Class<MyMultiplayerSpawnerComponent, AZ::Component>()
                 ->Version(1)
-                ->Field("PlayerSpawnable", &MyMultiplayerSpawnerComponent::m_playerSpawnable)
-                ->Field("SpawnTransformEntity", &MyMultiplayerSpawnerComponent::m_spawnTransformEntity)
+                ->Field("RootAutonomousEntitySpawnable", &MyMultiplayerSpawnerComponent::m_rootAutonomousEntitySpawnable)
+                ->Field("SpawnTransformEntityReference", &MyMultiplayerSpawnerComponent::m_spawnTransformEntityReference)
                 ;
 
             if (AZ::EditContext* editContext = serializeContext->GetEditContext())
@@ -34,14 +34,14 @@ namespace xXGameProjectNameXx
                     ->Attribute(AZ::Edit::Attributes::AppearsInAddComponentMenu, AZ_CRC_CE("Level"))
                     ->DataElement(
                         AZ::Edit::UIHandlers::Default,
-                        &MyMultiplayerSpawnerComponent::m_playerSpawnable,
-                        "Player Spawnable Asset",
-                        "The network player spawnable asset which will be spawned for each player that joins.")
+                        &MyMultiplayerSpawnerComponent::m_rootAutonomousEntitySpawnable,
+                        "Root Autonomous Entity Spawnable Asset",
+                        "The network spawnable asset which will be created as an autonomous entity for each connection that joins.")
                     ->DataElement(
                         AZ::Edit::UIHandlers::Default,
-                        &MyMultiplayerSpawnerComponent::m_spawnTransformEntity,
-                        "Spawn Transform Entity",
-                        "Reference to the entity to use as a spawn transform for new players.")
+                        &MyMultiplayerSpawnerComponent::m_spawnTransformEntityReference,
+                        "Spawn Transform Entity Reference",
+                        "Reference to the entity to use as a spawn transform for the root autonomous entity.")
                     ;
             }
         }
@@ -76,12 +76,12 @@ namespace xXGameProjectNameXx
         [[maybe_unused]] uint64_t userId,
         [[maybe_unused]] const Multiplayer::MultiplayerAgentDatum& agentDatum)
     {
-        const Multiplayer::PrefabEntityId prefabEntityId(AZ::Name(m_playerSpawnable.m_spawnableAsset.GetHint()));
+        const Multiplayer::PrefabEntityId prefabEntityId(AZ::Name(m_rootAutonomousEntitySpawnable.m_spawnableAsset.GetHint()));
         constexpr Multiplayer::NetEntityRole netEntityRole = Multiplayer::NetEntityRole::Authority;
 
         // Pull the transform to spawn at from the spawn transform entity reference.
         AZ::Transform transform = {};
-        AZ::TransformBus::EventResult(transform, m_spawnTransformEntity, &AZ::TransformBus::Events::GetWorldTM);
+        AZ::TransformBus::EventResult(transform, m_spawnTransformEntityReference, &AZ::TransformBus::Events::GetWorldTM);
 
         Multiplayer::INetworkEntityManager::EntityList entityList =
             MultiplayerUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
@@ -91,7 +91,7 @@ namespace xXGameProjectNameXx
 
         if (entityList.empty())
         {
-            // Failure: The player prefab has no networked entities in it.
+            // Failure: The prefab has no networked entities in it.
             AZLOG_ERROR(
                 "Attempt to spawn prefab '%s' failed, no entities were spawned. Ensure that the prefab contains a single entity "
                 "that is network enabled with a Network Binding component.",
@@ -99,7 +99,7 @@ namespace xXGameProjectNameXx
             return Multiplayer::NetworkEntityHandle{};
         }
 
-        // Return the spawned, player-autonomous entity.
+        // Return the spawned entity. This will be made autonomous by the multiplayer system.
         return AZStd::move(entityList[0]);
     }
 

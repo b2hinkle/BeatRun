@@ -7,6 +7,7 @@
 
 namespace xXGameProjectNameXx
 {
+    //! @brief Handles spawning the root autonomous entity for new connections that join the server.
     class MyMultiplayerSpawnerComponent
         : public AZ::Component
         , public Multiplayer::IMultiplayerSpawner
@@ -40,8 +41,9 @@ namespace xXGameProjectNameXx
 
     private:
 
-        Multiplayer::NetworkSpawnable m_playerSpawnable;
+        Multiplayer::NetworkSpawnable m_rootAutonomousEntitySpawnable;
 
-        AZ::EntityId m_spawnTransformEntity;
+        // @Christian: TODO: [todo][techdebt][multiplayer] Move this to new component which would handle spawning actual player and character entities.
+        AZ::EntityId m_spawnTransformEntityReference;
     };
 } // namespace xXGameProjectNameXx

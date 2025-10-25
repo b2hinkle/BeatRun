@@ -55,7 +55,7 @@
                 "Id": 9865409291786708939,
                 "m_template": {
                     "$type": "MyMultiplayerSpawnerComponent",
-                    "PlayerSpawnable": {
+                    "RootAutonomousEntitySpawnable": {
                         "Spawnable": {
                             "assetId": {
                                 "guid": "{49351E39-B59B-5CBA-ABC9-B351C69ACDDE}",
@@ -64,7 +64,7 @@
                             "assetHint": "prefabs/examplemover.network.spawnable"
                         }
                     },
-                    "SpawnTransformEntity": "Entity_[949383976148]"
+                    "SpawnTransformEntityReference": "Entity_[949383976148]"
                 }
             },
             "TransformComponent": {
