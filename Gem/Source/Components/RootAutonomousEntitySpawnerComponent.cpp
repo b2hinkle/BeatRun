@@ -7,7 +7,7 @@
 #include <Multiplayer/NetworkEntity/INetworkEntityManager.h>
 #include <Multiplayer/IMultiplayer.h>
 #include <Source/Utils/MultiplayerUtils.h>
-#include <AZCore/Console/ILogger.h>
+#include <AzCore/Console/ILogger.h>
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <AzCore/Component/TransformBus.h>
 
@@ -72,6 +72,16 @@ namespace xXGameProjectNameXx
     {
     }
 
+    void RootAutonomousEntitySpawnerComponent::Activate()
+    {
+        AZ::Interface<IMultiplayerSpawner>::Register(this);
+    }
+
+    void RootAutonomousEntitySpawnerComponent::Deactivate()
+    {
+        AZ::Interface<IMultiplayerSpawner>::Unregister(this);
+    }
+
     Multiplayer::NetworkEntityHandle RootAutonomousEntitySpawnerComponent::OnPlayerJoin(
         [[maybe_unused]] uint64_t userId,
         [[maybe_unused]] const Multiplayer::MultiplayerAgentDatum& agentDatum)
@@ -120,15 +130,5 @@ namespace xXGameProjectNameXx
                 networkEntityManager.MarkForRemoval(hierarchyEntityHandle);
             }
         }
-    }
-
-    void RootAutonomousEntitySpawnerComponent::Activate()
-    {
-        AZ::Interface<IMultiplayerSpawner>::Register(this);
-    }
-
-    void RootAutonomousEntitySpawnerComponent::Deactivate()
-    {
-        AZ::Interface<IMultiplayerSpawner>::Unregister(this);
     }
 } // namespace xXGameProjectNameXx

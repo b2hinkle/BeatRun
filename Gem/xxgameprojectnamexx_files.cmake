@@ -28,4 +28,6 @@ set(FILES
     Source/Utils/AzCoreUtils.h
     Source/Utils/AzCoreUtils.inl
     Source/Utils/AzCoreUtils.cpp
+    Source/Utils/AzFrameworkUtils.h
+    Source/Utils/AzFrameworkUtils.cpp
 )

@@ -10,7 +10,7 @@ namespace xXGameProjectNameXx
     //! @brief Handles spawning the root autonomous entity for new connections that join the server.
     class RootAutonomousEntitySpawnerComponent
         : public AZ::Component
-        , public Multiplayer::IMultiplayerSpawner
+        , protected Multiplayer::IMultiplayerSpawner
     {
     public:
 
@@ -25,18 +25,18 @@ namespace xXGameProjectNameXx
         static void GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent);
         //! @}
 
-        //! Multiplayer::IMultiplayerSpawner public overrides.
-        //! @{
-        Multiplayer::NetworkEntityHandle OnPlayerJoin(uint64_t userId, const Multiplayer::MultiplayerAgentDatum& agentDatum) override;
-        void OnPlayerLeave(Multiplayer::ConstNetworkEntityHandle entityHandle, const Multiplayer::ReplicationSet& replicationSet, AzNetworking::DisconnectReason reason) override;
-        //! @}
-
     protected:
 
         //! AZ::Component protected overrides.
         //! @{
         void Activate() override;
         void Deactivate() override;
+        //! @}
+
+        //! Multiplayer::IMultiplayerSpawner protected overrides.
+        //! @{
+        Multiplayer::NetworkEntityHandle OnPlayerJoin(uint64_t userId, const Multiplayer::MultiplayerAgentDatum& agentDatum) override;
+        void OnPlayerLeave(Multiplayer::ConstNetworkEntityHandle entityHandle, const Multiplayer::ReplicationSet& replicationSet, AzNetworking::DisconnectReason reason) override;
         //! @}
 
     private:
