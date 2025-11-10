@@ -15,12 +15,14 @@
     "icon_path": "preview.png",
     "engine": "o3de",
     "external_subdirectories": [
+        "Dependencies/Gems/CppUtilsO3deGem",
         "Dependencies/Gems/O3DECoreUtils",
         "Gem"
     ],
     "gem_names": [
         "Atom",
         "CameraFramework",
+        "CppUtilsO3deGem",
         "GameState",
         "ImGui",
         "LyShine",
