@@ -4,3 +4,6 @@
 [submodule "Standards"]
 	path = Standards
 	url = https://github.com/b2hinkle/Standards.git
+[submodule "Dependencies/Gems/CppUtilsO3deGem"]
+	path = Dependencies/Gems/CppUtilsO3deGem
+	url = https://github.com/ChristianHinkle/CppUtilsO3deGem.git
