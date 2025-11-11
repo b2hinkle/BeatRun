@@ -1,0 +1,175 @@
+{
+    "ContainerEntity": {
+        "Id": "ContainerEntity",
+        "Name": "RootAutonomousEntity",
+        "Components": {
+            "EditorDisabledCompositionComponent": {
+                "$type": "EditorDisabledCompositionComponent",
+                "Id": 10560907590797841123
+            },
+            "EditorEntityIconComponent": {
+                "$type": "EditorEntityIconComponent",
+                "Id": 18157432829952172076
+            },
+            "EditorEntitySortComponent": {
+                "$type": "EditorEntitySortComponent",
+                "Id": 2889555972323349749,
+                "Child Entity Order": [
+                    "Entity_[349591896185]"
+                ]
+            },
+            "EditorInspectorComponent": {
+                "$type": "EditorInspectorComponent",
+                "Id": 7403308590466696869
+            },
+            "EditorLockComponent": {
+                "$type": "EditorLockComponent",
+                "Id": 6984828344978521790
+            },
+            "EditorOnlyEntityComponent": {
+                "$type": "EditorOnlyEntityComponent",
+                "Id": 14502382850434620792
+            },
+            "EditorPendingCompositionComponent": {
+                "$type": "EditorPendingCompositionComponent",
+                "Id": 11599978579042767092
+            },
+            "EditorPrefabComponent": {
+                "$type": "EditorPrefabComponent",
+                "Id": 4888655165424226868
+            },
+            "EditorVisibilityComponent": {
+                "$type": "EditorVisibilityComponent",
+                "Id": 7973333075504276587
+            },
+            "TransformComponent": {
+                "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                "Id": 10220711016204509968,
+                "Parent Entity": ""
+            }
+        }
+    },
+    "Entities": {
+        "Entity_[349591896185]": {
+            "Id": "Entity_[349591896185]",
+            "Name": "RootAutonomousEntity",
+            "Components": {
+                "EditorCommentComponent": {
+                    "$type": "EditorCommentComponent",
+                    "Id": 8723363984786535601,
+                    "Configuration": "@Christian: TODO: [todo][techdebt] Replace this \"example mover\" prefab with a proper \"player\" prefab, which would have the ability to \"possess\" these movers/characters.\n"
+                },
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 3490754418105769346
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 413562650476971675
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 15004504900139190725
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 12352553615906902384,
+                    "ComponentOrderEntryArray": [
+                        {
+                            "ComponentId": 16952090759298150929
+                        },
+                        {
+                            "ComponentId": 17430651060005547130,
+                            "SortIndex": 1
+                        },
+                        {
+                            "ComponentId": 15098727813540176879,
+                            "SortIndex": 2
+                        },
+                        {
+                            "ComponentId": 8723363984786535601,
+                            "SortIndex": 3
+                        },
+                        {
+                            "ComponentId": 5727641898154500813,
+                            "SortIndex": 4
+                        },
+                        {
+                            "ComponentId": 696072542662595388,
+                            "SortIndex": 5
+                        },
+                        {
+                            "ComponentId": 6623972028849591689,
+                            "SortIndex": 6
+                        }
+                    ]
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 1136478027292723651
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 12675837514852111151
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 7012991947349377408
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 3115874142374991608
+                },
+                "Multiplayer::LocalPredictionPlayerInputComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 696072542662595388,
+                    "m_template": {
+                        "$type": "Multiplayer::LocalPredictionPlayerInputComponent"
+                    }
+                },
+                "Multiplayer::NetworkHierarchyRootComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 6623972028849591689,
+                    "m_template": {
+                        "$type": "Multiplayer::NetworkHierarchyRootComponent"
+                    }
+                },
+                "Multiplayer::NetworkTransformComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 15098727813540176879,
+                    "m_template": {
+                        "$type": "Multiplayer::NetworkTransformComponent"
+                    }
+                },
+                "NetBindComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 17430651060005547130,
+                    "m_template": {
+                        "$type": "NetBindComponent"
+                    }
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 16952090759298150929,
+                    "Parent Entity": "ContainerEntity"
+                },
+                "xXGameProjectNameXx::PlayerEntityManagerComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 5727641898154500813,
+                    "m_template": {
+                        "$type": "xXGameProjectNameXx::PlayerEntityManagerComponent",
+                        "PlayerEntitySpawnable": {
+                            "Spawnable": {
+                                "assetId": {
+                                    "guid": "{49351E39-B59B-5CBA-ABC9-B351C69ACDDE}",
+                                    "subId": 3968919180
+                                },
+                                "assetHint": "prefabs/examplemover.network.spawnable"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

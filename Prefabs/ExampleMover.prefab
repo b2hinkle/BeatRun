@@ -133,18 +133,18 @@
                         }
                     }
                 },
-                "Multiplayer::LocalPredictionPlayerInputComponent": {
-                    "$type": "GenericComponentWrapper",
-                    "Id": 14857430912956857691,
-                    "m_template": {
-                        "$type": "Multiplayer::LocalPredictionPlayerInputComponent"
-                    }
-                },
                 "Multiplayer::NetworkCharacterComponent": {
                     "$type": "GenericComponentWrapper",
                     "Id": 17175439225464434075,
                     "m_template": {
                         "$type": "Multiplayer::NetworkCharacterComponent"
+                    }
+                },
+                "Multiplayer::NetworkHierarchyChildComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 6687518188559334441,
+                    "m_template": {
+                        "$type": "Multiplayer::NetworkHierarchyChildComponent"
                     }
                 },
                 "Multiplayer::NetworkTransformComponent": {

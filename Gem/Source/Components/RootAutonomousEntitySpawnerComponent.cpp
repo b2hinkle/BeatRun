@@ -88,24 +88,28 @@ namespace xXGameProjectNameXx
     {
         const Multiplayer::PrefabEntityId prefabEntityId(AZ::Name(m_rootAutonomousEntitySpawnable.m_spawnableAsset.GetHint()));
         constexpr Multiplayer::NetEntityRole netEntityRole = Multiplayer::NetEntityRole::Authority;
-
-        // Pull the transform to spawn at from the spawn transform entity reference.
-        AZ::Transform transform = {};
-        AZ::TransformBus::EventResult(transform, m_spawnTransformEntityReference, &AZ::TransformBus::Events::GetWorldTM);
+        const AZ::Transform& spawnTransform = GetSpawnTransformFromEntityReference();
 
         Multiplayer::INetworkEntityManager::EntityList entityList =
             MultiplayerUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
                 prefabEntityId,
                 netEntityRole,
-                transform);
+                spawnTransform);
 
         if (entityList.empty())
         {
-            // Failure: The prefab has no networked entities in it.
-            AZLOG_ERROR(
-                "Attempt to spawn prefab '%s' failed, no entities were spawned. Ensure that the prefab contains a single entity "
-                "that is network enabled with a Network Binding component.",
-                prefabEntityId.m_prefabName.GetCStr());
+            AZStd::fixed_string<256> logString;
+
+            logString += '`';
+            logString += __func__;
+            logString += "`: ";
+            logString += "Attempt to spawn prefab '";
+            logString += prefabEntityId.m_prefabName.GetStringView();
+            logString += "' failed. No entities were spawned.";
+            logString += ' ';
+            logString += "Ensure that the prefab contains a single entity that is network enabled with a network binding component.";
+
+            AZLOG_ERROR(logString.data());
             return Multiplayer::NetworkEntityHandle{};
         }
 
@@ -130,5 +134,12 @@ namespace xXGameProjectNameXx
                 networkEntityManager.MarkForRemoval(hierarchyEntityHandle);
             }
         }
+    }
+
+    AZ::Transform RootAutonomousEntitySpawnerComponent::GetSpawnTransformFromEntityReference() const
+    {
+        AZ::Transform result = {};
+        AZ::TransformBus::EventResult(result, m_spawnTransformEntityReference, &AZ::TransformBus::Events::GetWorldTM);
+        return result;
     }
 } // namespace xXGameProjectNameXx

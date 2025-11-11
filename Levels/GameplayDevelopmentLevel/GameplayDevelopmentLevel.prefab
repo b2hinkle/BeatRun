@@ -58,10 +58,10 @@
                     "RootAutonomousEntitySpawnable": {
                         "Spawnable": {
                             "assetId": {
-                                "guid": "{49351E39-B59B-5CBA-ABC9-B351C69ACDDE}",
-                                "subId": 3968919180
+                                "guid": "{689CE607-3571-5CA8-9F28-DF2C731086BD}",
+                                "subId": 3524801777
                             },
-                            "assetHint": "prefabs/examplemover.network.spawnable"
+                            "assetHint": "prefabs/rootautonomousentity.network.spawnable"
                         }
                     },
                     "SpawnTransformEntityReference": "Entity_[949383976148]"

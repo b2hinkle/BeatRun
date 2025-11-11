@@ -4,6 +4,7 @@
 #include <AzCore/Component/Component.h>
 #include <Multiplayer/IMultiplayerSpawner.h>
 #include <Multiplayer/MultiplayerTypes.h>
+#include <AzCore/Math/Transform.h>
 
 namespace xXGameProjectNameXx
 {
@@ -39,11 +40,15 @@ namespace xXGameProjectNameXx
         void OnPlayerLeave(Multiplayer::ConstNetworkEntityHandle entityHandle, const Multiplayer::ReplicationSet& replicationSet, AzNetworking::DisconnectReason reason) override;
         //! @}
 
+        //! @breif Pull the transform to spawn at from the spawn transform entity reference.
+        AZ::Transform GetSpawnTransformFromEntityReference() const;
+
     private:
 
         Multiplayer::NetworkSpawnable m_rootAutonomousEntitySpawnable;
 
-        // @Christian: TODO: [todo][techdebt][multiplayer] Move this to new component which would handle spawning actual player and character entities.
+        // @Christian: TODO: [todo][techdebt][multiplayer] This component should not be determining where the characters are spawned. Move
+        // this to a different component which would handle spawning actual character entity.
         AZ::EntityId m_spawnTransformEntityReference;
     };
 } // namespace xXGameProjectNameXx

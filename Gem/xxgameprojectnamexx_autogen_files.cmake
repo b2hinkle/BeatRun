@@ -19,4 +19,5 @@ endblock()
 list(APPEND FILES
     Source/AutoGen/MoverInputComponent.AutoComponent.xml
     Source/AutoGen/ClientMoverInputInjectorComponent.AutoComponent.xml
+    Source/AutoGen/PlayerEntityManagerComponent.AutoComponent.xml
 )

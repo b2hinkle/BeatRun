@@ -30,4 +30,7 @@ set(FILES
     Source/Utils/AzCoreUtils.cpp
     Source/Utils/AzFrameworkUtils.h
     Source/Utils/AzFrameworkUtils.cpp
+    Source/Components/PlayerEntityManagerComponent.h
+    Source/Components/PlayerEntityManagerComponent.cpp
+    Include/xXGameProjectNameXx/PlayerEntityManagerInterface.h
 )
