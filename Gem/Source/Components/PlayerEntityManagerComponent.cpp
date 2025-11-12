@@ -143,9 +143,7 @@ namespace xXGameProjectNameXx
                 logString += "`: ";
                 logString += "Attempt to spawn prefab '";
                 logString += entitySpawnableAssetHintName.GetStringView();
-                logString += "' failed. No entities were spawned.";
-                logString += ' ';
-                logString += "Ensure that the prefab contains a single entity that is network enabled with a network binding component.";
+                logString += "' failed. The spawned entity is null.";
 
                 AZLOG_ERROR(logString.data());
                 continue;
@@ -173,11 +171,18 @@ namespace xXGameProjectNameXx
 
         if (createdEntities.empty())
         {
-            // Failure: The prefab has no networked entities in it.
-            AZLOG_ERROR(
-                "Attempt to spawn prefab '%s' failed, no entities were spawned. Ensure that the prefab contains a single entity "
-                "that is network enabled with a Network Binding component.",
-                playerEntityPrefab.m_prefabName.GetCStr());
+            AZStd::fixed_string<256> logString;
+
+            logString += '`';
+            logString += __func__;
+            logString += "`: ";
+            logString += "Attempt to spawn prefab '";
+            logString += playerEntityPrefab.m_prefabName.GetStringView();
+            logString += "' failed. No entities were spawned.";
+            logString += ' ';
+            logString += "Ensure that the prefab contains a single entity that is network enabled with a network binding component.";
+
+            AZLOG_ERROR(logString.data());
             return Multiplayer::NetworkEntityHandle{};
         }
 
