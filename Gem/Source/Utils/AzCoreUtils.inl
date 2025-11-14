@@ -36,11 +36,11 @@ T& xXGameProjectNameXx::AzCoreUtils::GetInterfaceAsserted()
 template <class T>
 const char* xXGameProjectNameXx::AzCoreUtils::TryGetTypeName()
 {
-    if constexpr (AZ::Internal::HasAzTypeInfo_v)
+    if constexpr (AZ::Internal::HasAzTypeInfo_v<T>)
     {
         return AZ::AzTypeInfo<T>::Name();
     }
-
+    else
     {
         AZStd::fixed_string<128> logString;
 
@@ -50,9 +50,9 @@ const char* xXGameProjectNameXx::AzCoreUtils::TryGetTypeName()
         logString += "No type info defined. I.e., it does not use an `AZ_TYPE_INFO` macro.";
 
         AZLOG_WARN(logString.data());
-    }
 
-    return "(no type info defined)";
+        return "(no type info defined)";
+    }
 }
 
 template <CppUtils::Concepts::PointerToDerivedFrom<AZ::Component> TComponentPtr>
