@@ -36,7 +36,7 @@ namespace xXGameProjectNameXx
                         AZ::Edit::UIHandlers::Default,
                         &RootAutonomousEntitySpawnerComponent::m_rootAutonomousEntitySpawnable,
                         "Root Autonomous Entity Spawnable Asset",
-                        "The network spawnable asset which will be created as an autonomous entity for each connection that joins.")
+                        "The network spawnable asset which will be created as an autonomous entity for each connection that joins. Only the first entity in the prefab will be spawned and used. Create hierarchy from it if you need multiple.")
                     ->DataElement(
                         AZ::Edit::UIHandlers::Default,
                         &RootAutonomousEntitySpawnerComponent::m_spawnTransformEntityReference,
@@ -86,13 +86,19 @@ namespace xXGameProjectNameXx
         [[maybe_unused]] uint64_t userId,
         [[maybe_unused]] const Multiplayer::MultiplayerAgentDatum& agentDatum)
     {
-        const Multiplayer::PrefabEntityId prefabEntityId(AZ::Name(m_rootAutonomousEntitySpawnable.m_spawnableAsset.GetHint()));
+        AZ::Name entitySpawnableAssetHintName{ m_rootAutonomousEntitySpawnable.m_spawnableAsset.GetHint() };
+
+        // Only spawn the first entity (ignoring the root) from the prefab, as this system expects only one entity.
+        constexpr uint32_t prefabEntityOffset = 1u;
+        Multiplayer::PrefabEntityId prefabEntityId{ entitySpawnableAssetHintName, prefabEntityOffset };
+
         constexpr Multiplayer::NetEntityRole netEntityRole = Multiplayer::NetEntityRole::Authority;
+
         const AZ::Transform& spawnTransform = GetSpawnTransformFromEntityReference();
 
         Multiplayer::INetworkEntityManager::EntityList entityList =
             MultiplayerUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
-                prefabEntityId,
+                AZStd::move(prefabEntityId),
                 netEntityRole,
                 spawnTransform);
 

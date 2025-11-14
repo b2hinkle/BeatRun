@@ -37,7 +37,7 @@ namespace xXGameProjectNameXx
                         AZ::Edit::UIHandlers::Default,
                         &PlayerEntityManagerComponent::m_playerEntitySpawnable,
                         "Player Entity Spawn",
-                        "The network spawnable asset to create for each player.")
+                        "The network spawnable asset to create for each player. Only the first entity in the prefab will be spawned and used. Create hierarchy from it if you need multiple.")
                     ->DataElement(
                         AZ::Edit::UIHandlers::Default,
                         &PlayerEntityManagerComponent::m_numPlayersToCreate,
@@ -130,8 +130,11 @@ namespace xXGameProjectNameXx
         {
             AZ::Name entitySpawnableAssetHintName{ GetOwnerCasted().m_playerEntitySpawnable.m_spawnableAsset.GetHint() };
 
-            Multiplayer::NetworkEntityHandle playerEntityHandle =
-                CreatePlayerEntity(Multiplayer::PrefabEntityId{ entitySpawnableAssetHintName });
+            // Only spawn the first entity (ignoring the root) from the prefab, as this system expects only one entity.
+            constexpr uint32_t prefabEntityOffset = 1u;
+            Multiplayer::PrefabEntityId prefabEntityId{ entitySpawnableAssetHintName, prefabEntityOffset };
+
+            Multiplayer::NetworkEntityHandle playerEntityHandle = CreatePlayerEntity(AZStd::move(prefabEntityId));
 
             AZ::Entity* playerEntity = playerEntityHandle.GetEntity();
             if (!playerEntity)
