@@ -54,3 +54,33 @@ const char* xXGameProjectNameXx::AzCoreUtils::TryGetTypeName()
 
     return "(no type info defined)";
 }
+
+template <CppUtils::Concepts::PointerToDerivedFrom<AZ::Component> TComponentPtr>
+TComponentPtr xXGameProjectNameXx::AzCoreUtils::FindComponent(const AZ::Entity& entity)
+{
+    using ComponentType = std::remove_pointer_t<TComponentPtr>;
+
+    return entity.FindComponent<ComponentType>();
+}
+
+template <CppUtils::Concepts::ReferenceToDerivedFrom<AZ::Component> TComponentRef>
+TComponentRef xXGameProjectNameXx::AzCoreUtils::FindComponent(const AZ::Entity& entity)
+{
+    using ComponentType = std::remove_reference_t<TComponentRef>;
+
+    ComponentType* foundComponent = entity.FindComponent<ComponentType>();
+
+#if AZ_ENABLE_TRACING
+    {
+        AZStd::fixed_string<256> logString;
+
+        logString += "Component not found on entity '";
+        logString += entity.GetName();
+        logString += "'. Use the pointer type overload of this function if the component is optional to exist on the entity.";
+
+        AZ_Assert(foundComponent, logString.data());
+    }
+#endif // #if AZ_ENABLE_TRACING
+
+    return *foundComponent;
+}

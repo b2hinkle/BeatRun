@@ -4,9 +4,10 @@
 
 #include <Source/xXGameProjectNameXxSystemComponent.h>
 #include <Source/Components/MyExperimentComponent.h>
-#include <Source/Components/ClientMoverInputInjectorComponent.h>
+#include <Source/Components/MoverClientInputInjectorComponent.h>
 #include <Source/Components/StageSelectComponent.h>
 #include <Source/Components/RootAutonomousEntitySpawnerComponent.h>
+#include <Source/Components/MoverComponent.h>
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <Source/AutoGen/AutoComponentTypes.h>
@@ -27,9 +28,10 @@ namespace xXGameProjectNameXx
             m_descriptors.insert(m_descriptors.end(), {
                 xXGameProjectNameXxSystemComponent::CreateDescriptor(),
                 MyExperimentComponent::CreateDescriptor(),
-                ClientMoverInputInjectorComponent::CreateDescriptor(),
+                MoverClientInputInjectorComponent::CreateDescriptor(),
                 StageSelectComponent::CreateDescriptor(),
                 RootAutonomousEntitySpawnerComponent::CreateDescriptor(),
+                MoverComponent::CreateDescriptor(),
             });
 
             // Create descriptors for our auto-components. Important: These are supposed to be the last descriptors added.

@@ -42,6 +42,7 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
         AZ::AzGameFramework
         Gem::Atom_AtomBridge.Static
         Legacy::CryCommon
+        CppUtils::Concepts::Include
 )
 
 set(MY_COMMON_STATIC_AUTOGEN_RULES

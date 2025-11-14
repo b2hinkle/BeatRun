@@ -7,11 +7,14 @@ set(FILES
     Include/xXGameProjectNameXx/MyExperimentInterface.h
     Source/Components/MyExperimentComponent.h
     Source/Components/MyExperimentComponent.cpp
-    Include/xXGameProjectNameXx/MoverInputInterface.h
-    Source/Components/MoverInputComponent.h
-    Source/Components/MoverInputComponent.cpp
-    Source/Components/ClientMoverInputInjectorComponent.h
-    Source/Components/ClientMoverInputInjectorComponent.cpp
+    Include/xXGameProjectNameXx/MoverInterface.h
+    Source/Components/MoverComponent.h
+    Source/Components/MoverComponent.cpp
+    Include/xXGameProjectNameXx/MoverNetworkInputInterface.h
+    Source/Components/MoverNetworkInputComponent.h
+    Source/Components/MoverNetworkInputComponent.cpp
+    Source/Components/MoverClientInputInjectorComponent.h
+    Source/Components/MoverClientInputInjectorComponent.cpp
     Source/Components/StageSelectComponent.h
     Source/Components/StageSelectComponent.cpp
     Source/GameStates/StageSelect.h

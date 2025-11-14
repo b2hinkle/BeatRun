@@ -133,6 +133,13 @@
                         }
                     }
                 },
+                "MoverComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 10466706703060093427,
+                    "m_template": {
+                        "$type": "MoverComponent"
+                    }
+                },
                 "Multiplayer::NetworkCharacterComponent": {
                     "$type": "GenericComponentWrapper",
                     "Id": 17175439225464434075,
@@ -166,18 +173,18 @@
                     "Id": 1767894529163268114,
                     "Parent Entity": "ContainerEntity"
                 },
-                "xXGameProjectNameXx::ClientMoverInputInjectorComponent": {
+                "xXGameProjectNameXx::MoverClientInputInjectorComponent": {
                     "$type": "GenericComponentWrapper",
                     "Id": 17169062706014879025,
                     "m_template": {
-                        "$type": "xXGameProjectNameXx::ClientMoverInputInjectorComponent"
+                        "$type": "xXGameProjectNameXx::MoverClientInputInjectorComponent"
                     }
                 },
-                "xXGameProjectNameXx::MoverInputComponent": {
+                "xXGameProjectNameXx::MoverNetworkInputComponent": {
                     "$type": "GenericComponentWrapper",
-                    "Id": 7914478845125900662,
+                    "Id": 7707924459455889820,
                     "m_template": {
-                        "$type": "xXGameProjectNameXx::MoverInputComponent"
+                        "$type": "xXGameProjectNameXx::MoverNetworkInputComponent"
                     }
                 }
             }

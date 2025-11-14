@@ -1,20 +1,20 @@
 
 #pragma once
 
-#include <Source/AutoGen/ClientMoverInputInjectorComponent.AutoComponent.h>
+#include <Source/AutoGen/MoverClientInputInjectorComponent.AutoComponent.h>
 #if AZ_TRAIT_CLIENT
 #include <Source/Input/ClientMoverInputInjector.h>
 #endif // #if AZ_TRAIT_CLIENT
 
 namespace xXGameProjectNameXx
 {
-    //! @class ClientMoverInputInjectorComponent
-    class ClientMoverInputInjectorComponent
-        : public ClientMoverInputInjectorComponentBase
+    //! @class MoverClientInputInjectorComponent
+    class MoverClientInputInjectorComponent
+        : public MoverClientInputInjectorComponentBase
     {
     public:
 
-        AZ_MULTIPLAYER_COMPONENT(xXGameProjectNameXx::ClientMoverInputInjectorComponent, s_clientMoverInputInjectorComponentConcreteUuid, xXGameProjectNameXx::ClientMoverInputInjectorComponentBase);
+        AZ_MULTIPLAYER_COMPONENT(xXGameProjectNameXx::MoverClientInputInjectorComponent, s_moverClientInputInjectorComponentConcreteUuid, xXGameProjectNameXx::MoverClientInputInjectorComponentBase);
 
         //! Component descriptor interface.
         //! @{
@@ -23,22 +23,22 @@ namespace xXGameProjectNameXx
         static void GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent);
         //! @}
 
-        //! ClientMoverInputInjectorComponentBase public overrides.
+        //! MoverClientInputInjectorComponentBase public overrides.
         //! @{
         void OnActivate(Multiplayer::EntityIsMigrating entityIsMigrating) override;
         void OnDeactivate(Multiplayer::EntityIsMigrating entityIsMigrating) override;
         //! @}
     };
 
-    //! @class ClientMoverInputInjectorComponentController
-    class ClientMoverInputInjectorComponentController
-        : public ClientMoverInputInjectorComponentControllerBase
+    //! @class MoverClientInputInjectorComponentController
+    class MoverClientInputInjectorComponentController
+        : public MoverClientInputInjectorComponentControllerBase
     {
     public:
 
-        explicit ClientMoverInputInjectorComponentController(ClientMoverInputInjectorComponent& parent);
+        explicit MoverClientInputInjectorComponentController(MoverClientInputInjectorComponent& parent);
 
-        //! ClientMoverInputInjectorComponentControllerBase public overrides.
+        //! MoverClientInputInjectorComponentControllerBase public overrides.
         //! @{
         void OnActivate(Multiplayer::EntityIsMigrating entityIsMigrating) override;
         void OnDeactivate(Multiplayer::EntityIsMigrating entityIsMigrating) override;

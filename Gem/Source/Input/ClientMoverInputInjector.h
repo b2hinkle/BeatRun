@@ -11,7 +11,7 @@
 namespace xXGameProjectNameXx
 {
     //! @class ClientMoverInputInjector
-    //! @brief Listens for local input events and injects values into the `MoverInputComponent` via the `MoverInputInterface`.
+    //! @brief Listens for local input events and injects values into the `MoverNetworkInputComponent` via the `MoverInputInterface`.
     //! @note @Christian: TODO: [todo][techdebt][input][local_multiplayer] Handle multiple local players for local multiplayer.
     class ClientMoverInputInjector
         : private StartingPointInput::InputEventNotificationBus::MultiHandler

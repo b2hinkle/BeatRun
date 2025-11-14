@@ -6,7 +6,7 @@
 #include <Source/Input/ClientMoverInputInjector.h>
 
 #include <xXGameProjectNameXx/InputEventNames.h>
-#include <xXGameProjectNameXx/MoverInputInterface.h>
+#include <xXGameProjectNameXx/MoverNetworkInputInterface.h>
 #include <Multiplayer/Components/NetBindComponent.h>
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Debug/Trace.h>
@@ -36,8 +36,8 @@ namespace xXGameProjectNameXx
     void ClientMoverInputInjector::GetRequiredServices(AZ::ComponentDescriptor::DependencyArrayType& required)
     {
         constexpr AZ::Crc32 netBindService = AZ_CRC_CE("NetBindService");
-        // Require the `MoverInputComponent`, as that is the component we will inject values into.
-        constexpr AZ::Crc32 moverInputComponentService = AZ_CRC_CE("MoverInputComponent");
+        // Require the `MoverNetworkInputComponent`, as that is the component we will inject values into.
+        constexpr AZ::Crc32 moverNetworkInputComponentService = AZ_CRC_CE("MoverNetworkInputComponent");
 
         // Add them, if not already.
 
@@ -46,9 +46,9 @@ namespace xXGameProjectNameXx
             required.push_back(netBindService);
         }
 
-        if (AZStd::find(required.begin(), required.end(), moverInputComponentService) == required.end())
+        if (AZStd::find(required.begin(), required.end(), moverNetworkInputComponentService) == required.end())
         {
-            required.push_back(moverInputComponentService);
+            required.push_back(moverNetworkInputComponentService);
         }
     }
 
@@ -112,13 +112,13 @@ namespace xXGameProjectNameXx
         {
             eventNameString = InputEventNames::MoveForwardAxis;
 
-            MoverInputRequestFunctions::SetMoveForwardAxisAutonomousInput(m_parentComponent.GetEntityId(), value);
+            MoverNetworkInputRequestFunctions::SetMoveForwardAxis(m_parentComponent.GetEntityId(), value);
         }
         else if (currentBusId == m_moveRightAxisNotificationId)
         {
             eventNameString = InputEventNames::MoveRightAxis;
 
-            MoverInputRequestFunctions::SetMoveRightAxisAutonomousInput(m_parentComponent.GetEntityId(), value);
+            MoverNetworkInputRequestFunctions::SetMoveRightAxis(m_parentComponent.GetEntityId(), value);
         }
 
         if (cl_xxgpnxx_moverInput_enableClientInputEventLogs)
@@ -139,13 +139,13 @@ namespace xXGameProjectNameXx
         {
             eventNameString = InputEventNames::MoveForwardAxis;
 
-            MoverInputRequestFunctions::SetMoveForwardAxisAutonomousInput(m_parentComponent.GetEntityId(), value);
+            MoverNetworkInputRequestFunctions::SetMoveForwardAxis(m_parentComponent.GetEntityId(), value);
         }
         else if (currentBusId == m_moveRightAxisNotificationId)
         {
             eventNameString = InputEventNames::MoveRightAxis;
 
-            MoverInputRequestFunctions::SetMoveRightAxisAutonomousInput(m_parentComponent.GetEntityId(), value);
+            MoverNetworkInputRequestFunctions::SetMoveRightAxis(m_parentComponent.GetEntityId(), value);
         }
 
         if (cl_xxgpnxx_moverInput_enableClientInputEventLogs)
@@ -166,13 +166,13 @@ namespace xXGameProjectNameXx
         {
             eventNameString = InputEventNames::MoveForwardAxis;
 
-            MoverInputRequestFunctions::SetMoveForwardAxisAutonomousInput(m_parentComponent.GetEntityId(), value);
+            MoverNetworkInputRequestFunctions::SetMoveForwardAxis(m_parentComponent.GetEntityId(), value);
         }
         else if (currentBusId == m_moveRightAxisNotificationId)
         {
             eventNameString = InputEventNames::MoveRightAxis;
 
-            MoverInputRequestFunctions::SetMoveRightAxisAutonomousInput(m_parentComponent.GetEntityId(), value);
+            MoverNetworkInputRequestFunctions::SetMoveRightAxis(m_parentComponent.GetEntityId(), value);
         }
 
         if (cl_xxgpnxx_moverInput_enableClientInputEventLogs)

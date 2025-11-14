@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 
 <Component
-    Name="MoverInputComponent"
+    Name="MoverNetworkInputComponent"
     Namespace="xXGameProjectNameXx"
     OverrideComponent="true"
     OverrideController="true"
-    OverrideInclude="Source/Components/MoverInputComponent.h"
-    Description="Stores and exposes move-related input values, creating network input from them and requesting moves from them."
+    OverrideInclude="Source/Components/MoverNetworkInputComponent.h"
+    Description="Stores and exposes move-related input values, creating network input from them and ticking the `MoverComponent` from them."
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <!-- Require the Multiplayer::NetworkCharacterComponent, as we will use this simple component to move our entity. -->
