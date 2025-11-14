@@ -151,7 +151,8 @@
                 "TransformComponent": {
                     "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
                     "Id": 16952090759298150929,
-                    "Parent Entity": "ContainerEntity"
+                    "Parent Entity": "ContainerEntity",
+                    "IsStatic": true
                 },
                 "xXGameProjectNameXx::PlayerEntityManagerComponent": {
                     "$type": "GenericComponentWrapper",
