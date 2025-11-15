@@ -126,15 +126,48 @@ namespace xXGameProjectNameXx
     {
         AZ_Assert(MultiplayerUtils::GetNetBindComponentAsserted(GetOwner()).IsNetEntityRoleAuthority(), "Should only be called on the authority.");
 
-        for (int i = 0; i < GetOwnerCasted().m_numPlayersToCreate; ++i)
+        const AZ::Data::Asset<AzFramework::Spawnable>& spawnableAsset = GetOwnerCasted().m_playerEntitySpawnable.m_spawnableAsset;
+
+        AZ::Name spawnableAssetHintName{ spawnableAsset.GetHint() };
+
+        const AZStd::size_t numEntitiesPerPrefab = spawnableAsset ? spawnableAsset->GetEntities().size() : 0u;
+        if (numEntitiesPerPrefab > 2u)
         {
-            AZ::Name entitySpawnableAssetHintName{ GetOwnerCasted().m_playerEntitySpawnable.m_spawnableAsset.GetHint() };
+            AZStd::fixed_string<256> logString;
 
-            // Only spawn the first entity (ignoring the root) from the prefab, as this system expects only one entity.
-            constexpr uint32_t prefabEntityOffset = 1u;
-            Multiplayer::PrefabEntityId prefabEntityId{ entitySpawnableAssetHintName, prefabEntityOffset };
+            logString += '`';
+            logString += __func__;
+            logString += "`: ";
+            logString += "Prefab '";
+            logString += spawnableAssetHintName.GetStringView();
+            logString += "' has multiple entities. Only the first one will be used.";
+            logString += ' ';
+            logString += "Size of entity list: `";
 
-            Multiplayer::NetworkEntityHandle playerEntityHandle = CreatePlayerEntity(AZStd::move(prefabEntityId));
+            {
+                AZStd::fixed_string<32> entityIdString;
+                AZStd::to_string(entityIdString, numEntitiesPerPrefab);
+
+                logString += entityIdString;
+            }
+
+            logString += "`.";
+            logString += ' ';
+            logString += "Two is the expected value for that array.";
+
+            AZLOG_WARN(logString.data());
+        }
+
+        const AZ::EntityId& owningEntityId = GetEntityId();
+
+        // Only spawn the first entity (ignoring the root) from the prefab, as this system expects only one entity.
+        constexpr uint32_t prefabEntityOffset = 1u;
+        Multiplayer::PrefabEntityId prefabEntityId{ spawnableAssetHintName, prefabEntityOffset };
+
+        const int numPlayersToCreate = GetOwnerCasted().m_numPlayersToCreate;
+        for (int i = 0; i < numPlayersToCreate; ++i)
+        {
+            Multiplayer::NetworkEntityHandle playerEntityHandle = CreatePlayerEntity(i < numPlayersToCreate - 1 ? prefabEntityId : AZStd::move(prefabEntityId));
 
             AZ::Entity* playerEntity = playerEntityHandle.GetEntity();
             if (!playerEntity)
@@ -145,14 +178,13 @@ namespace xXGameProjectNameXx
                 logString += __func__;
                 logString += "`: ";
                 logString += "Attempt to spawn prefab '";
-                logString += entitySpawnableAssetHintName.GetStringView();
+                logString += spawnableAssetHintName.GetStringView();
                 logString += "' failed. The spawned entity is null.";
 
                 AZLOG_ERROR(logString.data());
                 continue;
             }
 
-            const AZ::EntityId& owningEntityId = GetEntityId();
             AZ::TransformBus::Event(playerEntity->GetId(), &AZ::TransformInterface::SetParentRelative, owningEntityId);
 
             ModifyPlayerNetEntityIds().emplace_back(playerEntityHandle.GetNetEntityId());

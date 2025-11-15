@@ -86,11 +86,41 @@ namespace xXGameProjectNameXx
         [[maybe_unused]] uint64_t userId,
         [[maybe_unused]] const Multiplayer::MultiplayerAgentDatum& agentDatum)
     {
-        AZ::Name entitySpawnableAssetHintName{ m_rootAutonomousEntitySpawnable.m_spawnableAsset.GetHint() };
+        const AZ::Data::Asset<AzFramework::Spawnable>& spawnableAsset = m_rootAutonomousEntitySpawnable.m_spawnableAsset;
+
+        AZ::Name spawnableAssetHintName{ spawnableAsset.GetHint() };
+
+        const AZStd::size_t numEntitiesPerPrefab = spawnableAsset ? spawnableAsset->GetEntities().size() : 0u;
+        if (numEntitiesPerPrefab > 2u)
+        {
+            AZStd::fixed_string<256> logString;
+
+            logString += '`';
+            logString += __func__;
+            logString += "`: ";
+            logString += "Prefab '";
+            logString += spawnableAssetHintName.GetStringView();
+            logString += "' has multiple entities. Only the first one will be used.";
+            logString += ' ';
+            logString += "Size of entity list: `";
+
+            {
+                AZStd::fixed_string<32> entityIdString;
+                AZStd::to_string(entityIdString, numEntitiesPerPrefab);
+
+                logString += entityIdString;
+            }
+
+            logString += "`.";
+            logString += ' ';
+            logString += "Two is the expected value for that array.";
+
+            AZLOG_WARN(logString.data());
+        }
 
         // Only spawn the first entity (ignoring the root) from the prefab, as this system expects only one entity.
         constexpr uint32_t prefabEntityOffset = 1u;
-        Multiplayer::PrefabEntityId prefabEntityId{ entitySpawnableAssetHintName, prefabEntityOffset };
+        Multiplayer::PrefabEntityId prefabEntityId{ spawnableAssetHintName, prefabEntityOffset };
 
         constexpr Multiplayer::NetEntityRole netEntityRole = Multiplayer::NetEntityRole::Authority;
 
