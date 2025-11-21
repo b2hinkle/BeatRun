@@ -2,6 +2,10 @@
     "O3DE": {
         "Autoexec": {
             "ConsoleCommands": {
+                // Automatic commands from the MinimalProject's game.cfg file: Enable warnings when asset loads take longer than the given millisecond threshold.
+                "cl_assetLoadWarningEnable": true,
+                "cl_assetLoadWarningMsThreshold": 100,
+
                 // Disable VSync by default.
                 "vsync_interval": 0,
                 // Ensure that max FPS is disabled by default. @Christian: TODO: [todo][settings] This seems to be having now effect for some
