@@ -15,8 +15,6 @@ set(FILES
     Source/Components/MoverNetworkInputComponent.cpp
     Source/Components/MoverClientInputInjectorComponent.h
     Source/Components/MoverClientInputInjectorComponent.cpp
-    Source/Components/StageSelectComponent.h
-    Source/Components/StageSelectComponent.cpp
     Source/GameStates/StageSelect.h
     Source/GameStates/StageSelect.cpp
     Include/xXGameProjectNameXx/SettingsRegistryAccessors.h

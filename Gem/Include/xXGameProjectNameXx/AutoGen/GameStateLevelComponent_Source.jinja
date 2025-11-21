@@ -1,27 +1,35 @@
 
-#include <Source/Components/StageSelectComponent.h>
+#include <{{ "Source/AutoGen/{0}.h".format(((outputFile|basename)|splitext)[0]) }}>
 
 #include <AzCore/Serialization/SerializeContext.h>
 #include <AzCore/Serialization/EditContext.h>
 #include <AzCore/RTTI/BehaviorContext.h>
 #include <GameState/GameStateRequestBus.h>
-#include <Source/GameStates/StageSelect.h>
 
-namespace xXGameProjectNameXx
+{% for dataFile in dataFiles %}
+
+{% set ComponentName = dataFile.attrib['Name'] %}
+{% set ComponentNamespace = dataFile.attrib['Namespace'] %}
+{% set GameStateType = dataFile.attrib['GameStateType'] %}
+{% set GameStateInclude = dataFile.attrib['GameStateInclude'] %}
+
+#include <{{ GameStateInclude }}>
+
+namespace {{ ComponentNamespace }}
 {
-    AZ_COMPONENT_IMPL(StageSelectComponent, "StageSelectComponent", "{96A1C17F-77D9-42D0-A6E8-9DAC3B5CAB71}");
+    AZ_COMPONENT_IMPL({{ ComponentNamespace }}::{{ ComponentName }}, "{{ ComponentNamespace }}::{{ ComponentName }}", "{{ "ComponentNamespace::ComponentName" | createHashGuid }}");
 
-    void StageSelectComponent::Reflect(AZ::ReflectContext* context)
+    void {{ ComponentName }}::Reflect(AZ::ReflectContext* context)
     {
         if (AZ::SerializeContext* serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
         {
-            serializeContext->Class<StageSelectComponent, AZ::Component>()
+            serializeContext->Class<{{ ComponentName }}, AZ::Component>()
                 ->Version(1)
                 ;
 
             if (AZ::EditContext* editContext = serializeContext->GetEditContext())
             {
-                editContext->Class<StageSelectComponent>("StageSelectComponent", "[Description of functionality provided by this component]")
+                editContext->Class<{{ ComponentName }}>("{{ ComponentName }}", "[Description of functionality provided by this component]")
                     ->ClassElement(AZ::Edit::ClassElements::EditorData, "")
                     ->Attribute(AZ::Edit::Attributes::Category, "ComponentCategory")
                     ->Attribute(AZ::Edit::Attributes::Icon, "Icons/Components/Component_Placeholder.svg")
@@ -32,48 +40,48 @@ namespace xXGameProjectNameXx
 
         if (AZ::BehaviorContext* behaviorContext = azrtti_cast<AZ::BehaviorContext*>(context))
         {
-            behaviorContext->Class<StageSelectComponent>("StageSelect Component Group")
-                ->Attribute(AZ::Script::Attributes::Category, "xXGameProjectNameXx Gem Group")
+            behaviorContext->Class<{{ ComponentName }}>("{{ ComponentName }}")
+                ->Attribute(AZ::Script::Attributes::Category, "{{ ComponentNamespace }}")
                 ;
         }
     }
 
-    void StageSelectComponent::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
+    void {{ ComponentName }}::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
     {
-        provided.push_back(AZ_CRC_CE("StageSelectComponentService"));
+        provided.push_back(AZ_CRC_CE("{{ ComponentName }}Service"));
     }
 
-    void StageSelectComponent::GetIncompatibleServices(AZ::ComponentDescriptor::DependencyArrayType& incompatible)
+    void {{ ComponentName }}::GetIncompatibleServices(AZ::ComponentDescriptor::DependencyArrayType& incompatible)
     {
-        incompatible.push_back(AZ_CRC_CE("StageSelectComponentService"));
+        incompatible.push_back(AZ_CRC_CE("{{ ComponentName }}Service"));
     }
 
-    void StageSelectComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
-    {
-    }
-
-    void StageSelectComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    void {{ ComponentName }}::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
     {
     }
 
-    void StageSelectComponent::Activate()
+    void {{ ComponentName }}::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    {
+    }
+
+    void {{ ComponentName }}::Activate()
     {
         // @Christian: [editor] Usages of the GameState gem are disabled in editor because the GameState gem does not provide an editor version of their target. So
         // their system component does not activate or anything.
 #ifndef EDITOR
-        GameState::GameStateRequests::CreateAndPushNewOverridableGameStateOfType<GameStates::StageSelect>();
+        GameState::GameStateRequests::CreateAndPushNewOverridableGameStateOfType<{{ GameStateType }}>();
 #endif // #ifndef EDITOR
     }
 
-    void StageSelectComponent::Deactivate()
+    void {{ ComponentName }}::Deactivate()
     {
         // @Christian: [editor] Usages of the GameState gem are disabled in editor because the GameState gem does not provide an editor version of their target. So
         // their system component does not activate or anything.
 #ifndef EDITOR
-        // First, pop any game states on top of the stage select state.
-        GameState::GameStateRequests::PopActiveGameStateUntilOfType<GameStates::StageSelect>();
+        // First, pop any game states on top of the `{{ GameStateType }}` state.
+        GameState::GameStateRequests::PopActiveGameStateUntilOfType<{{ GameStateType }}>();
 
-        // Now, pop the stage select state itself.
+        // Now, pop the `{{ GameStateType }}` state itself.
         GameState::GameStateRequestBus::Broadcast(&GameState::GameStateRequests::PopActiveGameState);
 
         // @Christian: [ui][bug[engine]] Note: When the game is shutdown, we get the assertion message: "The following font is being freed but still in use by a FontFamily". This is
@@ -85,4 +93,6 @@ namespace xXGameProjectNameXx
         // this point though. I guess there is a brief moment (maybe a few ticks Idk) where these dangling pointers are just hanging out.
 #endif // #ifndef EDITOR
     }
-} // namespace xXGameProjectNameXx
+} // namespace {{ ComponentNamespace }}
+
+{% endfor %}

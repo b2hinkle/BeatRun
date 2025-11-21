@@ -2,16 +2,20 @@
 #pragma once
 
 #include <AzCore/Component/Component.h>
-#include <xXGameProjectNameXx/MyExperimentInterface.h>
 
-namespace xXGameProjectNameXx
+{% for dataFile in dataFiles %}
+
+{% set ComponentName = dataFile.attrib['Name'] %}
+{% set ComponentNamespace = dataFile.attrib['Namespace'] %}
+
+namespace {{ ComponentNamespace }}
 {
-    class StageSelectComponent
+    class {{ ComponentName }}
         : public AZ::Component
     {
     public:
 
-        AZ_COMPONENT_DECL(StageSelectComponent);
+        AZ_COMPONENT_DECL({{ ComponentNamespace }}::{{ ComponentName }});
 
         //! Component descriptor interface.
         //! @{
@@ -30,4 +34,6 @@ namespace xXGameProjectNameXx
         void Deactivate() override;
         //! @}
     };
-} // namespace xXGameProjectNameXx
+} // namespace {{ ComponentNamespace }}
+
+{% endfor %}

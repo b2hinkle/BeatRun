@@ -50,6 +50,8 @@ set(MY_COMMON_STATIC_AUTOGEN_RULES
     *.AutoComponent.xml,AutoComponent_Source.jinja,$path/$fileprefix.AutoComponent.cpp
     *.AutoComponent.xml,AutoComponentTypes_Header.jinja,$path/AutoComponentTypes.h
     *.AutoComponent.xml,AutoComponentTypes_Source.jinja,$path/AutoComponentTypes.cpp
+    *.GameStateLevelComponent.xml,GameStateLevelComponent_Header.jinja,$path/$fileprefix.GameStateLevelComponent.h
+    *.GameStateLevelComponent.xml,GameStateLevelComponent_Source.jinja,$path/$fileprefix.GameStateLevelComponent.cpp
 )
 
 # These variables contain common items that are only used in unified versions of our static target.

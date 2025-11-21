@@ -5,7 +5,8 @@
 #include <Source/xXGameProjectNameXxSystemComponent.h>
 #include <Source/Components/MyExperimentComponent.h>
 #include <Source/Components/MoverClientInputInjectorComponent.h>
-#include <Source/Components/StageSelectComponent.h>
+// @Christian: TODO: [todo] Make our own `CreateComponentDescriptors` function for our own custom AutoGen components, similar to the Multiplayer gem's AutoComponents.
+#include <Source/AutoGen/StageSelectGameStateLevelComponent.GameStateLevelComponent.h>
 #include <Source/Components/RootAutonomousEntitySpawnerComponent.h>
 #include <Source/Components/MoverComponent.h>
 
@@ -29,7 +30,7 @@ namespace xXGameProjectNameXx
                 xXGameProjectNameXxSystemComponent::CreateDescriptor(),
                 MyExperimentComponent::CreateDescriptor(),
                 MoverClientInputInjectorComponent::CreateDescriptor(),
-                StageSelectComponent::CreateDescriptor(),
+                StageSelectGameStateLevelComponent::CreateDescriptor(),
                 RootAutonomousEntitySpawnerComponent::CreateDescriptor(),
                 MoverComponent::CreateDescriptor(),
             });

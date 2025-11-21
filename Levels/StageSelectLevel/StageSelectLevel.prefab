@@ -47,17 +47,17 @@
                 "Id": 1743806037587177517,
                 "LocalBookmarkFileName": "StageSelectLevel_17590624980781075.setreg"
             },
-            "StageSelectComponent": {
-                "$type": "GenericComponentWrapper",
-                "Id": 9346848950581387220,
-                "m_template": {
-                    "$type": "StageSelectComponent"
-                }
-            },
             "TransformComponent": {
                 "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
                 "Id": 4584354821622104079,
                 "Parent Entity": ""
+            },
+            "xXGameProjectNameXx::StageSelectGameStateLevelComponent": {
+                "$type": "GenericComponentWrapper",
+                "Id": 5027943436815585558,
+                "m_template": {
+                    "$type": "xXGameProjectNameXx::StageSelectGameStateLevelComponent"
+                }
             }
         }
     },

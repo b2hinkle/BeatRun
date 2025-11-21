@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<Component
+    Name="StageSelectGameStateLevelComponent"
+    Namespace="xXGameProjectNameXx"
+    GameStateType="xXGameProjectNameXx::GameStates::StageSelect"
+    GameStateInclude="Source/GameStates/StageSelect.h"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+</Component>
