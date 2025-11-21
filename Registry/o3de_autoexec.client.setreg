@@ -1,0 +1,9 @@
+{
+    "O3DE": {
+        "Autoexec": {
+            "ConsoleCommands": {
+                // @Christian TODO: [todo][client][multiplayer] Perform `LoadLevel` command on a level made for disconnected clients.
+            }
+        }
+    }
+}

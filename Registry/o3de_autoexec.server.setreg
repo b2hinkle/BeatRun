@@ -1,0 +1,11 @@
+{
+    "O3DE": {
+        "Autoexec": {
+            "ConsoleCommands": {
+                // @Christian: TODO: [placeholder][todo][server] Right now, we have the server go directly to this gameplay level. This
+                // behavior will likely want to be changed in the future.
+                "LoadLevel": "GameplayDevelopmentLevel"
+            }
+        }
+    }
+}

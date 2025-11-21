@@ -1,8 +1,13 @@
 {
-   "O3DE": {
+    "O3DE": {
         "Autoexec": {
             "ConsoleCommands": {
-                "LoadLevel": "StageSelectLevel"
+                // Disable VSync by default.
+                "vsync_interval": 0,
+                // Ensure that max FPS is disabled by default. @Christian: TODO: [todo][settings] This seems to be having now effect for some
+                // reason. The default value of the engine is already `-1` so it's not a problem for us. But if you set it to `30` for example, there is
+                // no change when testing it. The VSync setting above is working, however.
+                "sys_MaxFPS": -1
             }
         }
     }

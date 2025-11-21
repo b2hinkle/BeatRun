@@ -1,0 +1,10 @@
+{
+    "O3DE": {
+        "Autoexec": {
+            "ConsoleCommands": {
+                "editorsv_enabled": true,
+                "editorsv_hidden": true
+            }
+        }
+    }
+}
