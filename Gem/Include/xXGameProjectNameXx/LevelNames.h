@@ -7,7 +7,7 @@ namespace xXGameProjectNameXx::LevelNames
 {
     constexpr AZStd::string_view DefaultLevel = "DefaultLevel";
     constexpr AZStd::string_view GameplayDevelopmentLevel = "GameplayDevelopmentLevel";
-    constexpr AZStd::string_view StageSelectLevel = "StageSelectLevel";
+    constexpr AZStd::string_view MainMenuLevel = "MainMenuLevel";
 
     // @Christian: TODO: [todo][level][placeholder] These values just redirect to the development level, for now. These level names are kind of
     // placeholder anyway. But if we were serious, we would have actual level prefabs for each level.

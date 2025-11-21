@@ -3,6 +3,11 @@
         "Id": "ContainerEntity",
         "Name": "Empty",
         "Components": {
+            "EditorCommentComponent": {
+                "$type": "EditorCommentComponent",
+                "Id": 9106212521177666356,
+                "Configuration": "We're using this component to push the StageSelect game state immediately upon opening the game (in the main menu).\n"
+            },
             "EditorDisabledCompositionComponent": {
                 "$type": "EditorDisabledCompositionComponent",
                 "Id": 16616931740997949210
@@ -45,7 +50,7 @@
             "LocalViewBookmarkComponent": {
                 "$type": "LocalViewBookmarkComponent",
                 "Id": 1743806037587177517,
-                "LocalBookmarkFileName": "StageSelectLevel_17590624980781075.setreg"
+                "LocalBookmarkFileName": "MainMenuLevel_17590624980781075.setreg"
             },
             "TransformComponent": {
                 "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
