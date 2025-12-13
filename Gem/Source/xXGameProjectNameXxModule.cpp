@@ -1,8 +1,9 @@
 
-#include <AzCore/Memory/SystemAllocator.h>
 #include <AzCore/Module/Module.h>
-
+#include <AzCore/Memory/SystemAllocator.h>
+#include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <Source/xXGameProjectNameXxSystemComponent.h>
+#include <Source/AutoGen/AutoComponentTypes.h>
 #include <Source/Components/MyExperimentComponent.h>
 #include <Source/Components/MoverClientInputInjectorComponent.h>
 // @Christian: TODO: [todo] Make our own `CreateComponentDescriptors` function for our own custom AutoGen components, similar to the Multiplayer gem's AutoComponents.
@@ -10,22 +11,19 @@
 #include <Source/Components/RootAutonomousEntitySpawnerComponent.h>
 #include <Source/Components/MoverComponent.h>
 
-#include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
-#include <Source/AutoGen/AutoComponentTypes.h>
-
 namespace xXGameProjectNameXx
 {
     class xXGameProjectNameXxModule
         : public AZ::Module
     {
     public:
-        AZ_RTTI(xXGameProjectNameXxModule, xXGameProjectNameXxModuleTypeId, AZ::Module);
+
+        AZ_RTTI(xXGameProjectNameXxModule, TypeIds::xXGameProjectNameXxModule, AZ::Module);
         AZ_CLASS_ALLOCATOR(xXGameProjectNameXxModule, AZ::SystemAllocator);
 
         xXGameProjectNameXxModule()
             : AZ::Module()
         {
-            // Push results of [MyComponent]::CreateDescriptor() into m_descriptors here.
             m_descriptors.insert(m_descriptors.end(), {
                 xXGameProjectNameXxSystemComponent::CreateDescriptor(),
                 MyExperimentComponent::CreateDescriptor(),
@@ -39,9 +37,6 @@ namespace xXGameProjectNameXx
             CreateComponentDescriptors(m_descriptors);
         }
 
-        /**
-         * Add required SystemComponents to the SystemEntity.
-         */
         AZ::ComponentTypeList GetRequiredSystemComponents() const override
         {
             return AZ::ComponentTypeList{

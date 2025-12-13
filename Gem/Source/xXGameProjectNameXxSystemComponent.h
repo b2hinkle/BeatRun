@@ -16,28 +16,26 @@ namespace xXGameProjectNameXx
     public:
         AZ_COMPONENT_DECL(xXGameProjectNameXxSystemComponent);
 
-        static void Reflect(AZ::ReflectContext* context);
+        xXGameProjectNameXxSystemComponent();
+        ~xXGameProjectNameXxSystemComponent() override;
 
+        //! Component descriptor interface.
+        //! @{
+        static void Reflect(AZ::ReflectContext* context);
         static void GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided);
         static void GetIncompatibleServices(AZ::ComponentDescriptor::DependencyArrayType& incompatible);
         static void GetRequiredServices(AZ::ComponentDescriptor::DependencyArrayType& required);
         static void GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent);
-
-        xXGameProjectNameXxSystemComponent();
-        ~xXGameProjectNameXxSystemComponent();
+        //! @}
 
     protected:
-        ////////////////////////////////////////////////////////////////////////
-        // xXGameProjectNameXxRequestBus interface implementation
 
-        ////////////////////////////////////////////////////////////////////////
-
-        ////////////////////////////////////////////////////////////////////////
-        // AZ::Component interface implementation
+        //! AZ::Component protected overrides.
+        //! @{
         void Init() override;
         void Activate() override;
         void Deactivate() override;
-        ////////////////////////////////////////////////////////////////////////
+        //! @}
 
         //! CrySystemEventBus::Handler overrides.
         //! @{

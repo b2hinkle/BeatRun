@@ -16,7 +16,7 @@ namespace xXGameProjectNameXx
     //! can be controlled by the `MoverRequestBus`.
     class MoverComponent
         : public AZ::Component
-        , public MoverRequestBus::Handler
+        , protected MoverRequestBus::Handler
     {
     public:
 
@@ -39,7 +39,7 @@ namespace xXGameProjectNameXx
         void Deactivate() override;
         //! @}
 
-        //! MoverGameplayInputRequestBus::Handler public overrides.
+        //! MoverGameplayInputRequestBus::Handler overrides.
         //! @{
         void TickGameplay(float deltaTime) const override;
         float GetMoveForwardAxis() const override;

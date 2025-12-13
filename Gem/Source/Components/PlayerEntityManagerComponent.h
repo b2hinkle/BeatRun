@@ -28,7 +28,7 @@ namespace xXGameProjectNameXx
     //!        entities have a `NetworkHierarchyChildComponent` on them.
     class PlayerEntityManagerComponent
         : public PlayerEntityManagerComponentBase
-        , public PlayerEntityManagerRequestBus::Handler
+        , protected PlayerEntityManagerRequestBus::Handler
     {
     public:
 
@@ -54,7 +54,7 @@ namespace xXGameProjectNameXx
 
     protected:
 
-        //! PlayerEntityManagerRequestBus::Handler public overrides.
+        //! PlayerEntityManagerRequestBus::Handler overrides.
         //! @{
         int GetNumPlayersToCreate() const override;
         const Multiplayer::NetworkSpawnable& GetPlayerEntitySpawnable() const override;

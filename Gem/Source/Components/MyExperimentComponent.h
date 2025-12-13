@@ -8,7 +8,7 @@ namespace xXGameProjectNameXx
 {
     class MyExperimentComponent
         : public AZ::Component
-        , public MyExperimentRequestBus::Handler
+        , protected MyExperimentRequestBus::Handler
     {
     public:
 

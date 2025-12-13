@@ -29,7 +29,7 @@ namespace xXGameProjectNameXx
     //! @class MoverNetworkInputComponentController
     class MoverNetworkInputComponentController
         : public MoverNetworkInputComponentControllerBase
-        , public MoverNetworkInputRequestBus::Handler
+        , protected MoverNetworkInputRequestBus::Handler
     {
     public:
 
@@ -43,7 +43,9 @@ namespace xXGameProjectNameXx
         void ProcessInput(Multiplayer::NetworkInput& input, float deltaTime) override;
         //! @}
 
-        //! MoverNetworkInputRequestBus::Handler public overrides.
+    protected:
+
+        //! MoverNetworkInputRequestBus::Handler overrides.
         //! @{
         float GetMoveForwardAxis() const override;
         float GetMoveRightAxis() const override;

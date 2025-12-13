@@ -19,7 +19,7 @@ namespace
 
     private:
 
-        //! AzFramework::RootSpawnableNotificationBus::Handler private overrides.
+        //! AzFramework::RootSpawnableNotificationBus::Handler overrides.
         //! @{
         void OnRootSpawnableAssigned(AZ::Data::Asset<AzFramework::Spawnable>, uint32_t) override;
         void OnRootSpawnableReady(AZ::Data::Asset<AzFramework::Spawnable>, uint32_t) override;

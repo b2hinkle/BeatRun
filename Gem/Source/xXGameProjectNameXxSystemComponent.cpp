@@ -1,9 +1,8 @@
 
-#include <AzCore/Serialization/SerializeContext.h>
-
 #include <Source/xXGameProjectNameXxSystemComponent.h>
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
+#include <AzCore/Serialization/SerializeContext.h>
 #include <Source/AutoGen/AutoComponentTypes.h>
 #if AZ_TRAIT_CLIENT
 #include <LyShine/Bus/UiCursorBus.h>
@@ -14,7 +13,7 @@
 namespace xXGameProjectNameXx
 {
     AZ_COMPONENT_IMPL(xXGameProjectNameXxSystemComponent, "xXGameProjectNameXxSystemComponent",
-        xXGameProjectNameXxSystemComponentTypeId);
+        TypeIds::xXGameProjectNameXxSystemComponent);
 
     void xXGameProjectNameXxSystemComponent::Reflect(AZ::ReflectContext* context)
     {

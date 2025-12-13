@@ -11,20 +11,22 @@ namespace xXGameProjectNameXx
     class xXGameProjectNameXxRequests
     {
     public:
-        AZ_RTTI(xXGameProjectNameXxRequests, xXGameProjectNameXxRequestsTypeId);
+
+        AZ_RTTI(xXGameProjectNameXxRequests, TypeIds::xXGameProjectNameXxRequests);
+
         virtual ~xXGameProjectNameXxRequests() = default;
-        // Put your public methods here
     };
 
     class xXGameProjectNameXxBusTraits
         : public AZ::EBusTraits
     {
     public:
-        //////////////////////////////////////////////////////////////////////////
-        // EBusTraits overrides
+
+        //! AZ::EBusTraits overrides
+        //! @{
         static constexpr AZ::EBusHandlerPolicy HandlerPolicy = AZ::EBusHandlerPolicy::Single;
         static constexpr AZ::EBusAddressPolicy AddressPolicy = AZ::EBusAddressPolicy::Single;
-        //////////////////////////////////////////////////////////////////////////
+        //! @}
     };
 
     using xXGameProjectNameXxRequestBus = AZ::EBus<xXGameProjectNameXxRequests, xXGameProjectNameXxBusTraits>;

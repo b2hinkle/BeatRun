@@ -22,10 +22,10 @@ namespace xXGameProjectNameXx::GameStates
 
         AZ_RTTI(GameStates::StageSelect, "{254EB57F-6827-45FF-9793-8742DC9DB542}", GameState::IGameState);
 
-    public:
+    protected:
 
 #if AZ_TRAIT_CLIENT
-        //! UiCanvasNotificationBus::Handler public overrides.
+        //! UiCanvasNotificationBus::Handler overrides.
         //! @{
         void OnAction(AZ::EntityId entityId, const LyShine::ActionName& actionName) override;
         //! @}
