@@ -10,6 +10,7 @@
 #include <Source/AutoGen/StageSelectGameStateLevelComponent.GameStateLevelComponent.h>
 #include <Source/Components/RootAutonomousEntitySpawnerComponent.h>
 #include <Source/Components/MoverComponent.h>
+#include <Source/PlayerSystemComponent.h>
 
 namespace xXGameProjectNameXx
 {
@@ -31,6 +32,7 @@ namespace xXGameProjectNameXx
                 StageSelectGameStateLevelComponent::CreateDescriptor(),
                 RootAutonomousEntitySpawnerComponent::CreateDescriptor(),
                 MoverComponent::CreateDescriptor(),
+                PlayerSystemComponent::CreateDescriptor(),
             });
 
             // Create descriptors for our auto-components. Important: These are supposed to be the last descriptors added.
@@ -41,6 +43,7 @@ namespace xXGameProjectNameXx
         {
             return AZ::ComponentTypeList{
                 azrtti_typeid<xXGameProjectNameXxSystemComponent>(),
+                azrtti_typeid<PlayerSystemComponent>(),
             };
         }
     };

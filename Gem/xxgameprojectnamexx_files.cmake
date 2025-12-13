@@ -34,4 +34,7 @@ set(FILES
     Source/Components/PlayerEntityManagerComponent.h
     Source/Components/PlayerEntityManagerComponent.cpp
     Include/xXGameProjectNameXx/PlayerEntityManagerInterface.h
+    Source/PlayerSystemComponent.cpp
+    Source/PlayerSystemComponent.h
+    Include/xXGameProjectNameXx/PlayerBus.h
 )
