@@ -19,7 +19,7 @@ namespace xXGameProjectNameXx
     {
     public:
 
-        AZ_RTTI(xXGameProjectNameXxModule, TypeIds::xXGameProjectNameXxModule, AZ::Module);
+        AZ_RTTI(xXGameProjectNameXxModule, GetTypeId<xXGameProjectNameXxModule>(), AZ::Module);
         AZ_CLASS_ALLOCATOR(xXGameProjectNameXxModule, AZ::SystemAllocator);
 
         xXGameProjectNameXxModule()

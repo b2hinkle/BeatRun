@@ -12,7 +12,7 @@ namespace xXGameProjectNameXx
     {
     public:
 
-        AZ_RTTI(PlayerRequests, TypeIds::PlayerRequests);
+        AZ_RTTI(PlayerRequests, GetTypeId<PlayerRequests>());
 
         virtual ~PlayerRequests() = default;
     };

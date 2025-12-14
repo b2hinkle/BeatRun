@@ -13,7 +13,7 @@
 namespace xXGameProjectNameXx
 {
     AZ_COMPONENT_IMPL(xXGameProjectNameXxSystemComponent, "xXGameProjectNameXxSystemComponent",
-        TypeIds::xXGameProjectNameXxSystemComponent);
+        GetTypeId<xXGameProjectNameXxSystemComponent>());
 
     void xXGameProjectNameXxSystemComponent::Reflect(AZ::ReflectContext* context)
     {
