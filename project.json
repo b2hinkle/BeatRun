@@ -27,7 +27,7 @@
         "ImGui",
         "LyShine",
         "Multiplayer",
-        "O3DECoreUtils",
+        "O3deUtils_Core",
         "PhysX",
         "StartingPointInput",
         "xXGameProjectNameXx"
