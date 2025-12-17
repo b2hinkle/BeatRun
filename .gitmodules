@@ -4,3 +4,6 @@
 [submodule "Dependencies/Gems/CppUtilsO3deGem"]
 	path = Dependencies/Gems/CppUtilsO3deGem
 	url = https://github.com/ChristianHinkle/CppUtilsO3deGem.git
+[submodule "Dependencies/Gems/O3deUtils_Core"]
+	path = Dependencies/Gems/O3deUtils_Core
+	url = https://github.com/ChristianHinkle/O3deUtils_Core
