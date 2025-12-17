@@ -7,3 +7,6 @@
 [submodule "Dependencies/Gems/O3deUtils_Core"]
 	path = Dependencies/Gems/O3deUtils_Core
 	url = https://github.com/ChristianHinkle/O3deUtils_Core
+[submodule "Dependencies/Gems/O3deUtils_Misc"]
+	path = Dependencies/Gems/O3deUtils_Misc
+	url = https://github.com/ChristianHinkle/O3deUtils_Misc

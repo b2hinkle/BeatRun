@@ -12,7 +12,7 @@
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Component/ComponentApplicationBus.h>
 #include <Include/xXGameProjectNameXx/LevelNames.h>
-#include <Source/Utils/LevelSystemUtils.h>
+#include <O3deUtils_Misc/LevelSystemUtils.h>
 #include <Source/Utils/MultiplayerUtils.h>
 #include <Multiplayer/IMultiplayer.h>
 #include <AzNetworking/ConnectionLayer/ConnectionEnums.h>
@@ -89,7 +89,7 @@ namespace xXGameProjectNameXx::GameStates
 #endif // #if AZ_TRAIT_SERVER
 
         // Actually load the level now.
-        LevelSystemUtils::TryLoadLevel(levelNameToLoad);
+        O3deUtils::Misc::LevelSystemUtils::TryLoadLevel(levelNameToLoad);
     }
 #endif // #if AZ_TRAIT_CLIENT
 

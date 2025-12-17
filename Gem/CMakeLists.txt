@@ -38,11 +38,15 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
         AZ::AzNetworking
         Gem::Multiplayer
         Gem::GameState
+        Gem::O3deUtils_Core
+        Gem::O3deUtils_Misc
     PRIVATE
         AZ::AzGameFramework
         Gem::Atom_AtomBridge.Static
         Legacy::CryCommon
         CppUtils::Concepts::Include
+        Gem::O3deUtils_Core.Private.Object
+        Gem::O3deUtils_Misc.Private.Object
 )
 
 set(MY_COMMON_STATIC_AUTOGEN_RULES

@@ -17,6 +17,7 @@
     "external_subdirectories": [
         "Dependencies/Gems/CppUtilsO3deGem",
         "Dependencies/Gems/O3deUtils_Core",
+        "Dependencies/Gems/O3deUtils_Misc",
         "Gem"
     ],
     "gem_names": [
@@ -28,6 +29,7 @@
         "LyShine",
         "Multiplayer",
         "O3deUtils_Core",
+        "O3deUtils_Misc",
         "PhysX",
         "StartingPointInput",
         "xXGameProjectNameXx"

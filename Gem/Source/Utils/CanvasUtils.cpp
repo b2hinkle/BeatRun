@@ -9,7 +9,7 @@
 #include <AzCore/Component/Entity.h>
 #include <AzCore/Component/ComponentApplicationBus.h>
 #include <LyShine/Bus/UiCanvasManagerBus.h>
-#include <Source/Utils/AzCoreUtils.h>
+#include <O3deUtils_Core/AzCoreUtils.h>
 
 namespace xXGameProjectNameXx::CanvasUtils
 {

@@ -22,15 +22,8 @@ set(FILES
     Source/Utils/MultiplayerUtils.h
     Source/Utils/MultiplayerUtils.cpp
     Include/xXGameProjectNameXx/LevelNames.h
-    Source/Utils/LevelSystemUtils.h
-    Source/Utils/LevelSystemUtils.cpp
     Source/Components/RootAutonomousEntitySpawnerComponent.h
     Source/Components/RootAutonomousEntitySpawnerComponent.cpp
-    Source/Utils/AzCoreUtils.h
-    Source/Utils/AzCoreUtils.inl
-    Source/Utils/AzCoreUtils.cpp
-    Source/Utils/AzFrameworkUtils.h
-    Source/Utils/AzFrameworkUtils.cpp
     Source/Components/PlayerEntityManagerComponent.h
     Source/Components/PlayerEntityManagerComponent.cpp
     Include/xXGameProjectNameXx/PlayerEntityManagerInterface.h
