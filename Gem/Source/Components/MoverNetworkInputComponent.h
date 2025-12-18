@@ -2,7 +2,7 @@
 #pragma once
 
 #include <Source/AutoGen/MoverNetworkInputComponent.AutoComponent.h>
-#include <Include/xXGameProjectNameXx/MoverNetworkInputInterface.h>
+#include <xXGameProjectNameXx/MoverNetworkInputInterface.h>
 
 namespace xXGameProjectNameXx
 {

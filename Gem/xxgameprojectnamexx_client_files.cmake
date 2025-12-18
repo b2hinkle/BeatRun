@@ -1,9 +1,9 @@
 
 set(FILES
-    Include/xXGameProjectNameXx/InputEventNames.h
-    Source/Input/ClientMoverInputInjector.h
-    Source/Input/ClientMoverInputInjector.cpp
-    Source/Utils/CanvasUtils.h
-    Source/Utils/CanvasUtils.cpp
-    Include/xXGameProjectNameXx/UiActionNames.h
+    Include/xXGameProjectNameXx/Client/InputEventNames.h
+    Source/Client/Input/ClientMoverInputInjector.h
+    Source/Client/Input/ClientMoverInputInjector.cpp
+    Source/Client/Utils/CanvasUtils.h
+    Source/Client/Utils/CanvasUtils.cpp
+    Include/xXGameProjectNameXx/Client/UiActionNames.h
 )

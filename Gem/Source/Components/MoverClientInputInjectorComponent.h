@@ -3,7 +3,7 @@
 
 #include <Source/AutoGen/MoverClientInputInjectorComponent.AutoComponent.h>
 #if AZ_TRAIT_CLIENT
-#include <Source/Input/ClientMoverInputInjector.h>
+#include <Source/Client/Input/ClientMoverInputInjector.h>
 #endif // #if AZ_TRAIT_CLIENT
 
 namespace xXGameProjectNameXx

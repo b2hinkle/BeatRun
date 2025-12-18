@@ -1,17 +1,17 @@
 
 #include <Source/GameStates/StageSelect.h>
 
-#include <Include/xXGameProjectNameXx/SettingsRegistryAccessors.h>
+#include <xXGameProjectNameXx/SettingsRegistryAccessors.h>
 #if AZ_TRAIT_CLIENT
 #include <LyShine/Bus/UiCanvasManagerBus.h>
 #include <LyShine/Bus/UiCanvasBus.h>
-#include <Source/Utils/CanvasUtils.h>
+#include <Source/Client/Utils/CanvasUtils.h>
 #include <LyShine/Bus/UiCursorBus.h>
-#include <Include/xXGameProjectNameXx/UiActionNames.h>
+#include <xXGameProjectNameXx/Client/UiActionNames.h>
 #endif // #if AZ_TRAIT_CLIENT
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Component/ComponentApplicationBus.h>
-#include <Include/xXGameProjectNameXx/LevelNames.h>
+#include <xXGameProjectNameXx/LevelNames.h>
 #include <O3deUtils_Misc/LevelSystemUtils.h>
 #include <Source/Utils/MultiplayerUtils.h>
 #include <Multiplayer/IMultiplayer.h>

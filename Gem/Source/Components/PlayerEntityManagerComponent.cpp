@@ -11,7 +11,7 @@
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <Multiplayer/Components/NetBindComponent.h>
 #include <AzCore/Component/TransformBus.h>
-#include "AzCore/Component/Entity.h"
+#include <AzCore/Component/Entity.h>
 #include <AzCore/Console/ILogger.h>
 
 namespace xXGameProjectNameXx

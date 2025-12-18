@@ -3,7 +3,7 @@
 
 #include <AzCore/Component/Component.h>
 
-#include <Include/xXGameProjectNameXx/PlayerBus.h>
+#include <xXGameProjectNameXx/PlayerBus.h>
 #include <CryCommon/CrySystemBus.h>
 
 namespace xXGameProjectNameXx

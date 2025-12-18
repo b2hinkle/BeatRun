@@ -3,7 +3,7 @@
 
 #include <Source/AutoGen/PlayerEntityManagerComponent.AutoComponent.h>
 #include <Multiplayer/MultiplayerTypes.h>
-#include <Include/xXGameProjectNameXx/PlayerEntityManagerInterface.h>
+#include <xXGameProjectNameXx/PlayerEntityManagerInterface.h>
 
 namespace AZ
 {

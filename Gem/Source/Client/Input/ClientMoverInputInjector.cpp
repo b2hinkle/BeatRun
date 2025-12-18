@@ -3,9 +3,9 @@
 #error "This file assumes it's being used for client code."
 #endif // #if !AZ_TRAIT_CLIENT
 
-#include <Source/Input/ClientMoverInputInjector.h>
+#include <Source/Client/Input/ClientMoverInputInjector.h>
 
-#include <xXGameProjectNameXx/InputEventNames.h>
+#include <xXGameProjectNameXx/Client/InputEventNames.h>
 #include <xXGameProjectNameXx/MoverNetworkInputInterface.h>
 #include <Multiplayer/Components/NetBindComponent.h>
 #include <AzCore/Console/ILogger.h>

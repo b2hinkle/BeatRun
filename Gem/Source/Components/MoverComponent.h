@@ -2,7 +2,7 @@
 #pragma once
 
 #include <AzCore/Component/Component.h>
-#include <Include/xXGameProjectNameXx/MoverInterface.h>
+#include <xXGameProjectNameXx/MoverInterface.h>
 
 namespace Multiplayer
 {

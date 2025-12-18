@@ -32,6 +32,7 @@ set(MY_COMMON_STATIC_INCLUDE_DIRECTORIES
         .
 )
 
+# @Christian: TODO: [todo][techdebt][cmake][multiplayer]: I think we should take the multiplayer dependencies out of and and only directly use the "unified" "server" or "client" versions for each case.
 set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
     PUBLIC
         AZ::AzFramework
@@ -45,8 +46,6 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
         Gem::Atom_AtomBridge.Static
         Legacy::CryCommon
         CppUtils::Concepts::Include
-        Gem::O3deUtils_Core.Private.Object
-        Gem::O3deUtils_Misc.Private.Object
 )
 
 set(MY_COMMON_STATIC_AUTOGEN_RULES
@@ -70,6 +69,8 @@ set(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES
         Gem::LyShine.Unified
     PRIVATE
         Gem::Multiplayer.Unified.Static
+        Gem::O3deUtils_Core.Unified.Static
+        Gem::O3deUtils_Misc.Unified.Static
 )
 
 # Add our static targets.
@@ -100,6 +101,8 @@ ly_add_target(
         ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
         PRIVATE
             Gem::Multiplayer.Server.Static
+            Gem::O3deUtils_Core.Server.Static
+            Gem::O3deUtils_Misc.Server.Static
     AUTOGEN_RULES
         ${MY_COMMON_STATIC_AUTOGEN_RULES}
 )
@@ -119,6 +122,8 @@ ly_add_target(
             Gem::LyShine.Clients
         PRIVATE
             Gem::Multiplayer.Client.Static
+            Gem::O3deUtils_Core.Client.Static
+            Gem::O3deUtils_Misc.Client.Static
     AUTOGEN_RULES
         ${MY_COMMON_STATIC_AUTOGEN_RULES}
 )

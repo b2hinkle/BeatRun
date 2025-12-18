@@ -1,5 +1,5 @@
 
-#include <Include/xXGameProjectNameXx/SettingsRegistryAccessors.h>
+#include <xXGameProjectNameXx/SettingsRegistryAccessors.h>
 
 #include <AzCore/Settings/SettingsRegistry.h>
 #include <AzCore/Console/ILogger.h>
