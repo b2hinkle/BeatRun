@@ -40,7 +40,6 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
         Gem::Multiplayer
         Gem::GameState
         Gem::O3deUtils_Core
-        Gem::O3deUtils_Misc
     PRIVATE
         AZ::AzGameFramework
         Gem::Atom_AtomBridge.Static
@@ -70,7 +69,7 @@ set(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES
     PRIVATE
         Gem::Multiplayer.Unified.Static
         Gem::O3deUtils_Core.Unified.Static
-        Gem::O3deUtils_Misc.Unified.Static
+        Gem::O3deUtils_Misc.Unified.API
 )
 
 # Add our static targets.
@@ -102,7 +101,7 @@ ly_add_target(
         PRIVATE
             Gem::Multiplayer.Server.Static
             Gem::O3deUtils_Core.Server.Static
-            Gem::O3deUtils_Misc.Server.Static
+            Gem::O3deUtils_Misc.Servers.API
     AUTOGEN_RULES
         ${MY_COMMON_STATIC_AUTOGEN_RULES}
 )
@@ -123,7 +122,7 @@ ly_add_target(
         PRIVATE
             Gem::Multiplayer.Client.Static
             Gem::O3deUtils_Core.Client.Static
-            Gem::O3deUtils_Misc.Client.Static
+            Gem::O3deUtils_Misc.Clients.API
     AUTOGEN_RULES
         ${MY_COMMON_STATIC_AUTOGEN_RULES}
 )
@@ -180,6 +179,7 @@ set(MY_COMMON_MODULE_BUILD_DEPENDENCIES
 set(MY_UNIFIED_MODULE_BUILD_DEPENDENCIES
     PRIVATE
         Gem::Multiplayer.Unified.Static
+        Gem::O3deUtils_Misc.Unified
 )
 
 # Add our module targets.
@@ -210,6 +210,7 @@ ly_add_target(
         PRIVATE
             Gem::${gem_name}.Server.Static
             Gem::Multiplayer.Server.Static
+            Gem::O3deUtils_Misc.Servers
 )
 
 ly_add_target(
@@ -224,6 +225,7 @@ ly_add_target(
         PRIVATE
             Gem::${gem_name}.Client.Static
             Gem::Multiplayer.Client.Static
+            Gem::O3deUtils_Misc.Clients
 )
 
 if(PAL_TRAIT_BUILD_HOST_TOOLS)
