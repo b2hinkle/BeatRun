@@ -22,8 +22,8 @@ endif()
 set(MY_COMMON_STATIC_FILES_CMAKE
     xxgameprojectnamexx_common_api_files.cmake
     xxgameprojectnamexx_common_private_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_common_api_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_common_private_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_common_api_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_common_private_files.cmake
     xxgameprojectnamexx_common_autogen_files.cmake
 )
 
@@ -162,7 +162,7 @@ unset(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES)
 
 set(MY_COMMON_MODULE_FILES_CMAKE
     xxgameprojectnamexx_common_shared_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_common_shared_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_common_shared_files.cmake
 )
 
 set(MY_COMMON_MODULE_INCLUDE_DIRECTORIES
