@@ -1,33 +1,24 @@
 
 set(FILES
-    Include/xXGameProjectNameXx/xXGameProjectNameXxBus.h
-    Include/xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h
     Source/xXGameProjectNameXxSystemComponent.cpp
     Source/xXGameProjectNameXxSystemComponent.h
-    Include/xXGameProjectNameXx/MyExperimentInterface.h
     Source/Components/MyExperimentComponent.h
     Source/Components/MyExperimentComponent.cpp
-    Include/xXGameProjectNameXx/MoverInterface.h
     Source/Components/MoverComponent.h
     Source/Components/MoverComponent.cpp
-    Include/xXGameProjectNameXx/MoverNetworkInputInterface.h
     Source/Components/MoverNetworkInputComponent.h
     Source/Components/MoverNetworkInputComponent.cpp
     Source/Components/MoverClientInputInjectorComponent.h
     Source/Components/MoverClientInputInjectorComponent.cpp
     Source/GameStates/StageSelect.h
     Source/GameStates/StageSelect.cpp
-    Include/xXGameProjectNameXx/SettingsRegistryAccessors.h
     Source/SettingsRegistryAccessors.cpp
     Source/Utils/MultiplayerUtils.h
     Source/Utils/MultiplayerUtils.cpp
-    Include/xXGameProjectNameXx/LevelNames.h
     Source/Components/RootAutonomousEntitySpawnerComponent.h
     Source/Components/RootAutonomousEntitySpawnerComponent.cpp
     Source/Components/PlayerEntityManagerComponent.h
     Source/Components/PlayerEntityManagerComponent.cpp
-    Include/xXGameProjectNameXx/PlayerEntityManagerInterface.h
     Source/PlayerSystemComponent.cpp
     Source/PlayerSystemComponent.h
-    Include/xXGameProjectNameXx/PlayerBus.h
 )

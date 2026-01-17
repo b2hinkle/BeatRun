@@ -20,9 +20,11 @@ endif()
 # These variables contain common items that are used in all unified, server, and client versions of our static target.
 
 set(MY_COMMON_STATIC_FILES_CMAKE
-    xxgameprojectnamexx_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
-    xxgameprojectnamexx_autogen_files.cmake
+    xxgameprojectnamexx_common_api_files.cmake
+    xxgameprojectnamexx_common_private_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_common_api_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_common_private_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+    xxgameprojectnamexx_common_autogen_files.cmake
 )
 
 set(MY_COMMON_STATIC_INCLUDE_DIRECTORIES
@@ -59,7 +61,8 @@ set(MY_COMMON_STATIC_AUTOGEN_RULES
 # These variables contain common items that are only used in unified versions of our static target.
 
 set(MY_UNIFIED_STATIC_FILES_CMAKE
-    xxgameprojectnamexx_client_files.cmake
+    xxgameprojectnamexx_client_api_files.cmake
+    xxgameprojectnamexx_client_private_files.cmake
 )
 
 set(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES
@@ -111,7 +114,8 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${MY_COMMON_STATIC_FILES_CMAKE}
-        xxgameprojectnamexx_client_files.cmake
+        xxgameprojectnamexx_client_api_files.cmake
+        xxgameprojectnamexx_client_private_files.cmake
     INCLUDE_DIRECTORIES
         ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
     BUILD_DEPENDENCIES
@@ -157,8 +161,8 @@ unset(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES)
 # These variables contain common items that are used in all unified, server, and client versions of our module target.
 
 set(MY_COMMON_MODULE_FILES_CMAKE
-    xxgameprojectnamexx_shared_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_shared_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
+    xxgameprojectnamexx_common_shared_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_common_shared_${PAL_PLATFORM_NAME_LOWERCASE}_files.cmake
 )
 
 set(MY_COMMON_MODULE_INCLUDE_DIRECTORIES
