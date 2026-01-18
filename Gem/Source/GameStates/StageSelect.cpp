@@ -5,7 +5,7 @@
 #if AZ_TRAIT_CLIENT
 #include <LyShine/Bus/UiCanvasManagerBus.h>
 #include <LyShine/Bus/UiCanvasBus.h>
-#include <Source/Client/Utils/CanvasUtils.h>
+#include <O3deUtils_Misc/Client/CanvasUtils.h>
 #include <LyShine/Bus/UiCursorBus.h>
 #include <xXGameProjectNameXx/Client/UiActionNames.h>
 #endif // #if AZ_TRAIT_CLIENT
@@ -122,7 +122,7 @@ namespace xXGameProjectNameXx::GameStates
     void StageSelect::OnPopped()
     {
 #if AZ_TRAIT_CLIENT
-        CanvasUtils::UnloadCanvasIfStillActive(m_canvasEntityId);
+        O3deUtils::Misc::CanvasUtils::UnloadCanvasIfStillActive(m_canvasEntityId);
         m_canvasEntityId = AZ::EntityId{AZ::EntityId::InvalidEntityId};
 #endif // #if AZ_TRAIT_CLIENT
 
