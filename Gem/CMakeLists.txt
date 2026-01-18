@@ -17,39 +17,177 @@ endif()
 
 # We are on a supported platform, so add the ${gem_name} target
 
-# These variables contain common items that are used in all unified, server, and client versions of our static target.
+# Define common data used by all unified, server, and client versions of our ".API" target.
 
-set(MY_COMMON_STATIC_FILES_CMAKE
+set(${gem_name}_COMMON_API_FILES_CMAKE
     xxgameprojectnamexx_common_api_files.cmake
-    xxgameprojectnamexx_common_private_files.cmake
     ${pal_dir}/xxgameprojectnamexx_common_api_files.cmake
+)
+
+ly_add_target(
+    NAME ${gem_name}.Common.API INTERFACE
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${${gem_name}_COMMON_API_FILES_CMAKE}
+    TARGET_PROPERTIES
+        O3DE_PRIVATE_TARGET TRUE
+    INCLUDE_DIRECTORIES
+        INTERFACE
+            Include
+    BUILD_DEPENDENCIES
+        INTERFACE
+            AZ::AzFramework
+            AZ::AzNetworking
+            # @Christian: TODO: [todo][techdebt][cmake][multiplayer]: I think we should take the multiplayer dependencies out of and and only directly use the "unified" "server" or "client" versions for each case.
+            Gem::Multiplayer
+            Gem::GameState
+)
+
+# Add our actual ".API" targets.
+
+ly_add_target(
+    NAME ${gem_name}.Unified.API INTERFACE
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${${gem_name}_COMMON_API_FILES_CMAKE}
+        xxgameprojectnamexx_client_api_files.cmake
+    BUILD_DEPENDENCIES
+        INTERFACE
+            Gem::${gem_name}.Common.API
+            Gem::O3deUtils_Core.Unified.API
+            Gem::O3deUtils_Misc.Unified.API
+            Gem::StartingPointInput.Unified
+            Gem::LyShine.Unified.API
+)
+
+ly_add_target(
+    NAME ${gem_name}.Servers.API INTERFACE
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${${gem_name}_COMMON_API_FILES_CMAKE}
+    BUILD_DEPENDENCIES
+        INTERFACE
+            Gem::${gem_name}.Common.API
+            Gem::O3deUtils_Core.Server.API
+            Gem::O3deUtils_Misc.Servers.API
+)
+
+ly_add_target(
+    NAME ${gem_name}.Clients.API INTERFACE
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${${gem_name}_COMMON_API_FILES_CMAKE}
+        xxgameprojectnamexx_client_api_files.cmake
+    BUILD_DEPENDENCIES
+        INTERFACE
+            Gem::${gem_name}.Common.API
+            Gem::O3deUtils_Core.Client.API
+            Gem::O3deUtils_Misc.Clients.API
+            Gem::StartingPointInput.Clients
+            Gem::LyShine.Clients.API
+)
+
+# Define common data used by all unified, server, and client versions of our ".Private.Object" target.
+
+set(${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE
+    xxgameprojectnamexx_common_private_files.cmake
     ${pal_dir}/xxgameprojectnamexx_common_private_files.cmake
+)
+
+set(${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES
+    O3DE_PRIVATE_TARGET TRUE
+)
+
+ly_add_target(
+    NAME ${gem_name}.Common.Private.Object INTERFACE
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
+    TARGET_PROPERTIES
+        O3DE_PRIVATE_TARGET TRUE
+        ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}
+    INCLUDE_DIRECTORIES
+        INTERFACE
+            .
+    BUILD_DEPENDENCIES
+        INTERFACE
+            AZ::AzCore
+            AZ::AzGameFramework
+            Gem::Atom_AtomBridge.Static
+            Legacy::CryCommon
+            CppUtils::Concepts::Include
+)
+
+# Add our ".Private.Object" targets. @Christian: TODO: [todo][techdebt][cmake][multiplayer] Support multiplayer compile definitions (`AZ_TRAIT_CLIENT` and `AZ_TRAIT_SERVER`) without needing to depend on the multiplayer gem?
+
+ly_add_target(
+    NAME ${gem_name}.Unified.Private.Object INTERFACE
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
+        xxgameprojectnamexx_client_private_files.cmake
+    TARGET_PROPERTIES
+        ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}
+    BUILD_DEPENDENCIES
+        INTERFACE
+            Gem::${gem_name}.Common.Private.Object
+            Gem::${gem_name}.Unified.API
+            Gem::Multiplayer.Unified.Static
+            Gem::O3deUtils_Core.Unified.Static
+            Gem::O3deUtils_Misc.Unified
+            Gem::StartingPointInput.Unified
+            Gem::LyShine.Unified
+)
+
+ly_add_target(
+    NAME ${gem_name}.Servers.Private.Object INTERFACE
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
+    TARGET_PROPERTIES
+        ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}
+    BUILD_DEPENDENCIES
+        INTERFACE
+            Gem::${gem_name}.Common.Private.Object
+            Gem::${gem_name}.Servers.API
+            Gem::Multiplayer.Server.Static
+            Gem::O3deUtils_Core.Server.Static
+            Gem::O3deUtils_Misc.Servers
+)
+
+ly_add_target(
+    NAME ${gem_name}.Clients.Private.Object INTERFACE
+    NAMESPACE Gem
+    FILES_CMAKE
+        ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
+        xxgameprojectnamexx_client_private_files.cmake
+    TARGET_PROPERTIES
+        ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}
+    BUILD_DEPENDENCIES
+        INTERFACE
+            Gem::${gem_name}.Common.Private.Object
+            Gem::${gem_name}.Clients.API
+            Gem::Multiplayer.Client.Static
+            Gem::O3deUtils_Core.Client.Static
+            Gem::O3deUtils_Misc.Clients
+            Gem::StartingPointInput.Clients
+            Gem::LyShine.Clients
+)
+
+# Unset these variables, as they are no longer needed.
+unset(${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES)
+
+# Define common data used by all unified, server, and client versions of our main gem target.
+
+set(${gem_name}_COMMON_FILES_CMAKE
+    ${${gem_name}_COMMON_API_FILES_CMAKE}
+    ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
+    xxgameprojectnamexx_common_shared_files.cmake
+    ${pal_dir}/xxgameprojectnamexx_common_shared_files.cmake
     xxgameprojectnamexx_common_autogen_files.cmake
 )
 
-set(MY_COMMON_STATIC_INCLUDE_DIRECTORIES
-    PUBLIC
-        Include
-    PRIVATE
-        .
-)
-
-# @Christian: TODO: [todo][techdebt][cmake][multiplayer]: I think we should take the multiplayer dependencies out of and and only directly use the "unified" "server" or "client" versions for each case.
-set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
-    PUBLIC
-        AZ::AzFramework
-        AZ::AzNetworking
-        Gem::Multiplayer
-        Gem::GameState
-        Gem::O3deUtils_Core
-    PRIVATE
-        AZ::AzGameFramework
-        Gem::Atom_AtomBridge.Static
-        Legacy::CryCommon
-        CppUtils::Concepts::Include
-)
-
-set(MY_COMMON_STATIC_AUTOGEN_RULES
+set(${gem_name}_COMMON_AUTOGEN_RULES
     *.AutoComponent.xml,AutoComponent_Header.jinja,$path/$fileprefix.AutoComponent.h
     *.AutoComponent.xml,AutoComponent_Source.jinja,$path/$fileprefix.AutoComponent.cpp
     *.AutoComponent.xml,AutoComponentTypes_Header.jinja,$path/AutoComponentTypes.h
@@ -58,209 +196,60 @@ set(MY_COMMON_STATIC_AUTOGEN_RULES
     *.GameStateLevelComponent.xml,GameStateLevelComponent_Source.jinja,$path/$fileprefix.GameStateLevelComponent.cpp
 )
 
-# These variables contain common items that are only used in unified versions of our static target.
-
-set(MY_UNIFIED_STATIC_FILES_CMAKE
-    xxgameprojectnamexx_client_api_files.cmake
-    xxgameprojectnamexx_client_private_files.cmake
-)
-
-set(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES
-    PUBLIC
-        Gem::StartingPointInput.Unified
-        Gem::LyShine.Unified
-    PRIVATE
-        Gem::Multiplayer.Unified.Static
-        Gem::O3deUtils_Core.Unified.Static
-        Gem::O3deUtils_Misc.Unified.API
-)
-
-# Add our static targets.
+# Add our main gem targets. These depend on their corresponding ".Private.Object" and ".API" targets.
 
 ly_add_target(
-    NAME ${gem_name}.Unified.Static STATIC
+    NAME ${gem_name}.Unified ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
     NAMESPACE Gem
     FILES_CMAKE
-        ${MY_COMMON_STATIC_FILES_CMAKE}
-        ${MY_UNIFIED_STATIC_FILES_CMAKE}
-    INCLUDE_DIRECTORIES
-        ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
-    BUILD_DEPENDENCIES
-        ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
-        ${MY_UNIFIED_STATIC_BUILD_DEPENDENCIES}
-    AUTOGEN_RULES
-        ${MY_COMMON_STATIC_AUTOGEN_RULES}
-)
-
-ly_add_target(
-    NAME ${gem_name}.Server.Static STATIC
-    NAMESPACE Gem
-    FILES_CMAKE
-        ${MY_COMMON_STATIC_FILES_CMAKE}
-    INCLUDE_DIRECTORIES
-        ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
-    BUILD_DEPENDENCIES
-        ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
-        PRIVATE
-            Gem::Multiplayer.Server.Static
-            Gem::O3deUtils_Core.Server.Static
-            Gem::O3deUtils_Misc.Servers.API
-    AUTOGEN_RULES
-        ${MY_COMMON_STATIC_AUTOGEN_RULES}
-)
-
-ly_add_target(
-    NAME ${gem_name}.Client.Static STATIC
-    NAMESPACE Gem
-    FILES_CMAKE
-        ${MY_COMMON_STATIC_FILES_CMAKE}
+        ${${gem_name}_COMMON_FILES_CMAKE}
         xxgameprojectnamexx_client_api_files.cmake
         xxgameprojectnamexx_client_private_files.cmake
-    INCLUDE_DIRECTORIES
-        ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
     BUILD_DEPENDENCIES
-        ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
         PUBLIC
-            Gem::StartingPointInput.Clients
-            Gem::LyShine.Clients
+            Gem::${gem_name}.Unified.API
         PRIVATE
-            Gem::Multiplayer.Client.Static
-            Gem::O3deUtils_Core.Client.Static
-            Gem::O3deUtils_Misc.Clients.API
+            Gem::${gem_name}.Unified.Private.Object
+            Gem::O3deUtils_Misc.Unified
     AUTOGEN_RULES
-        ${MY_COMMON_STATIC_AUTOGEN_RULES}
-)
-
-if(PAL_TRAIT_BUILD_HOST_TOOLS)
-    ly_add_target(
-        NAME ${gem_name}.Editor.Static STATIC
-        NAMESPACE Gem
-        FILES_CMAKE
-            ${MY_COMMON_STATIC_FILES_CMAKE}
-            ${MY_UNIFIED_STATIC_FILES_CMAKE}
-        INCLUDE_DIRECTORIES
-            ${MY_COMMON_STATIC_INCLUDE_DIRECTORIES}
-        BUILD_DEPENDENCIES
-            ${MY_COMMON_STATIC_BUILD_DEPENDENCIES}
-            ${MY_UNIFIED_STATIC_BUILD_DEPENDENCIES}
-            PRIVATE
-                EditorCore
-        AUTOGEN_RULES
-            ${MY_COMMON_STATIC_AUTOGEN_RULES}
-    )
-endif()
-
-# Unset these variables, as they are no longer needed.
-unset(MY_COMMON_STATIC_FILES_CMAKE)
-unset(MY_COMMON_STATIC_INCLUDE_DIRECTORIES)
-unset(MY_COMMON_STATIC_BUILD_DEPENDENCIES)
-unset(MY_COMMON_STATIC_AUTOGEN_RULES)
-unset(MY_UNIFIED_STATIC_FILES_CMAKE)
-unset(MY_UNIFIED_STATIC_BUILD_DEPENDENCIES)
-
-# These variables contain common items that are used in all unified, server, and client versions of our module target.
-
-set(MY_COMMON_MODULE_FILES_CMAKE
-    xxgameprojectnamexx_common_shared_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_common_shared_files.cmake
-)
-
-set(MY_COMMON_MODULE_INCLUDE_DIRECTORIES
-    PUBLIC
-        Include
-    PRIVATE
-        .
-)
-
-set(MY_COMMON_MODULE_BUILD_DEPENDENCIES
-    PRIVATE
-        AZ::AzCore
-        Legacy::CryCommon
-)
-
-# These variables contain common items that are only used in unified versions of our module target.
-
-set(MY_UNIFIED_MODULE_BUILD_DEPENDENCIES
-    PRIVATE
-        Gem::Multiplayer.Unified.Static
-        Gem::O3deUtils_Misc.Unified
-)
-
-# Add our module targets.
-
-ly_add_target(
-    NAME ${gem_name} ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
-    NAMESPACE Gem
-    FILES_CMAKE
-        ${MY_COMMON_MODULE_FILES_CMAKE}
-    INCLUDE_DIRECTORIES
-        ${MY_COMMON_MODULE_INCLUDE_DIRECTORIES}
-    BUILD_DEPENDENCIES
-        ${MY_COMMON_MODULE_BUILD_DEPENDENCIES}
-        ${MY_UNIFIED_MODULE_BUILD_DEPENDENCIES}
-        PRIVATE
-            Gem::${gem_name}.Unified.Static
+        ${${gem_name}_COMMON_AUTOGEN_RULES}
 )
 
 ly_add_target(
-    NAME ${gem_name}.Server ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
+    NAME ${gem_name}.Servers ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
     NAMESPACE Gem
     FILES_CMAKE
-        ${MY_COMMON_MODULE_FILES_CMAKE}
-    INCLUDE_DIRECTORIES
-        ${MY_COMMON_MODULE_INCLUDE_DIRECTORIES}
+        ${${gem_name}_COMMON_FILES_CMAKE}
     BUILD_DEPENDENCIES
-        ${MY_COMMON_MODULE_BUILD_DEPENDENCIES}
+        PUBLIC
+            Gem::${gem_name}.Servers.API
         PRIVATE
-            Gem::${gem_name}.Server.Static
-            Gem::Multiplayer.Server.Static
+            Gem::${gem_name}.Servers.Private.Object
             Gem::O3deUtils_Misc.Servers
+    AUTOGEN_RULES
+        ${${gem_name}_COMMON_AUTOGEN_RULES}
 )
 
 ly_add_target(
-    NAME ${gem_name}.Client ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
+    NAME ${gem_name}.Clients ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
     NAMESPACE Gem
     FILES_CMAKE
-        ${MY_COMMON_MODULE_FILES_CMAKE}
-    INCLUDE_DIRECTORIES
-        ${MY_COMMON_MODULE_INCLUDE_DIRECTORIES}
+        ${${gem_name}_COMMON_FILES_CMAKE}
+        xxgameprojectnamexx_client_api_files.cmake
+        xxgameprojectnamexx_client_private_files.cmake
     BUILD_DEPENDENCIES
-        ${MY_COMMON_MODULE_BUILD_DEPENDENCIES}
+        PUBLIC
+            Gem::${gem_name}.Clients.API
         PRIVATE
-            Gem::${gem_name}.Client.Static
-            Gem::Multiplayer.Client.Static
+            Gem::${gem_name}.Clients.Private.Object
             Gem::O3deUtils_Misc.Clients
+    AUTOGEN_RULES
+        ${${gem_name}_COMMON_AUTOGEN_RULES}
 )
 
-if(PAL_TRAIT_BUILD_HOST_TOOLS)
-    ly_add_target(
-        NAME ${gem_name}.Editor ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
-        NAMESPACE Gem
-        FILES_CMAKE
-            ${MY_COMMON_MODULE_FILES_CMAKE}
-        INCLUDE_DIRECTORIES
-            ${MY_COMMON_MODULE_INCLUDE_DIRECTORIES}
-        BUILD_DEPENDENCIES
-            ${MY_COMMON_MODULE_BUILD_DEPENDENCIES}
-            ${MY_UNIFIED_MODULE_BUILD_DEPENDENCIES}
-            PRIVATE
-                Gem::${gem_name}.Editor.Static
-    )
-
-    ly_create_alias(NAME ${gem_name}.Tools NAMESPACE Gem TARGETS Gem::${gem_name}.Editor)
-    ly_create_alias(NAME ${gem_name}.Builders NAMESPACE Gem TARGETS Gem::${gem_name}.Editor)
-endif()
-
 # Unset these variables, as they are no longer needed.
-unset(MY_COMMON_MODULE_FILES_CMAKE)
-unset(MY_COMMON_MODULE_INCLUDE_DIRECTORIES)
-unset(MY_COMMON_MODULE_BUILD_DEPENDENCIES)
-unset(MY_UNIFIED_MODULE_BUILD_DEPENDENCIES)
-
-# Define all the kinds of applications ${gem_name} needs to be used by.
-ly_create_alias(NAME ${gem_name}.Unified NAMESPACE Gem TARGETS Gem::${gem_name})
-ly_create_alias(NAME ${gem_name}.Servers NAMESPACE Gem TARGETS Gem::${gem_name}.Server)
-ly_create_alias(NAME ${gem_name}.Clients NAMESPACE Gem TARGETS Gem::${gem_name}.Client)
+unset(${gem_name}_COMMON_API_FILES_CMAKE)
+unset(${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE)
 
 # Add in CMake dependencies for each gem dependency listed in this gem's gem.json file
 # for the primary gem variants used in most o3de applications
@@ -278,6 +267,31 @@ PROPERTY COMPILE_DEFINITIONS
     VALUES
         O3DE_GEM_NAME=${gem_name}
         O3DE_GEM_VERSION=${gem_version})
+
+if(PAL_TRAIT_BUILD_HOST_TOOLS)
+    ly_add_target(
+        NAME ${gem_name}.Tools ${PAL_TRAIT_MONOLITHIC_DRIVEN_MODULE_TYPE}
+        NAMESPACE Gem
+        FILES_CMAKE
+            ${${gem_name}_COMMON_FILES_CMAKE}
+            xxgameprojectnamexx_client_api_files.cmake
+            xxgameprojectnamexx_client_private_files.cmake
+        BUILD_DEPENDENCIES
+            PUBLIC
+                Gem::${gem_name}.Unified.API
+            PRIVATE
+                Gem::${gem_name}.Unified.Private.Object
+                EditorCore
+        AUTOGEN_RULES
+            ${${gem_name}_COMMON_AUTOGEN_RULES}
+    )
+
+    ly_create_alias(NAME ${gem_name}.Builders NAMESPACE Gem TARGETS Gem::${gem_name}.Tools)
+endif()
+
+# Unset these variables, as they are no longer needed.
+unset(${gem_name}_COMMON_FILES_CMAKE)
+unset(${gem_name}_COMMON_AUTOGEN_RULES)
 
 ################################################################################
 # Gem dependencies
