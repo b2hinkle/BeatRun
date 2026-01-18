@@ -68,7 +68,7 @@ ly_add_target(
     BUILD_DEPENDENCIES
         INTERFACE
             Gem::${gem_name}.Common.API
-            Gem::O3deUtils_Core.Server.API
+            Gem::O3deUtils_Core.Servers.API
             Gem::O3deUtils_Misc.Servers.API
 )
 
@@ -81,7 +81,7 @@ ly_add_target(
     BUILD_DEPENDENCIES
         INTERFACE
             Gem::${gem_name}.Common.API
-            Gem::O3deUtils_Core.Client.API
+            Gem::O3deUtils_Core.Clients.API
             Gem::O3deUtils_Misc.Clients.API
             Gem::StartingPointInput.Clients
             Gem::LyShine.Clients.API
@@ -133,7 +133,7 @@ ly_add_target(
             Gem::${gem_name}.Common.Private.Object
             Gem::${gem_name}.Unified.API
             Gem::Multiplayer.Unified.Static
-            Gem::O3deUtils_Core.Unified.Static
+            Gem::O3deUtils_Core.Unified
             Gem::O3deUtils_Misc.Unified
             Gem::StartingPointInput.Unified
             Gem::LyShine.Unified
@@ -151,7 +151,7 @@ ly_add_target(
             Gem::${gem_name}.Common.Private.Object
             Gem::${gem_name}.Servers.API
             Gem::Multiplayer.Server.Static
-            Gem::O3deUtils_Core.Server.Static
+            Gem::O3deUtils_Core.Servers
             Gem::O3deUtils_Misc.Servers
 )
 
@@ -168,7 +168,7 @@ ly_add_target(
             Gem::${gem_name}.Common.Private.Object
             Gem::${gem_name}.Clients.API
             Gem::Multiplayer.Client.Static
-            Gem::O3deUtils_Core.Client.Static
+            Gem::O3deUtils_Core.Clients
             Gem::O3deUtils_Misc.Clients
             Gem::StartingPointInput.Clients
             Gem::LyShine.Clients
@@ -210,6 +210,7 @@ ly_add_target(
             Gem::${gem_name}.Unified.API
         PRIVATE
             Gem::${gem_name}.Unified.Private.Object
+            Gem::O3deUtils_Core.Unified
             Gem::O3deUtils_Misc.Unified
     AUTOGEN_RULES
         ${${gem_name}_COMMON_AUTOGEN_RULES}
@@ -225,6 +226,7 @@ ly_add_target(
             Gem::${gem_name}.Servers.API
         PRIVATE
             Gem::${gem_name}.Servers.Private.Object
+            Gem::O3deUtils_Core.Servers
             Gem::O3deUtils_Misc.Servers
     AUTOGEN_RULES
         ${${gem_name}_COMMON_AUTOGEN_RULES}
@@ -242,6 +244,7 @@ ly_add_target(
             Gem::${gem_name}.Clients.API
         PRIVATE
             Gem::${gem_name}.Clients.Private.Object
+            Gem::O3deUtils_Core.Clients
             Gem::O3deUtils_Misc.Clients
     AUTOGEN_RULES
         ${${gem_name}_COMMON_AUTOGEN_RULES}
