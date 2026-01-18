@@ -38,8 +38,6 @@ ly_add_target(
         INTERFACE
             AZ::AzFramework
             AZ::AzNetworking
-            # @Christian: TODO: [todo][techdebt][cmake][multiplayer]: I think we should take the multiplayer dependencies out of and and only directly use the "unified" "server" or "client" versions for each case.
-            Gem::Multiplayer
             Gem::GameState
 )
 
@@ -56,6 +54,7 @@ ly_add_target(
             Gem::${gem_name}.Common.API
             Gem::O3deUtils_Core.Unified.API
             Gem::O3deUtils_Misc.Unified.API
+            Gem::Multiplayer.Unified
             Gem::StartingPointInput.Unified
             Gem::LyShine.Unified.API
 )
@@ -70,6 +69,7 @@ ly_add_target(
             Gem::${gem_name}.Common.API
             Gem::O3deUtils_Core.Servers.API
             Gem::O3deUtils_Misc.Servers.API
+            Gem::Multiplayer.Servers
 )
 
 ly_add_target(
@@ -83,6 +83,7 @@ ly_add_target(
             Gem::${gem_name}.Common.API
             Gem::O3deUtils_Core.Clients.API
             Gem::O3deUtils_Misc.Clients.API
+            Gem::Multiplayer.Clients
             Gem::StartingPointInput.Clients
             Gem::LyShine.Clients.API
 )

@@ -13,8 +13,6 @@ set(FILES
     Source/GameStates/StageSelect.h
     Source/GameStates/StageSelect.cpp
     Source/SettingsRegistryAccessors.cpp
-    Source/Utils/MultiplayerUtils.h
-    Source/Utils/MultiplayerUtils.cpp
     Source/Components/RootAutonomousEntitySpawnerComponent.h
     Source/Components/RootAutonomousEntitySpawnerComponent.cpp
     Source/Components/PlayerEntityManagerComponent.h

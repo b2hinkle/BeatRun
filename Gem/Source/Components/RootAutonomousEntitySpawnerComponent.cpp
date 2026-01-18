@@ -6,7 +6,7 @@
 #include <AzCore/RTTI/BehaviorContext.h>
 #include <Multiplayer/NetworkEntity/INetworkEntityManager.h>
 #include <Multiplayer/IMultiplayer.h>
-#include <Source/Utils/MultiplayerUtils.h>
+#include <O3deUtils_Misc/MultiplayerUtils.h>
 #include <AzCore/Console/ILogger.h>
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <AzCore/Component/TransformBus.h>
@@ -127,7 +127,7 @@ namespace xXGameProjectNameXx
         const AZ::Transform& spawnTransform = GetSpawnTransformFromEntityReference();
 
         Multiplayer::INetworkEntityManager::EntityList entityList =
-            MultiplayerUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
+            O3deUtils::Misc::MultiplayerUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
                 AZStd::move(prefabEntityId),
                 netEntityRole,
                 spawnTransform);
@@ -158,7 +158,7 @@ namespace xXGameProjectNameXx
         [[maybe_unused]] const Multiplayer::ReplicationSet& replicationSet,
         [[maybe_unused]] AzNetworking::DisconnectReason reason)
     {
-        Multiplayer::INetworkEntityManager& networkEntityManager = MultiplayerUtils::GetNetworkEntityManagerAsserted();
+        Multiplayer::INetworkEntityManager& networkEntityManager = O3deUtils::Misc::MultiplayerUtils::GetNetworkEntityManagerAsserted();
 
         // Walk hierarchy backwards to remove all children before parents
         AZStd::vector<AZ::EntityId> hierarchy = entityHandle.GetEntity()->GetTransform()->GetEntityAndAllDescendants();

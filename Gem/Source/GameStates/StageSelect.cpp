@@ -13,7 +13,7 @@
 #include <AzCore/Component/ComponentApplicationBus.h>
 #include <xXGameProjectNameXx/LevelNames.h>
 #include <O3deUtils_Misc/LevelSystemUtils.h>
-#include <Source/Utils/MultiplayerUtils.h>
+#include <O3deUtils_Misc/MultiplayerUtils.h>
 #include <Multiplayer/IMultiplayer.h>
 #include <AzNetworking/ConnectionLayer/ConnectionEnums.h>
 
@@ -71,20 +71,20 @@ namespace xXGameProjectNameXx::GameStates
         }
 
         // Make sure we aren't connected to any server before loading new levels.
-        if (MultiplayerUtils::IsClient())
+        if (O3deUtils::Misc::MultiplayerUtils::IsClient())
         {
             AZStd::fixed_string<128> logString;
             logString += "Disconnecting from the server we're currently connected to, before loading to the new level.";
             AZLOG_INFO(logString.data());
 
-            MultiplayerUtils::GetMultiplayerAsserted().Terminate(AzNetworking::DisconnectReason::TerminatedByUser);
+            O3deUtils::Misc::MultiplayerUtils::GetMultiplayerAsserted().Terminate(AzNetworking::DisconnectReason::TerminatedByUser);
         }
 
 #if AZ_TRAIT_SERVER
         // Make sure we are hosting before loading any network levels.
-        if (!MultiplayerUtils::IsHosting())
+        if (!O3deUtils::Misc::MultiplayerUtils::IsHosting())
         {
-            MultiplayerUtils::PerformHostCommand();
+            O3deUtils::Misc::MultiplayerUtils::PerformHostCommand();
         }
 #endif // #if AZ_TRAIT_SERVER
 

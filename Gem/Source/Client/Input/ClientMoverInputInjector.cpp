@@ -10,7 +10,7 @@
 #include <Multiplayer/Components/NetBindComponent.h>
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Debug/Trace.h>
-#include <Source/Utils/MultiplayerUtils.h>
+#include <O3deUtils_Misc/MultiplayerUtils.h>
 
 namespace
 {
@@ -66,7 +66,7 @@ namespace xXGameProjectNameXx
 
     void ClientMoverInputInjector::OnActivate()
     {
-        if (MultiplayerUtils::GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
+        if (O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
         {
             // @Christian: TODO: [todo][techdebt][local_multiplayer] Actually get the local user id of the player that owns
             // this component. Important for supporting local multiplayer / splitscreen.
@@ -91,7 +91,7 @@ namespace xXGameProjectNameXx
 
     void ClientMoverInputInjector::OnDeactivate()
     {
-        if (MultiplayerUtils::GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
+        if (O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
         {
             StartingPointInput::InputEventNotificationBus::MultiHandler::BusDisconnect();
 
