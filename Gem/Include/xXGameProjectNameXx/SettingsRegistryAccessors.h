@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <xXGameProjectNameXx/xXGameProjectNameXxConfiguration.h>
 #include <AzCore/Settings/SettingsRegistry.h>
 
 namespace xXGameProjectNameXx::SettingsRegistryAccessors
@@ -10,7 +11,7 @@ namespace xXGameProjectNameXx::SettingsRegistryAccessors
     {
         constexpr AZStd::string_view StageSelectCanvasPathnameRegistryPath = "/xXGameProjectNameXx/Canvases/StageSelectPathname";
 
-        AZ::SettingsRegistryInterface::FixedValueString GetStageSelectCanvasPathname();
+        XXGAMEPROJECTNAMEXX_API AZ::SettingsRegistryInterface::FixedValueString GetStageSelectCanvasPathname();
     }
 #endif // #if AZ_TRAIT_CLIENT
 
@@ -19,7 +20,7 @@ namespace xXGameProjectNameXx::SettingsRegistryAccessors
     {
         constexpr AZStd::string_view CursorTexturePathnameRegistryPath = "/xXGameProjectNameXx/UI/CursorTexturePathname";
 
-        AZ::SettingsRegistryInterface::FixedValueString GetCursorTexturePathname();
+        XXGAMEPROJECTNAMEXX_API AZ::SettingsRegistryInterface::FixedValueString GetCursorTexturePathname();
     }
 #endif // #if AZ_TRAIT_CLIENT
 } // namespace xXGameProjectNameXx

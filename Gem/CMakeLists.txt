@@ -107,6 +107,9 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
+    COMPILE_DEFINITIONS
+        INTERFACE
+            ${gem_name_uppercase}_EXPORTS
     TARGET_PROPERTIES
         O3DE_PRIVATE_TARGET TRUE
         ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}

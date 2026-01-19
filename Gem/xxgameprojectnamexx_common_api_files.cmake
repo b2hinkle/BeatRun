@@ -3,6 +3,7 @@
 set(FILES)
 
 list(APPEND FILES
+    Include/xXGameProjectNameXx/xXGameProjectNameXxConfiguration.h
     Include/xXGameProjectNameXx/xXGameProjectNameXxBus.h
     Include/xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h
     Include/xXGameProjectNameXx/MyExperimentInterface.h
