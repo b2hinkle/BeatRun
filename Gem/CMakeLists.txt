@@ -4,6 +4,9 @@
 # based on the directory of this CMakeLists.txt
 o3de_gem_setup("xXGameProjectNameXx")
 
+string(TOLOWER ${gem_name} gem_name_lowercase)
+string(TOUPPER ${gem_name} gem_name_uppercase)
+
 # Now that we have the platform abstraction layer (PAL) folder for this folder, thats where we will find the
 # traits for this platform. Traits for a platform are defines for things like whether or not something in this project
 # is supported by this platform.
@@ -11,7 +14,7 @@ include(${pal_dir}/PAL_${PAL_PLATFORM_NAME_LOWERCASE}.cmake)
 
 # Now that we have loaded our project traits for this platform, see if this project is even supported on this platform.
 # If its not supported we just return after including the unsupported.
-if(NOT PAL_TRAIT_XXGAMEPROJECTNAMEXX_SUPPORTED)
+if(NOT PAL_TRAIT_${gem_name_uppercase}_SUPPORTED)
     return()
 endif()
 
@@ -20,8 +23,8 @@ endif()
 # Define common data used by all unified, server, and client versions of our ".API" target.
 
 set(${gem_name}_COMMON_API_FILES_CMAKE
-    xxgameprojectnamexx_common_api_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_common_api_files.cmake
+    ${gem_name_lowercase}_common_api_files.cmake
+    ${pal_dir}/${gem_name_lowercase}_common_api_files.cmake
 )
 
 ly_add_target(
@@ -48,7 +51,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_API_FILES_CMAKE}
-        xxgameprojectnamexx_client_api_files.cmake
+        ${gem_name_lowercase}_client_api_files.cmake
     BUILD_DEPENDENCIES
         INTERFACE
             Gem::${gem_name}.Common.API
@@ -77,7 +80,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_API_FILES_CMAKE}
-        xxgameprojectnamexx_client_api_files.cmake
+        ${gem_name_lowercase}_client_api_files.cmake
     BUILD_DEPENDENCIES
         INTERFACE
             Gem::${gem_name}.Common.API
@@ -91,8 +94,8 @@ ly_add_target(
 # Define common data used by all unified, server, and client versions of our ".Private.Object" target.
 
 set(${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE
-    xxgameprojectnamexx_common_private_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_common_private_files.cmake
+    ${gem_name_lowercase}_common_private_files.cmake
+    ${pal_dir}/${gem_name_lowercase}_common_private_files.cmake
 )
 
 set(${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES
@@ -126,7 +129,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
-        xxgameprojectnamexx_client_private_files.cmake
+        ${gem_name_lowercase}_client_private_files.cmake
     TARGET_PROPERTIES
         ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}
     BUILD_DEPENDENCIES
@@ -161,7 +164,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
-        xxgameprojectnamexx_client_private_files.cmake
+        ${gem_name_lowercase}_client_private_files.cmake
     TARGET_PROPERTIES
         ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}
     BUILD_DEPENDENCIES
@@ -183,9 +186,9 @@ unset(${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES)
 set(${gem_name}_COMMON_FILES_CMAKE
     ${${gem_name}_COMMON_API_FILES_CMAKE}
     ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
-    xxgameprojectnamexx_common_shared_files.cmake
-    ${pal_dir}/xxgameprojectnamexx_common_shared_files.cmake
-    xxgameprojectnamexx_common_autogen_files.cmake
+    ${gem_name_lowercase}_common_shared_files.cmake
+    ${pal_dir}/${gem_name_lowercase}_common_shared_files.cmake
+    ${gem_name_lowercase}_common_autogen_files.cmake
 )
 
 set(${gem_name}_COMMON_AUTOGEN_RULES
@@ -204,8 +207,8 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_FILES_CMAKE}
-        xxgameprojectnamexx_client_api_files.cmake
-        xxgameprojectnamexx_client_private_files.cmake
+        ${gem_name_lowercase}_client_api_files.cmake
+        ${gem_name_lowercase}_client_private_files.cmake
     BUILD_DEPENDENCIES
         PUBLIC
             Gem::${gem_name}.Unified.API
@@ -238,8 +241,8 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_FILES_CMAKE}
-        xxgameprojectnamexx_client_api_files.cmake
-        xxgameprojectnamexx_client_private_files.cmake
+        ${gem_name_lowercase}_client_api_files.cmake
+        ${gem_name_lowercase}_client_private_files.cmake
     BUILD_DEPENDENCIES
         PUBLIC
             Gem::${gem_name}.Clients.API
@@ -266,7 +269,7 @@ o3de_add_variant_dependencies_for_gem_dependencies(GEM_NAME ${gem_name} VARIANTS
 # is used to bootstrap the gem in monolithic builds to link to the new gem name
 ly_add_source_properties(
 SOURCES
-    Source/xXGameProjectNameXxModule.cpp
+    Source/${gem_name}Module.cpp
 PROPERTY COMPILE_DEFINITIONS
     VALUES
         O3DE_GEM_NAME=${gem_name}
@@ -278,8 +281,8 @@ if(PAL_TRAIT_BUILD_HOST_TOOLS)
         NAMESPACE Gem
         FILES_CMAKE
             ${${gem_name}_COMMON_FILES_CMAKE}
-            xxgameprojectnamexx_client_api_files.cmake
-            xxgameprojectnamexx_client_private_files.cmake
+            ${gem_name_lowercase}_client_api_files.cmake
+            ${gem_name_lowercase}_client_private_files.cmake
         BUILD_DEPENDENCIES
             PUBLIC
                 Gem::${gem_name}.Unified.API
@@ -309,5 +312,5 @@ o3de_find_ancestor_project_root(project_path project_name "${CMAKE_CURRENT_SOURC
 # If the project name could not be queried from a project.json file, then fallback
 # to using the name of the project provided when the project template was instantiated
 if (NOT project_name)
-    set(project_name xXGameProjectNameXx)
+    set(project_name ${gem_name})
 endif()
