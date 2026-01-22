@@ -39,6 +39,9 @@ ly_add_target(
             Include
     BUILD_DEPENDENCIES
         INTERFACE
+            CppUtils::Core::Include
+            CppUtils::Misc::Include
+            CppUtils::StdReimpl::Include
             AZ::AzFramework
             AZ::AzNetworking
             Gem::GameState
@@ -118,11 +121,13 @@ ly_add_target(
             .
     BUILD_DEPENDENCIES
         INTERFACE
+            CppUtils::Core::Static
+            CppUtils::Misc::Static
+            CppUtils::StdReimpl::Static
             AZ::AzCore
             AZ::AzGameFramework
             Gem::Atom_AtomBridge.Static
             Legacy::CryCommon
-            CppUtils::Core::Include
 )
 
 # Add our ".Private.Object" targets. @Christian: TODO: [todo][techdebt][cmake][multiplayer] Support multiplayer compile definitions (`AZ_TRAIT_CLIENT` and `AZ_TRAIT_SERVER`) without needing to depend on the multiplayer gem?
