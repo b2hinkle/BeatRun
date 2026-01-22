@@ -23,8 +23,8 @@ endif()
 # Define common data used by all unified, server, and client versions of our ".API" target.
 
 set(${gem_name}_COMMON_API_FILES_CMAKE
-    ${gem_name_lowercase}_common_api_files.cmake
-    ${pal_dir}/${gem_name_lowercase}_common_api_files.cmake
+    gem_common_api_files.cmake
+    ${pal_dir}/gem_common_api_files.cmake
 )
 
 ly_add_target(
@@ -54,7 +54,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_API_FILES_CMAKE}
-        ${gem_name_lowercase}_client_api_files.cmake
+        gem_client_api_files.cmake
     BUILD_DEPENDENCIES
         INTERFACE
             Gem::${gem_name}.Common.API
@@ -83,7 +83,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_API_FILES_CMAKE}
-        ${gem_name_lowercase}_client_api_files.cmake
+        gem_client_api_files.cmake
     BUILD_DEPENDENCIES
         INTERFACE
             Gem::${gem_name}.Common.API
@@ -97,8 +97,8 @@ ly_add_target(
 # Define common data used by all unified, server, and client versions of our ".Private.Object" target.
 
 set(${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE
-    ${gem_name_lowercase}_common_private_files.cmake
-    ${pal_dir}/${gem_name_lowercase}_common_private_files.cmake
+    gem_common_private_files.cmake
+    ${pal_dir}/gem_common_private_files.cmake
 )
 
 set(${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES
@@ -137,7 +137,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
-        ${gem_name_lowercase}_client_private_files.cmake
+        gem_client_private_files.cmake
     TARGET_PROPERTIES
         ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}
     BUILD_DEPENDENCIES
@@ -172,7 +172,7 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
-        ${gem_name_lowercase}_client_private_files.cmake
+        gem_client_private_files.cmake
     TARGET_PROPERTIES
         ${${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES}
     BUILD_DEPENDENCIES
@@ -194,9 +194,9 @@ unset(${gem_name}_COMMON_PRIVATE_OBJECT_TARGET_PROPERTIES)
 set(${gem_name}_COMMON_FILES_CMAKE
     ${${gem_name}_COMMON_API_FILES_CMAKE}
     ${${gem_name}_COMMON_PRIVATE_OBJECT_FILES_CMAKE}
-    ${gem_name_lowercase}_common_shared_files.cmake
-    ${pal_dir}/${gem_name_lowercase}_common_shared_files.cmake
-    ${gem_name_lowercase}_common_autogen_files.cmake
+    gem_common_shared_files.cmake
+    ${pal_dir}/gem_common_shared_files.cmake
+    gem_common_autogen_files.cmake
 )
 
 set(${gem_name}_COMMON_AUTOGEN_RULES
@@ -215,8 +215,8 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_FILES_CMAKE}
-        ${gem_name_lowercase}_client_api_files.cmake
-        ${gem_name_lowercase}_client_private_files.cmake
+        gem_client_api_files.cmake
+        gem_client_private_files.cmake
     BUILD_DEPENDENCIES
         PUBLIC
             Gem::${gem_name}.Unified.API
@@ -249,8 +249,8 @@ ly_add_target(
     NAMESPACE Gem
     FILES_CMAKE
         ${${gem_name}_COMMON_FILES_CMAKE}
-        ${gem_name_lowercase}_client_api_files.cmake
-        ${gem_name_lowercase}_client_private_files.cmake
+        gem_client_api_files.cmake
+        gem_client_private_files.cmake
     BUILD_DEPENDENCIES
         PUBLIC
             Gem::${gem_name}.Clients.API
@@ -289,8 +289,8 @@ if(PAL_TRAIT_BUILD_HOST_TOOLS)
         NAMESPACE Gem
         FILES_CMAKE
             ${${gem_name}_COMMON_FILES_CMAKE}
-            ${gem_name_lowercase}_client_api_files.cmake
-            ${gem_name_lowercase}_client_private_files.cmake
+            gem_client_api_files.cmake
+            gem_client_private_files.cmake
         BUILD_DEPENDENCIES
             PUBLIC
                 Gem::${gem_name}.Unified.API
